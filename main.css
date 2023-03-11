@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #8685ef;
+  --primary-lighter: hsl(240, 100%, 96%);
+  --secondary: #7fd1ae;
+  --secondary-lighter: hsl(154, 47%, 85%);
+  --primary-100: #6467cd;
+  --primary-200: #414aab;
+  --bg: #303030;
+  --bg-light: #fafafa;
+  --warning: #df2e38;
+}
+
+body {
+  background-color: var(--bg-light);
+  font-family: "Inter", sans-serif;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.big-title {
+  font-size: 2.4rem;
+  font-weight: 500;
+  color: var(--primary-200);
+}
+
+.subtitle {
+  font-weight: 300;
+  color: var(--primary-100);
+}
+
+.grid-container {
+  padding: 2rem;
+}
+
+#new-task-input {
+  font-size: 1.1rem;
+  width: 100%;
+  font-family: "Inter", sans-serif;
+  padding: 1rem;
+  background-color: inherit;
+  color: var(--bg);
+  border: none;
+  border-bottom: solid var(--primary) 2px;
+  outline: none;
+}
+
+input::placeholder {
+  color: rgba(0, 0, 0, 0.1);
+}
+
+.new-task-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+#add-task-btn {
+  background-color: inherit;
+  border: none;
+  outline: none;
+  padding: 1rem 1.2rem;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+#add-task-btn:hover {
+  border-radius: 30px;
+  background-color: rgba(0, 0, 0, 0.025);
+}
+
+#add-task-btn:active {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+#add-task-btn i {
+  font-size: 1.5rem;
+  color: var(--primary);
+}
+
+.list-item {
+  font-size: 1.15rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 0.5rem;
+  list-style-type: none;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.02);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.list-item:hover {
+  background-color: var(--primary-lighter);
+}
+
+.fa-trash {
+  font-size: 1.2rem;
+  color: var(--primary-200);
+}
+
+.fa-trash {
+  justify-self: flex-end;
+}
+
+.fa-trash:hover {
+  color: var(--warning);
+}
+
+.item-text {
+  color: var(--bg);
+}
+
+.item-text:hover {
+  text-decoration: line-through;
+}
