@@ -45,7 +45,6 @@ function addNewTask() {
         newTaskItem.style.backgroundColor = "rgba(0, 0, 0, 0.02)";
       }
     }
-
     newTaskItem.addEventListener("click", checkItem);
   }
 }
