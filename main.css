@@ -21,6 +21,8 @@
 body {
   background-color: var(--bg-light);
   font-family: "Inter", sans-serif;
+  max-width: 760px;
+  margin: 0 auto;
 }
 
 header {
