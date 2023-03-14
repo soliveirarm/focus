@@ -7,41 +7,28 @@
 }
 
 :root {
-  --primary: #8685ef;
+  --primary: hsl(241, 77%, 73%);
+  --primary-100: hsl(238, 51%, 60%);
+  --primary-200: hsl(235, 45%, 46%);
   --primary-lighter: hsl(240, 100%, 96%);
-  --secondary: #7fd1ae;
+  --secondary: hsl(154, 47%, 66%);
   --secondary-lighter: hsl(154, 47%, 85%);
-  --primary-100: #6467cd;
-  --primary-200: #414aab;
   --bg: #303030;
-  --bg-light: #fafafa;
+  --bg-light: hsl(0, 0%, 98%);
+  --bg-light-100: hsl(0, 0%, 95%);
   --warning: #df2e38;
 }
 
 body {
-  background-color: var(--bg-light);
+  background: linear-gradient(
+    222deg,
+    var(--bg-light) 45%,
+    var(--bg-light-100) 55%
+  );
+  background-attachment: fixed;
   font-family: "Inter", sans-serif;
   max-width: 760px;
   margin: 0 auto;
-}
-
-header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-}
-
-.big-title {
-  font-size: 2.4rem;
-  font-weight: 500;
-  color: var(--primary-200);
-}
-
-.subtitle {
-  font-weight: 300;
-  color: var(--primary-100);
 }
 
 .grid-container {
@@ -49,15 +36,15 @@ header {
 }
 
 #new-task-input {
-  font-size: 1.1rem;
-  width: 100%;
-  font-family: "Inter", sans-serif;
-  padding: 1rem;
   background-color: inherit;
-  color: var(--bg);
   border: none;
   border-bottom: solid var(--primary) 2px;
+  color: var(--bg);
+  font-family: "Inter", sans-serif;
+  font-size: 1.1rem;
   outline: none;
+  padding: 1rem;
+  width: 100%;
 }
 
 input::placeholder {
@@ -70,29 +57,6 @@ input::placeholder {
   margin-bottom: 3rem;
 }
 
-#add-task-btn {
-  background-color: inherit;
-  border: none;
-  outline: none;
-  padding: 1rem 1.2rem;
-  transition: 0.2s;
-  cursor: pointer;
-}
-
-#add-task-btn:hover {
-  border-radius: 30px;
-  background-color: rgba(0, 0, 0, 0.025);
-}
-
-#add-task-btn:active {
-  background-color: rgba(0, 0, 0, 0.15);
-}
-
-#add-task-btn i {
-  font-size: 1.5rem;
-  color: var(--primary);
-}
-
 .list-item {
   font-size: 1.15rem;
   display: flex;
@@ -102,32 +66,38 @@ input::placeholder {
   list-style-type: none;
   padding: 1rem;
   margin-bottom: 0.5rem;
-  background-color: rgba(0, 0, 0, 0.02);
+  /* background-color: rgba(0, 0, 0, 0.02); */
   border-radius: 10px;
   cursor: pointer;
 }
 
 .list-item:hover {
-  background-color: var(--primary-lighter);
+  text-decoration: line-through;
 }
 
-.fa-trash {
+.icons-container {
+  display: none;
+  gap: 0.8rem;
+}
+
+.icons-container.active {
+  display: flex;
+}
+
+.fa-trash,
+.fa-pen-to-square {
   font-size: 1.2rem;
   color: var(--primary-200);
-}
-
-.fa-trash {
-  justify-self: flex-end;
 }
 
 .fa-trash:hover {
   color: var(--warning);
 }
 
-.item-text {
-  color: var(--bg);
+.fa-pen-to-square:hover {
+  color: var(--primary-100);
 }
 
-.item-text:hover {
-  text-decoration: line-through;
+.item-text {
+  color: var(--bg);
 }

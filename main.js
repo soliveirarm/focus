@@ -1,11 +1,8 @@
-// Variables
-const addTaskBtn = document.getElementById("add-task-btn");
 const newTaskInput = document.getElementById("new-task-input");
+// <ul> that receives <li>
 const taskList = document.querySelector(".task-list");
 
-// Array that will receive the tasks thata were added
-let taskListArray = [];
-
+// MAIN FUNCTION THAT ADDS NEW TASKS TO THE DIV
 function addNewTask() {
   let newTaskItem = document.createElement("li");
   newTaskItem.classList.add("list-item");
@@ -15,42 +12,60 @@ function addNewTask() {
   if (newTaskInput.value == "") {
     alert("There's no text on the input");
   } else {
-    taskListArray.push({ taskName: newTaskInput.value, status: "unchecked" });
     // adds <li> in the <ul>
     taskList.appendChild(newTaskItem);
     // creating the trash can element
     let trashCan = document.createElement("span");
     trashCan.innerHTML = `<i class="fa-solid fa-trash"></i>`;
 
+    /* let editText = document.createElement("span");
+    editText.innerHTML = `<i class="fa-solid fa-pen-to-square"></i>`; */
+
+    let iconsContainer = document.createElement("div");
+    iconsContainer.classList.add("icons-container");
+    // iconsContainer.appendChild(editText);
+    iconsContainer.appendChild(trashCan);
+
     // adds the <p> in the <li>
     newTaskItem.appendChild(itemText);
 
-    // pust the input text into the <p>
+    // puts the input text into the <p>
     itemText.textContent = newTaskInput.value;
-    // appends the trash can icon into the <li>
-    newTaskItem.appendChild(trashCan);
+    // appends the iconsContainer icon into the <li>
+    newTaskItem.appendChild(iconsContainer);
     // erases the text in the input
     newTaskInput.value = "";
 
+    // MARKS THE ITEM AS COMPLETED
     function checkItem() {
       itemText.classList.toggle("checked");
 
       if (itemText.classList.contains("checked")) {
         itemText.style.textDecoration = "line-through";
         itemText.style.color = "rgba(0,0,0,0.3)";
-        newTaskItem.style.backgroundColor = "var(--secondary-lighter)";
       } else {
         itemText.style.textDecoration = "none";
         itemText.style.color = "#303030";
-        newTaskItem.style.backgroundColor = "rgba(0, 0, 0, 0.02)";
       }
     }
-    newTaskItem.addEventListener("click", checkItem);
+
+    // SHOWS THE ICONS WHEN HOVERING
+    function showIconsOnHover() {
+      iconsContainer.classList.toggle("active");
+    }
+
+    // marks the items as completed
+    itemText.addEventListener("click", checkItem);
+    // show and hide the icons
+    newTaskItem.addEventListener("mouseover", showIconsOnHover);
+    newTaskItem.addEventListener("mouseout", showIconsOnHover);
+
+    // REMOVES AN ITEM FROM THE LIST
+    trashCan.addEventListener("click", () => {
+      newTaskItem.remove();
+    });
   }
 }
-
-// EventListener that adds a <li> to the <ul> in HTML
-addTaskBtn.addEventListener("click", addNewTask);
 
 // EventListener that monitors the input text, if enter is pressed, it runs de addNewTask()
 newTaskInput.addEventListener("keypress", (e) => {
@@ -58,3 +73,5 @@ newTaskInput.addEventListener("keypress", (e) => {
     addNewTask();
   }
 });
+
+//itemText.addEventListener("touchmove", checkItem);
