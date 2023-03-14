@@ -1,6 +1,6 @@
-# Isis - Task Manager
+# isis - task manager
 
-**Isis** is a minimal task manager for Web.
+**isis** is a minimal task manager for Web.
 
 All your tasks are saved locally, so you don't have to worry about logging in for now, although that option might be added in the future.
 
