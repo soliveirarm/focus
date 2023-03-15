@@ -2,6 +2,9 @@ const newTaskInput = document.getElementById("new-task-input");
 // <ul> that receives <li>
 const taskList = document.querySelector(".task-list");
 
+const completedTasks = document.querySelector(".completed-tasks--list");
+const completedTasksContainer = document.querySelector(".completed-tasks");
+
 // MAIN FUNCTION THAT ADDS NEW TASKS TO THE DIV
 function addNewTask() {
   let newTaskItem = document.createElement("li");
@@ -42,10 +45,12 @@ function addNewTask() {
 
       if (itemText.classList.contains("checked")) {
         itemText.style.textDecoration = "line-through";
-        itemText.style.color = "rgba(0,0,0,0.3)";
+        itemText.style.color = "hsla(0, 0%, 100%, 0.827)";
+        completedTasks.appendChild(newTaskItem);
       } else {
         itemText.style.textDecoration = "none";
-        itemText.style.color = "#303030";
+        itemText.style.color = "var(--primary)";
+        taskList.appendChild(newTaskItem);
       }
     }
 
