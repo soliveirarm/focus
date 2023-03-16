@@ -2,7 +2,9 @@
 
 **isis** is a minimal task manager for web.
 
-<img src="/img/isis-image.png">
+<div style="text-align: center">
+  <img src="/img/isis-image.png">
+  </div>
 
 All your tasks are saved locally, so you don't have to worry about logging in for now, although that option might be added in the future.
 
