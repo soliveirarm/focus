@@ -5,6 +5,8 @@ const taskList = document.querySelector(".task-list");
 const completedTasks = document.querySelector(".completed-tasks--list");
 const completedTasksContainer = document.querySelector(".completed-tasks");
 
+let tasksArray = [];
+
 // MAIN FUNCTION THAT ADDS NEW TASKS TO THE DIV
 function addNewTask() {
   let newTaskItem = document.createElement("li");
@@ -68,6 +70,7 @@ function addNewTask() {
     // REMOVES AN ITEM FROM THE LIST
     trashCan.addEventListener("click", () => {
       newTaskItem.remove();
+      localStorage.removeItem(newTaskItem);
     });
   }
 }
