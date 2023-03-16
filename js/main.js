@@ -45,11 +45,11 @@ function addNewTask() {
 
       if (itemText.classList.contains("checked")) {
         itemText.style.textDecoration = "line-through";
-        itemText.style.color = "hsla(0, 0%, 100%, 0.827)";
+        itemText.style.color = "rgba(0, 0, 0, 0.3)";
         completedTasks.appendChild(newTaskItem);
       } else {
         itemText.style.textDecoration = "none";
-        itemText.style.color = "var(--primary)";
+        itemText.style.color = "var(--dark)";
         taskList.appendChild(newTaskItem);
       }
     }
