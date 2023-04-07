@@ -8,7 +8,7 @@
 
 /* Variables */
 body {
-  background-color: #eceff4;
+  background-color: #fafafa;
   font-family: "Inter", sans-serif;
   max-width: 760px;
   margin: 0 auto;
@@ -16,7 +16,6 @@ body {
 
 /* header related */
 header {
-  letter-spacing: 0.1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -24,11 +23,8 @@ header {
   color: #2e3440;
 }
 
-.page-title {
-  letter-spacing: 0.02rem;
-}
-
 .subtitle {
+  letter-spacing: 0.08rem;
   font-size: 1.1rem;
 }
 
@@ -132,7 +128,7 @@ input::placeholder {
 
 .item-text.checked {
   text-decoration: line-through;
-  color: #b7e5d2;
+  color: rgba(0, 0, 0, 0.15);
 }
 
 /* generic reusable classes */

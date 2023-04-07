@@ -8,7 +8,7 @@
 }
 
 /* Variables */
-$white: #eceff4;
+$white: #fafafa;
 $dark: #2e3440;
 $completed: #7fd1ae;
 $warning: #ff3c41;
@@ -23,7 +23,6 @@ body {
 
 /* header related */
 header {
-  letter-spacing: 0.1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -31,11 +30,8 @@ header {
   color: $dark;
 }
 
-.page-title {
-  letter-spacing: 0.02rem;
-}
-
 .subtitle {
+  letter-spacing: 0.08rem;
   font-size: 1.1rem;
 }
 
@@ -133,7 +129,7 @@ input::placeholder {
 
 .item-text.checked {
   text-decoration: line-through;
-  color: lighten($completed, 15%);
+  color: rgba(0, 0, 0, 0.15);
 }
 
 /* generic reusable classes */
