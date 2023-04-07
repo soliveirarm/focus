@@ -1,11 +1,30 @@
-const newTaskInput = document.getElementById("new-task-input");
+// input
+const newTaskInput = document.querySelector("#new-task-input");
 // <ul> that receives <li>
 const taskList = document.querySelector(".task-list");
-
-const completedTasks = document.querySelector(".completed-tasks--list");
+// section .completed-tasks
 const completedTasksContainer = document.querySelector(".completed-tasks");
+// ul .completed-tasks__list
+const completedTasks = document.querySelector(".completed-tasks__list");
 
-let tasksArray = [];
+let tasksLocal = localStorage.getItem("tasks");
+
+let taskArray;
+if (tasksLocal === null) {
+}
+
+// MARKS THE ITEM AS COMPLETED
+function checkItem(text, li) {
+  text.classList.toggle("checked");
+
+  if (text.classList.contains("checked")) {
+    // Appends the task to the completed-tasks container
+    completedTasks.appendChild(li);
+  } else {
+    // Appends the task to the task-list container
+    taskList.appendChild(li);
+  }
+}
 
 // MAIN FUNCTION THAT ADDS NEW TASKS TO THE DIV
 function addNewTask() {
@@ -19,6 +38,7 @@ function addNewTask() {
   } else {
     // adds <li> in the <ul>
     taskList.appendChild(newTaskItem);
+
     // creating the trash can element
     let trashCan = document.createElement("span");
     trashCan.innerHTML = `<i class="fa-solid fa-trash"></i>`;
@@ -41,20 +61,9 @@ function addNewTask() {
     // erases the text in the input
     newTaskInput.value = "";
 
-    // MARKS THE ITEM AS COMPLETED
-    function checkItem() {
-      itemText.classList.toggle("checked");
-
-      if (itemText.classList.contains("checked")) {
-        itemText.style.textDecoration = "line-through";
-        itemText.style.color = "rgba(0, 0, 0, 0.3)";
-        completedTasks.appendChild(newTaskItem);
-      } else {
-        itemText.style.textDecoration = "none";
-        itemText.style.color = "var(--dark)";
-        taskList.appendChild(newTaskItem);
-      }
-    }
+    itemText.addEventListener("click", () => {
+      checkItem(itemText, newTaskItem);
+    });
 
     // SHOWS THE ICONS WHEN HOVERING
     function showIconsOnHover() {
@@ -70,7 +79,6 @@ function addNewTask() {
     // REMOVES AN ITEM FROM THE LIST
     trashCan.addEventListener("click", () => {
       newTaskItem.remove();
-      localStorage.removeItem(newTaskItem);
     });
   }
 }
