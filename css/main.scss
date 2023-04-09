@@ -17,8 +17,6 @@ $accent: #0098fa;
 body {
   background-color: $white;
   font-family: "Inter", sans-serif;
-  max-width: 760px;
-  margin: 0 auto;
 }
 
 /* header related */
@@ -37,6 +35,8 @@ header {
 
 /* main related */
 .grid-container {
+  max-width: 760px;
+  margin: 0 auto;
   padding: 2rem;
 }
 
@@ -44,6 +44,7 @@ header {
 .new-task-container {
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-bottom: 1rem;
 }
 
@@ -74,37 +75,46 @@ input::placeholder {
   padding: 0.8rem;
   margin-bottom: 0.1rem;
   border-radius: 10px;
-  cursor: pointer;
   color: $dark;
 }
 
-.list-item:hover {
-  text-decoration: line-through;
-}
-
-/* icons that are inside the <li> (created in js) */
-.icons-container {
-  display: none;
-  gap: 0.8rem;
-}
-
-.icons-container.active {
+.task-container {
   display: flex;
+  column-gap: 0.5rem;
+  align-items: center;
 }
 
-.fa-trash,
-.fa-pen-to-square {
+input[type="checkbox"] {
+  cursor: pointer;
+  accent-color: $accent;
+}
+
+.trash-can {
+  display: none;
   font-size: 1.2rem;
   color: $accent;
+  cursor: pointer;
 }
 
-.fa-trash:hover {
+.trash-can.active {
+  display: block;
+}
+
+.trash-can:hover {
   color: $warning;
 }
 
 /* <p> inside <li> */
 .item-text {
   color: $dark;
+}
+
+.completed-tasks__btn {
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+  cursor: pointer;
+  color: $accent;
 }
 
 /* <div> with completed tasks */
@@ -117,9 +127,14 @@ input::placeholder {
   margin-top: 2rem;
 }
 .completed-tasks__title {
-  color: darken($completed, 15%);
+  user-select: none;
+  color: $accent;
   font-weight: bold;
   font-size: 1.2rem;
+}
+
+.completed-tasks__list.hidden {
+  visibility: hidden;
 }
 
 .item-text {
@@ -140,5 +155,15 @@ input::placeholder {
 @media screen and (max-width: 500px) {
   header {
     flex-direction: column;
+  }
+
+  .trash-can {
+    display: block;
+    color: $warning;
+  }
+
+  .new-task-container {
+    position: fixed;
+    bottom: 0;
   }
 }

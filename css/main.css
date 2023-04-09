@@ -10,8 +10,6 @@
 body {
   background-color: #fafafa;
   font-family: "Inter", sans-serif;
-  max-width: 760px;
-  margin: 0 auto;
 }
 
 /* header related */
@@ -30,6 +28,8 @@ header {
 
 /* main related */
 .grid-container {
+  max-width: 760px;
+  margin: 0 auto;
   padding: 2rem;
 }
 
@@ -37,6 +37,7 @@ header {
 .new-task-container {
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-bottom: 1rem;
 }
 
@@ -72,37 +73,48 @@ input::placeholder {
   padding: 0.8rem;
   margin-bottom: 0.1rem;
   border-radius: 10px;
-  cursor: pointer;
   color: #2e3440;
 }
 
-.list-item:hover {
-  text-decoration: line-through;
-}
-
-/* icons that are inside the <li> (created in js) */
-.icons-container {
-  display: none;
-  gap: 0.8rem;
-}
-
-.icons-container.active {
+.task-container {
   display: flex;
+  -moz-column-gap: 0.5rem;
+       column-gap: 0.5rem;
+  align-items: center;
 }
 
-.fa-trash,
-.fa-pen-to-square {
+input[type=checkbox] {
+  cursor: pointer;
+  accent-color: #0098fa;
+}
+
+.trash-can {
+  display: none;
   font-size: 1.2rem;
   color: #0098fa;
+  cursor: pointer;
 }
 
-.fa-trash:hover {
+.trash-can.active {
+  display: block;
+}
+
+.trash-can:hover {
   color: #ff3c41;
 }
 
 /* <p> inside <li> */
 .item-text {
   color: #2e3440;
+}
+
+.completed-tasks__btn {
+  display: flex;
+  align-items: center;
+  -moz-column-gap: 0.5rem;
+       column-gap: 0.5rem;
+  cursor: pointer;
+  color: #0098fa;
 }
 
 /* <div> with completed tasks */
@@ -116,9 +128,16 @@ input::placeholder {
 }
 
 .completed-tasks__title {
-  color: #47bd8a;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  color: #0098fa;
   font-weight: bold;
   font-size: 1.2rem;
+}
+
+.completed-tasks__list.hidden {
+  visibility: hidden;
 }
 
 .item-text {
@@ -139,5 +158,13 @@ input::placeholder {
 @media screen and (max-width: 500px) {
   header {
     flex-direction: column;
+  }
+  .trash-can {
+    display: block;
+    color: #ff3c41;
+  }
+  .new-task-container {
+    position: fixed;
+    bottom: 0;
   }
 }/*# sourceMappingURL=main.css.map */

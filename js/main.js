@@ -1,7 +1,8 @@
-// input
+// add task input
 const newTaskInput = document.querySelector("#new-task-input");
 // <ul> that receives <li>
 const taskList = document.querySelector(".task-list");
+
 // section .completed-tasks
 const completedTasksContainer = document.querySelector(".completed-tasks");
 // ul .completed-tasks__list
@@ -14,10 +15,10 @@ if (tasksLocal === null) {
 }
 
 // MARKS THE ITEM AS COMPLETED
-function checkItem(text, li) {
+function checkItem(checkbox, li, text) {
   text.classList.toggle("checked");
 
-  if (text.classList.contains("checked")) {
+  if (checkbox.checked) {
     // Appends the task to the completed-tasks container
     completedTasks.appendChild(li);
   } else {
@@ -28,57 +29,60 @@ function checkItem(text, li) {
 
 // MAIN FUNCTION THAT ADDS NEW TASKS TO THE DIV
 function addNewTask() {
-  let newTaskItem = document.createElement("li");
-  newTaskItem.classList.add("list-item");
-  let itemText = document.createElement("p");
-  itemText.classList.add("item-text");
-
   if (newTaskInput.value == "") {
     alert("There's no text on the input");
   } else {
+    // li
+    let newTaskLi = document.createElement("li");
+    newTaskLi.classList.add("list-item");
+
+    // input inside li
+    let newTaskText = document.createElement("p");
+    newTaskText.classList.add("item-text");
+
+    let checkbox = document.createElement("INPUT");
+    checkbox.setAttribute("type", "checkbox");
+
+    let taskContainer = document.createElement("div");
+    taskContainer.classList.add("task-container");
+
+    taskContainer.appendChild(checkbox);
+    taskContainer.appendChild(newTaskText);
+
+    newTaskLi.appendChild(taskContainer);
+
     // adds <li> in the <ul>
-    taskList.appendChild(newTaskItem);
+    taskList.appendChild(newTaskLi);
 
     // creating the trash can element
     let trashCan = document.createElement("span");
+    trashCan.classList.add("trash-can");
     trashCan.innerHTML = `<i class="fa-solid fa-trash"></i>`;
 
-    /* let editText = document.createElement("span");
-    editText.innerHTML = `<i class="fa-solid fa-pen-to-square"></i>`; */
-
-    let iconsContainer = document.createElement("div");
-    iconsContainer.classList.add("icons-container");
-    // iconsContainer.appendChild(editText);
-    iconsContainer.appendChild(trashCan);
-
-    // adds the <p> in the <li>
-    newTaskItem.appendChild(itemText);
+    newTaskLi.appendChild(trashCan);
 
     // puts the input text into the <p>
-    itemText.textContent = newTaskInput.value;
-    // appends the iconsContainer icon into the <li>
-    newTaskItem.appendChild(iconsContainer);
+    newTaskText.textContent = newTaskInput.value;
+
     // erases the text in the input
     newTaskInput.value = "";
 
-    itemText.addEventListener("click", () => {
-      checkItem(itemText, newTaskItem);
+    checkbox.addEventListener("click", () => {
+      checkItem(checkbox, newTaskLi, newTaskText);
     });
 
     // SHOWS THE ICONS WHEN HOVERING
     function showIconsOnHover() {
-      iconsContainer.classList.toggle("active");
+      trashCan.classList.toggle("active");
     }
 
-    // marks the items as completed
-    itemText.addEventListener("click", checkItem);
     // show and hide the icons
-    newTaskItem.addEventListener("mouseover", showIconsOnHover);
-    newTaskItem.addEventListener("mouseout", showIconsOnHover);
+    newTaskLi.addEventListener("mouseover", showIconsOnHover);
+    newTaskLi.addEventListener("mouseout", showIconsOnHover);
 
     // REMOVES AN ITEM FROM THE LIST
     trashCan.addEventListener("click", () => {
-      newTaskItem.remove();
+      newTaskLi.remove();
     });
   }
 }
@@ -90,4 +94,16 @@ newTaskInput.addEventListener("keypress", (e) => {
   }
 });
 
-//itemText.addEventListener("touchmove", checkItem);
+// Container with the title and the arrow
+let completedTasksBtn = document.querySelector(".completed-tasks__btn");
+
+completedTasksBtn.addEventListener("click", () => {
+  completedTasks.classList.toggle("hidden");
+
+  let arrow = document.querySelector(".arrow");
+  if (completedTasks.classList.contains("hidden")) {
+    arrow.innerHTML = `<i class="fa-solid fa-chevron-up"></i>`;
+  } else {
+    arrow.innerHTML = `<i class="fa-solid fa-chevron-down"></i>`;
+  }
+});
