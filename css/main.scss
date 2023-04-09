@@ -9,10 +9,10 @@
 
 /* Variables */
 $white: #fafafa;
-$dark: #2e3440;
+$dark: hsl(220, 16%, 5%);
 $completed: #7fd1ae;
 $warning: #ff3c41;
-$accent: #0098fa;
+$accent: hsl(252, 75%, 60%);
 
 body {
   background-color: $white;
@@ -25,7 +25,6 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 2rem;
-  color: $dark;
 }
 
 .subtitle {
@@ -38,6 +37,14 @@ header {
   max-width: 760px;
   margin: 0 auto;
   padding: 2rem;
+}
+
+.dark-mode-btn {
+  padding: 0.7rem;
+  border: none;
+  border-radius: 10px;
+  background-color: inherit;
+  cursor: pointer;
 }
 
 /* input container */
@@ -152,14 +159,29 @@ input[type="checkbox"] {
   color: $accent;
 }
 
+.fa-toggle-off,
+.fa-toggle-on {
+  color: $accent;
+}
+body.dark {
+  background-color: $dark;
+  color: $white;
+
+  input::placeholder,
+  .item-text.checked {
+    color: grey;
+  }
+
+  #new-task-input,
+  .item-text {
+    color: $white;
+  }
+}
+
 @media screen and (max-width: 500px) {
   .grid-container {
     min-height: 80vh;
     position: relative;
-  }
-
-  header {
-    flex-direction: column;
   }
 
   .trash-can {

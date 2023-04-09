@@ -18,7 +18,6 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 2rem;
-  color: #2e3440;
 }
 
 .subtitle {
@@ -33,6 +32,14 @@ header {
   padding: 2rem;
 }
 
+.dark-mode-btn {
+  padding: 0.7rem;
+  border: none;
+  border-radius: 10px;
+  background-color: inherit;
+  cursor: pointer;
+}
+
 /* input container */
 .new-task-container {
   display: flex;
@@ -44,8 +51,8 @@ header {
 #new-task-input {
   background-color: inherit;
   border: none;
-  border-bottom: solid #0098fa 1px;
-  color: #2e3440;
+  border-bottom: solid hsl(252, 75%, 60%) 1px;
+  color: hsl(220, 16%, 5%);
   font-family: "Inter", sans-serif;
   font-size: 1.1rem;
   outline: none;
@@ -73,7 +80,7 @@ input::placeholder {
   padding: 0.8rem;
   margin-bottom: 0.1rem;
   border-radius: 10px;
-  color: #2e3440;
+  color: hsl(220, 16%, 5%);
 }
 
 .task-container {
@@ -85,13 +92,13 @@ input::placeholder {
 
 input[type=checkbox] {
   cursor: pointer;
-  accent-color: #0098fa;
+  accent-color: hsl(252, 75%, 60%);
 }
 
 .trash-can {
   display: none;
   font-size: 1.2rem;
-  color: #0098fa;
+  color: hsl(252, 75%, 60%);
   cursor: pointer;
 }
 
@@ -105,7 +112,7 @@ input[type=checkbox] {
 
 /* <p> inside <li> */
 .item-text {
-  color: #2e3440;
+  color: hsl(220, 16%, 5%);
 }
 
 .completed-tasks__btn {
@@ -114,7 +121,7 @@ input[type=checkbox] {
   -moz-column-gap: 0.5rem;
        column-gap: 0.5rem;
   cursor: pointer;
-  color: #0098fa;
+  color: hsl(252, 75%, 60%);
 }
 
 /* <div> with completed tasks */
@@ -131,7 +138,7 @@ input[type=checkbox] {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-  color: #0098fa;
+  color: hsl(252, 75%, 60%);
   font-weight: bold;
   font-size: 1.2rem;
 }
@@ -142,7 +149,7 @@ input[type=checkbox] {
 
 .item-text {
   text-decoration: none;
-  color: #2e3440;
+  color: hsl(220, 16%, 5%);
 }
 
 .item-text.checked {
@@ -152,16 +159,34 @@ input[type=checkbox] {
 
 /* generic reusable classes */
 .accent {
-  color: #0098fa;
+  color: hsl(252, 75%, 60%);
+}
+
+.fa-toggle-off,
+.fa-toggle-on {
+  color: hsl(252, 75%, 60%);
+}
+
+body.dark {
+  background-color: hsl(220, 16%, 5%);
+  color: #fafafa;
+}
+body.dark input::-moz-placeholder {
+  color: grey;
+}
+body.dark input::placeholder,
+body.dark .item-text.checked {
+  color: grey;
+}
+body.dark #new-task-input,
+body.dark .item-text {
+  color: #fafafa;
 }
 
 @media screen and (max-width: 500px) {
   .grid-container {
     min-height: 80vh;
     position: relative;
-  }
-  header {
-    flex-direction: column;
   }
   .trash-can {
     display: block;

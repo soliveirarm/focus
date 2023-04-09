@@ -107,3 +107,19 @@ completedTasksBtn.addEventListener("click", () => {
     arrow.innerHTML = `<i class="fa-solid fa-chevron-down"></i>`;
   }
 });
+
+// Dark mode
+
+let darkModeBtn = document.querySelector("#toggle-dark-mode");
+
+function toggleDarkMode() {
+  document.body.classList.toggle("dark");
+
+  if (document.body.classList.contains("dark")) {
+    darkModeBtn.innerHTML = `Light Mode <i class="fa-solid fa-toggle-on fa-lg"></i>`;
+  } else {
+    darkModeBtn.innerHTML = `Dark Mode <i class="fa-solid fa-toggle-off fa-lg"></i>`;
+  }
+}
+
+darkModeBtn.addEventListener("click", toggleDarkMode);
