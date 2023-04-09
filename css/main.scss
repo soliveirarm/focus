@@ -153,6 +153,11 @@ input[type="checkbox"] {
 }
 
 @media screen and (max-width: 500px) {
+  .grid-container {
+    min-height: 80vh;
+    position: relative;
+  }
+
   header {
     flex-direction: column;
   }
@@ -163,7 +168,11 @@ input[type="checkbox"] {
   }
 
   .new-task-container {
-    position: fixed;
+    padding: 1rem;
+    position: absolute;
+    left: 0;
+    right: 0;
     bottom: 0;
+    margin: auto;
   }
 }
