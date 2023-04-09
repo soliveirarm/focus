@@ -40,6 +40,8 @@ header {
 }
 
 .dark-mode-btn {
+  display: flex;
+  column-gap: 0.5rem;
   padding: 0.7rem;
   border: none;
   border-radius: 10px;
@@ -196,5 +198,25 @@ body.dark {
     right: 0;
     bottom: 0;
     margin: auto;
+  }
+
+  header {
+    padding: 0;
+    display: grid;
+    row-gap: 1rem;
+
+    grid-template-areas:
+      ". . toggle"
+      "name  name  name";
+
+    .name {
+      text-align: center;
+      grid-area: name;
+      justify-items: center;
+    }
+
+    .dark-mode-btn {
+      grid-area: toggle;
+    }
   }
 }

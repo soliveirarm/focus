@@ -33,6 +33,9 @@ header {
 }
 
 .dark-mode-btn {
+  display: flex;
+  -moz-column-gap: 0.5rem;
+       column-gap: 0.5rem;
   padding: 0.7rem;
   border: none;
   border-radius: 10px;
@@ -199,5 +202,19 @@ body.dark .item-text {
     right: 0;
     bottom: 0;
     margin: auto;
+  }
+  header {
+    padding: 0;
+    display: grid;
+    row-gap: 1rem;
+    grid-template-areas: ". . toggle" "name  name  name";
+  }
+  header .name {
+    text-align: center;
+    grid-area: name;
+    justify-items: center;
+  }
+  header .dark-mode-btn {
+    grid-area: toggle;
   }
 }/*# sourceMappingURL=main.css.map */
