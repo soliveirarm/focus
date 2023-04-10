@@ -8,8 +8,10 @@ const completedTasksContainer = document.querySelector(".completed-tasks");
 // ul .completed-tasks__list
 const completedTasks = document.querySelector(".completed-tasks__list");
 
-let tasksLocal = JSON.parse(localStorage.todos) || [];
-let completedTasksLocal = JSON.parse(localStorage.completedTodos) || [];
+// localStorage arrays
+let tasksLocal = JSON.parse(localStorage.getItem("todos")) || [];
+let completedTasksLocal =
+  JSON.parse(localStorage.getItem("completedTodos")) || [];
 
 // MARKS THE ITEM AS COMPLETED
 function checkItem(checkbox, li, text) {
@@ -38,8 +40,6 @@ function checkItem(checkbox, li, text) {
     localStorage.todos = JSON.stringify(tasksLocal);
   }
 }
-
-// localStorage.clear();
 
 // MAIN FUNCTION THAT ADDS NEW TASKS TO THE DIV
 function addNewTask() {
