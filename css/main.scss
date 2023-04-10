@@ -21,6 +21,7 @@ body {
 
 /* header related */
 header {
+  user-select: none;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -46,6 +47,9 @@ header {
   border: none;
   border-radius: 10px;
   background-color: inherit;
+}
+
+#toggle-dark-mode {
   cursor: pointer;
 }
 
