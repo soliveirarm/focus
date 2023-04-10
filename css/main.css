@@ -60,7 +60,7 @@ header {
 #new-task-input {
   background-color: inherit;
   border: none;
-  border-bottom: solid hsl(252, 75%, 60%) 1px;
+  border-bottom: solid hsl(252, 75%, 60%) 1.7px;
   color: hsl(220, 16%, 5%);
   font-family: "Inter", sans-serif;
   font-size: 1.1rem;
@@ -166,19 +166,36 @@ input[type=checkbox] {
   color: rgba(0, 0, 0, 0.15);
 }
 
-/* generic reusable classes */
+/* generic reusable class */
 .accent {
   color: hsl(252, 75%, 60%);
 }
 
-.fa-toggle-off,
-.fa-toggle-on {
+.fa-toggle-off {
   color: hsl(252, 75%, 60%);
+}
+
+.fa-toggle-on {
+  color: hsl(252, 85%, 70%);
 }
 
 body.dark {
   background-color: hsl(220, 16%, 5%);
   color: #fafafa;
+}
+body.dark .accent,
+body.dark .completed-tasks__title,
+body.dark .trash-can {
+  color: hsl(252, 85%, 70%);
+}
+body.dark .trash-can:hover {
+  color: #ff565a;
+}
+body.dark input[type=checkbox] {
+  accent-color: hsl(252, 85%, 70%);
+}
+body.dark #new-task-input {
+  border-bottom: solid hsl(252, 85%, 70%) 1.7px;
 }
 body.dark input::-moz-placeholder {
   color: grey;
@@ -200,6 +217,9 @@ body.dark .item-text {
   .trash-can {
     display: block;
     color: #ff3c41;
+  }
+  body.dark .trash-can {
+    color: #ff565a;
   }
   .new-task-container {
     padding: 1rem;

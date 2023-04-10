@@ -8,11 +8,9 @@ const completedTasksContainer = document.querySelector(".completed-tasks");
 // ul .completed-tasks__list
 const completedTasks = document.querySelector(".completed-tasks__list");
 
-let tasksLocal = localStorage.getItem("tasks");
-
-let taskArray;
-if (tasksLocal === null) {
-}
+let tasksLocal = JSON.parse(localStorage.getItem("todos")) || [];
+let completedTasksLocal =
+  JSON.parse(localStorage.getItem("completedTodos")) || [];
 
 // MARKS THE ITEM AS COMPLETED
 function checkItem(checkbox, li, text) {
@@ -63,12 +61,34 @@ function addNewTask() {
 
     // puts the input text into the <p>
     newTaskText.textContent = newTaskInput.value;
+    tasksLocal.push(newTaskText.textContent);
+    localStorage.setItem("todos", JSON.stringify(tasksLocal));
 
     // erases the text in the input
     newTaskInput.value = "";
 
     checkbox.addEventListener("click", () => {
       checkItem(checkbox, newTaskLi, newTaskText);
+      if (checkbox.checked) {
+        completedTasksLocal.push(newTaskText.textContent);
+        localStorage.setItem(
+          "completedTodos",
+          JSON.stringify(completedTasksLocal)
+        );
+        let element = tasksLocal.indexOf(newTaskText.textContent);
+        tasksLocal.splice(element, 1);
+        localStorage.setItem("todos", JSON.stringify(tasksLocal));
+      } else {
+        tasksLocal.push(newTaskText.textContent);
+        localStorage.setItem("todos", JSON.stringify(tasksLocal));
+
+        let element = completedTasksLocal.indexOf(newTaskText.textContent);
+        completedTasksLocal.splice(element, 1);
+        localStorage.setItem(
+          "completedTodos",
+          JSON.stringify(completedTasksLocal)
+        );
+      }
     });
 
     // SHOWS THE ICONS WHEN HOVERING
@@ -83,10 +103,199 @@ function addNewTask() {
     // REMOVES AN ITEM FROM THE LIST
     trashCan.addEventListener("click", () => {
       newTaskLi.remove();
+      let element = tasksLocal.indexOf(newTaskText.textContent);
+      let completedEl = completedTasksLocal.indexOf(newTaskText.textContent);
+      tasksLocal.splice(element, 1);
+      localStorage.setItem("todos", JSON.stringify(tasksLocal));
+
+      completedTasksLocal.splice(completedEl, 1);
+      localStorage.setItem(
+        "completedTodos",
+        JSON.stringify(completedTasksLocal)
+      );
     });
   }
 }
 
+if (tasksLocal !== null) {
+  tasksLocal.forEach((task, i) => {
+    // li
+    let newTaskLi = document.createElement("li");
+    newTaskLi.classList.add("list-item");
+
+    // input inside li
+    let newTaskText = document.createElement("p");
+    newTaskText.classList.add("item-text");
+
+    let checkbox = document.createElement("INPUT");
+    checkbox.setAttribute("type", "checkbox");
+
+    let taskContainer = document.createElement("div");
+    taskContainer.classList.add("task-container");
+
+    taskContainer.appendChild(checkbox);
+    taskContainer.appendChild(newTaskText);
+
+    newTaskLi.appendChild(taskContainer);
+
+    // adds <li> in the <ul>
+    taskList.appendChild(newTaskLi);
+
+    // creating the trash can element
+    let trashCan = document.createElement("span");
+    trashCan.classList.add("trash-can");
+    trashCan.innerHTML = `<i class="fa-solid fa-trash"></i>`;
+
+    newTaskLi.appendChild(trashCan);
+
+    // puts the input text into the <p>
+    newTaskText.textContent = task[i];
+    if (tasksLocal.indexOf(newTaskText) !== -1) {
+      tasksLocal.push(newTaskText.textContent);
+      localStorage.setItem("todos", JSON.stringify(tasksLocal));
+
+      checkbox.addEventListener("click", () => {
+        checkItem(checkbox, newTaskLi, newTaskText);
+        if (checkbox.checked) {
+          completedTasksLocal.push(newTaskText.textContent);
+          localStorage.setItem(
+            "completedTodos",
+            JSON.stringify(completedTasksLocal)
+          );
+          let element = tasksLocal.indexOf(newTaskText.textContent);
+          tasksLocal.splice(element, 1);
+          localStorage.setItem("todos", JSON.stringify(tasksLocal));
+        } else {
+          tasksLocal.push(newTaskText.textContent);
+          localStorage.setItem("todos", JSON.stringify(tasksLocal));
+
+          let element = completedTasksLocal.indexOf(newTaskText.textContent);
+          completedTasksLocal.splice(element, 1);
+          localStorage.setItem(
+            "completedTodos",
+            JSON.stringify(completedTasksLocal)
+          );
+        }
+      });
+    }
+
+    if (completedTasksLocal !== null) {
+      completedTasksLocal.forEach((completedTask, i) => {
+        // li
+        let newTaskLi = document.createElement("li");
+        newTaskLi.classList.add("list-item");
+
+        // input inside li
+        let newTaskText = document.createElement("p");
+        newTaskText.classList.add("item-text");
+
+        let checkbox = document.createElement("INPUT");
+        checkbox.setAttribute("type", "checkbox");
+
+        let taskContainer = document.createElement("div");
+        taskContainer.classList.add("task-container");
+
+        taskContainer.appendChild(checkbox);
+        taskContainer.appendChild(newTaskText);
+
+        newTaskLi.appendChild(taskContainer);
+
+        // adds <li> in the <ul>
+        taskList.appendChild(newTaskLi);
+
+        // creating the trash can element
+        let trashCan = document.createElement("span");
+        trashCan.classList.add("trash-can");
+        trashCan.innerHTML = `<i class="fa-solid fa-trash"></i>`;
+
+        newTaskLi.appendChild(trashCan);
+
+        if (completedTasksLocal.indexOf(newTaskText) !== -1) {
+          // puts the input text into the <p>
+          newTaskText.textContent = completedTask[i];
+          tasksLocal.push(newTaskText.textContent);
+          localStorage.setItem("todos", JSON.stringify(tasksLocal));
+
+          checkbox.addEventListener("click", () => {
+            checkItem(checkbox, newTaskLi, newTaskText);
+            if (checkbox.checked) {
+              completedTasksLocal.push(newTaskText.textContent);
+              localStorage.setItem(
+                "completedTodos",
+                JSON.stringify(completedTasksLocal)
+              );
+              let element = tasksLocal.indexOf(newTaskText.textContent);
+              tasksLocal.splice(element, 1);
+              localStorage.setItem("todos", JSON.stringify(tasksLocal));
+            } else {
+              tasksLocal.push(newTaskText.textContent);
+              localStorage.setItem("todos", JSON.stringify(tasksLocal));
+
+              let element = completedTasksLocal.indexOf(
+                newTaskText.textContent
+              );
+              completedTasksLocal.splice(element, 1);
+              localStorage.setItem(
+                "completedTodos",
+                JSON.stringify(completedTasksLocal)
+              );
+            }
+          });
+        }
+
+        // SHOWS THE ICONS WHEN HOVERING
+        function showIconsOnHover() {
+          trashCan.classList.toggle("active");
+        }
+
+        // show and hide the icons
+        newTaskLi.addEventListener("mouseover", showIconsOnHover);
+        newTaskLi.addEventListener("mouseout", showIconsOnHover);
+
+        // REMOVES AN ITEM FROM THE LIST
+        trashCan.addEventListener("click", () => {
+          newTaskLi.remove();
+          let element = tasksLocal.indexOf(newTaskText.textContent);
+          let completedEl = completedTasksLocal.indexOf(
+            newTaskText.textContent
+          );
+          tasksLocal.splice(element, 1);
+          localStorage.setItem("todos", JSON.stringify(tasksLocal));
+
+          completedTasksLocal.splice(completedEl, 1);
+          localStorage.setItem(
+            "completedTodos",
+            JSON.stringify(completedTasksLocal)
+          );
+        });
+      });
+    }
+
+    // SHOWS THE ICONS WHEN HOVERING
+    function showIconsOnHover() {
+      trashCan.classList.toggle("active");
+    }
+
+    // show and hide the icons
+    newTaskLi.addEventListener("mouseover", showIconsOnHover);
+    newTaskLi.addEventListener("mouseout", showIconsOnHover);
+
+    // REMOVES AN ITEM FROM THE LIST
+    trashCan.addEventListener("click", () => {
+      newTaskLi.remove();
+      let element = tasksLocal.indexOf(newTaskText.textContent);
+      let completedEl = completedTasksLocal.indexOf(newTaskText.textContent);
+      tasksLocal.splice(element, 1);
+      localStorage.setItem("todos", JSON.stringify(tasksLocal));
+
+      completedTasksLocal.splice(completedEl, 1);
+      localStorage.setItem(
+        "completedTodos",
+        JSON.stringify(completedTasksLocal)
+      );
+    });
+  });
+}
 // EventListener that monitors the input text, if enter is pressed, it runs de addNewTask()
 newTaskInput.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {

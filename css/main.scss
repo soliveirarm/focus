@@ -13,6 +13,7 @@ $dark: hsl(220, 16%, 5%);
 $completed: #7fd1ae;
 $warning: #ff3c41;
 $accent: hsl(252, 75%, 60%);
+$accent-dark-bg: hsl(252, 85%, 70%);
 
 body {
   background-color: $white;
@@ -64,7 +65,7 @@ header {
 #new-task-input {
   background-color: inherit;
   border: none;
-  border-bottom: solid $accent 1px;
+  border-bottom: solid $accent 1.7px;
   color: $dark;
   font-family: "Inter", sans-serif;
   font-size: 1.1rem;
@@ -160,18 +161,39 @@ input[type="checkbox"] {
   color: rgba(0, 0, 0, 0.15);
 }
 
-/* generic reusable classes */
+/* generic reusable class */
 .accent {
   color: $accent;
 }
 
-.fa-toggle-off,
-.fa-toggle-on {
+.fa-toggle-off {
   color: $accent;
+}
+
+.fa-toggle-on {
+  color: $accent-dark-bg;
 }
 body.dark {
   background-color: $dark;
   color: $white;
+
+  .accent,
+  .completed-tasks__title,
+  .trash-can {
+    color: $accent-dark-bg;
+  }
+
+  .trash-can:hover {
+    color: lighten($warning, 5%);
+  }
+
+  input[type="checkbox"] {
+    accent-color: $accent-dark-bg;
+  }
+
+  #new-task-input {
+    border-bottom: solid $accent-dark-bg 1.7px;
+  }
 
   input::placeholder,
   .item-text.checked {
@@ -193,6 +215,12 @@ body.dark {
   .trash-can {
     display: block;
     color: $warning;
+  }
+
+  body.dark {
+    .trash-can {
+      color: lighten($warning, 5%);
+    }
   }
 
   .new-task-container {
