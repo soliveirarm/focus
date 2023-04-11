@@ -1,0 +1,20 @@
+{
+  "short_name": "Focus!",
+  "name": "Focus! Minimal Task Manager",
+  "icons": [
+    {
+      "src": "/img/check-128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "/img/check.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "index.html",
+  "background_color": "#6B4CE6",
+  "display": "standalone",
+  "theme_color": "#6B4CE6"
+}
