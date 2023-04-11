@@ -13,3 +13,7 @@ All your tasks are saved locally, so you don't have to worry about logging in fo
 <img src="/img/Focus-mobile.png">
 <img src="/img/Focus-mobile-dark.png">
 </div>
+
+### Favicon credit:
+
+<div> Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect"> Pixel perfect </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com'</a></div>
