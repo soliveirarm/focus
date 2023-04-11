@@ -1,7 +1,15 @@
-# isis - a minimal task manager
+# Focus - Minimal task manager
 
-<img src="/img/isis-image.png">
+<div style="display: inline">
+<img src="/img/Focus.png">
+<img src="/img/Focus-dark.png">
+</div>
 
 All your tasks are saved locally, so you don't have to worry about logging in for now, although that option might be added in the future.
 
-I intend to make a Mobile version when I get the chance. Dark mode will also be added.
+## It also works on your phone:
+
+<div style="display: inline">
+<img src="/img/Focus-mobile.png">
+<img src="/img/Focus-mobile-dark.png">
+</div>
