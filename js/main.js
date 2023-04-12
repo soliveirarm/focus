@@ -243,26 +243,33 @@ newTaskInput.addEventListener("keypress", (e) => {
 
 // Container with the title and the arrow
 let completedTasksBtn = document.querySelector(".completed-tasks__btn");
+let toggleCompletedTasksLocal = localStorage.getItem("toggle");
 
-completedTasksBtn.addEventListener("click", () => {
+function toggleCompletedTasks() {
   completedTasks.classList.toggle("hidden");
 
   let arrow = document.querySelector(".arrow");
   if (completedTasks.classList.contains("hidden")) {
+    // Changes the icon
     arrow.innerHTML = `<i class="fa-solid fa-chevron-up"></i>`;
+    // Stores the current "position" (hidden)
+    localStorage.setItem("toggle", "hidden");
   } else {
     arrow.innerHTML = `<i class="fa-solid fa-chevron-down"></i>`;
+    localStorage.removeItem("toggle");
   }
-});
+}
+
+completedTasksBtn.addEventListener("click", toggleCompletedTasks);
+
+if (toggleCompletedTasksLocal !== null) {
+  toggleCompletedTasks();
+}
 
 // Dark mode
 
 let darkModeBtn = document.querySelector("#toggle-dark-mode");
-let saveCurrentMode = localStorage.getItem("darkMode");
-
-if (saveCurrentMode !== null) {
-  toggleDarkMode();
-}
+let currentMode = localStorage.getItem("darkMode");
 
 function toggleDarkMode() {
   document.body.classList.toggle("dark");
@@ -274,6 +281,10 @@ function toggleDarkMode() {
     darkModeBtn.innerHTML = `<i class="fa-solid fa-toggle-off fa-lg"></i>`;
     localStorage.removeItem("darkMode");
   }
+}
+
+if (currentMode !== null) {
+  toggleDarkMode();
 }
 
 darkModeBtn.addEventListener("click", toggleDarkMode);
