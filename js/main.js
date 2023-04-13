@@ -288,3 +288,12 @@ if (currentMode !== null) {
 }
 
 darkModeBtn.addEventListener("click", toggleDarkMode);
+
+let clear = document.querySelector("#clear");
+
+function clearCompletedTasks() {
+  completedTasks.innerHTML = "";
+  localStorage.removeItem("completedTodos");
+}
+
+clear.addEventListener("click", clearCompletedTasks);

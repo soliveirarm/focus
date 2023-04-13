@@ -5,6 +5,7 @@ $white: #fafafa;
 $dark: hsl(220, 16%, 5%);
 $completed: #7fd1ae;
 $warning: #ff3c41;
+$warning-dark-bg: lighten($warning, 5%);
 $accent: hsl(252, 75%, 60%);
 $accent-dark-bg: hsl(252, 85%, 70%);
 
@@ -154,6 +155,43 @@ input[type="checkbox"] {
   color: $dark;
 }
 
+/* <div> with completed tasks */
+.completed-tasks {
+  display: none;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+#clear {
+  font-size: 0.9rem;
+  background-color: inherit;
+  color: $warning;
+  outline: none;
+  border-radius: 30px;
+  padding: 0.5rem;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: ease-in-out 0.2s;
+}
+
+#clear:hover {
+  background-color: $warning;
+  color: $white;
+}
+
+#clear:active {
+  background-color: darken($warning, 20%);
+}
+
+.completed-tasks:has(.list-item) {
+  display: block;
+  margin-top: 2rem;
+}
+
 .completed-tasks__btn {
   display: flex;
   align-items: center;
@@ -162,15 +200,6 @@ input[type="checkbox"] {
   color: $accent;
 }
 
-/* <div> with completed tasks */
-.completed-tasks {
-  display: none;
-}
-
-.completed-tasks:has(.list-item) {
-  display: block;
-  margin-top: 2rem;
-}
 .completed-tasks__title {
   user-select: none;
   color: $accent;
@@ -209,7 +238,7 @@ body.dark {
   }
 
   .trash-can:hover {
-    color: lighten($warning, 5%);
+    color: $warning-dark-bg;
   }
 
   input[type="checkbox"] {

@@ -156,6 +156,42 @@ input[type=checkbox] {
   color: hsl(220, 16%, 5%);
 }
 
+/* <div> with completed tasks */
+.completed-tasks {
+  display: none;
+}
+.completed-tasks .container {
+  display: flex;
+  justify-content: space-between;
+}
+
+#clear {
+  font-size: 0.9rem;
+  background-color: inherit;
+  color: #ff3c41;
+  outline: none;
+  border-radius: 30px;
+  padding: 0.5rem;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: ease-in-out 0.2s;
+}
+
+#clear:hover {
+  background-color: #ff3c41;
+  color: #fafafa;
+}
+
+#clear:active {
+  background-color: #d50005;
+}
+
+.completed-tasks:has(.list-item) {
+  display: block;
+  margin-top: 2rem;
+}
+
 .completed-tasks__btn {
   display: flex;
   align-items: center;
@@ -163,16 +199,6 @@ input[type=checkbox] {
        column-gap: 0.5rem;
   cursor: pointer;
   color: hsl(252, 75%, 60%);
-}
-
-/* <div> with completed tasks */
-.completed-tasks {
-  display: none;
-}
-
-.completed-tasks:has(.list-item) {
-  display: block;
-  margin-top: 2rem;
 }
 
 .completed-tasks__title {
