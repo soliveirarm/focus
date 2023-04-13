@@ -25,6 +25,25 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
+body::-webkit-scrollbar {
+  width: 0.8rem;
+  transition: ease-in-out 0.2s;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: $accent-dark-bg;
+  border: 2px solid $white;
+  border-radius: 30px;
+}
+
+body.dark::-webkit-scrollbar-thumb {
+  border: 2px solid $dark;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background-color: $accent;
+}
+
 /* header related */
 header {
   user-select: none;
