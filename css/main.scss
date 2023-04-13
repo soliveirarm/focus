@@ -256,7 +256,7 @@ input[type="checkbox"] {
 }
 
 .completed-tasks__list.hidden {
-  visibility: hidden;
+  display: none;
 }
 
 .item-text {
