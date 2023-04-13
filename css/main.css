@@ -63,7 +63,6 @@ main {
   align-items: center;
   -moz-column-gap: 0.5rem;
        column-gap: 0.5rem;
-  padding: 0.7rem;
   background-color: inherit;
   position: relative;
 }
@@ -98,7 +97,7 @@ main {
 }
 
 #toggle-dark-mode:checked::before {
-  right: 30px;
+  right: 20px;
 }
 
 /* input container */
@@ -291,7 +290,7 @@ body.dark #clear:active {
 
 @media screen and (max-width: 500px) {
   header {
-    padding: 0.5rem;
+    padding: 0.8rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
