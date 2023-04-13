@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap");
+/* Variables */
 /* Basic reset */
 * {
   padding: 0;
@@ -6,10 +7,11 @@
   box-sizing: border-box;
 }
 
-/* Variables */
 body {
   background-color: #fafafa;
   font-family: "Inter", sans-serif;
+  height: 100vh;
+  transition: ease-in-out 0.2s;
 }
 
 /* header related */
@@ -29,7 +31,7 @@ header {
 }
 
 /* main related */
-.grid-container {
+main {
   max-width: 760px;
   margin: 0 auto;
   padding: 2rem;
@@ -37,16 +39,45 @@ header {
 
 .dark-mode-btn {
   display: flex;
+  align-items: center;
   -moz-column-gap: 0.5rem;
        column-gap: 0.5rem;
   padding: 0.7rem;
-  border: none;
-  border-radius: 10px;
   background-color: inherit;
+  position: relative;
 }
 
 #toggle-dark-mode {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   cursor: pointer;
+  height: 20px;
+  width: 40px;
+  background-color: hsl(252, 75%, 60%);
+  border-radius: 30px;
+  box-shadow: inset 0px 0px 20px 1px rgba(0, 0, 0, 0.13);
+  transition: ease-in-out 0.2s;
+}
+
+#toggle-dark-mode:checked {
+  background-color: hsl(252, 85%, 70%);
+}
+
+#toggle-dark-mode::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow: 1px 1px 20px 1px rgba(0, 0, 0, 0.13);
+  transform: scale(1.1);
+  transition: ease-in-out 0.2s;
+}
+
+#toggle-dark-mode:checked::before {
+  right: 30px;
 }
 
 /* input container */
@@ -59,8 +90,8 @@ header {
 
 #new-task-input {
   background-color: inherit;
-  border: none;
-  border-bottom: solid hsl(252, 75%, 60%) 1.7px;
+  border: solid hsl(252, 75%, 60%) 1.9px;
+  border-radius: 30px;
   color: hsl(220, 16%, 5%);
   font-family: "Inter", sans-serif;
   font-size: 1.1rem;
@@ -210,37 +241,45 @@ body.dark .item-text {
 }
 
 @media screen and (max-width: 500px) {
-  .grid-container {
-    min-height: 80vh;
+  header {
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  header .subtitle {
+    display: none;
+  }
+  main {
     position: relative;
+  }
+  .task-list {
+    margin-bottom: 3rem;
   }
   .trash-can {
     display: block;
     color: #ff3c41;
   }
+  #new-task-input {
+    background-color: #fafafa;
+    transition: ease-in-out 0.3s;
+  }
   body.dark .trash-can {
     color: #ff565a;
   }
+  body.dark #new-task-input {
+    background-color: hsl(220, 16%, 5%);
+  }
   .new-task-container {
     padding: 1rem;
-    position: absolute;
+    position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
     margin: auto;
   }
-  header {
-    padding: 0;
-    display: grid;
-    row-gap: 1rem;
-    grid-template-areas: ". . toggle" "name  name  name";
-  }
-  header .name {
-    text-align: center;
-    grid-area: name;
-    justify-items: center;
-  }
-  header .dark-mode-btn {
-    grid-area: toggle;
+  .completed-tasks:has(.list-item) {
+    display: block;
+    margin: 3rem auto;
   }
 }/*# sourceMappingURL=main.css.map */
