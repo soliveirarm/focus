@@ -197,17 +197,9 @@ input[type=checkbox] {
   color: rgba(0, 0, 0, 0.15);
 }
 
-/* generic reusable class */
+/* Generic reusable class */
 .accent {
   color: hsl(252, 75%, 60%);
-}
-
-.fa-toggle-off {
-  color: hsl(252, 75%, 60%);
-}
-
-.fa-toggle-on {
-  color: hsl(252, 85%, 70%);
 }
 
 body.dark {

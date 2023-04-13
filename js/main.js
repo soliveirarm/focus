@@ -275,10 +275,10 @@ function toggleDarkMode() {
   document.body.classList.toggle("dark");
 
   if (document.body.classList.contains("dark")) {
-    darkModeBtn.innerHTML = `<i class="fa-solid fa-toggle-on fa-lg"></i>`;
+    darkModeBtn.checked = true;
     localStorage.setItem("darkMode", "enabled");
   } else {
-    darkModeBtn.innerHTML = `<i class="fa-solid fa-toggle-off fa-lg"></i>`;
+    darkModeBtn.checked = false;
     localStorage.removeItem("darkMode");
   }
 }

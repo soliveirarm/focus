@@ -190,18 +190,12 @@ input[type="checkbox"] {
   color: rgba(0, 0, 0, 0.15);
 }
 
-/* generic reusable class */
+/* Generic reusable class */
 .accent {
   color: $accent;
 }
 
-.fa-toggle-off {
-  color: $accent;
-}
-
-.fa-toggle-on {
-  color: $accent-dark-bg;
-}
+// Dark Mode
 body.dark {
   background-color: $dark;
   color: $white;
