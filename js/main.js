@@ -71,7 +71,7 @@ function addNewTask() {
     // creating the trash can element
     let trashCan = document.createElement("span");
     trashCan.classList.add("trash-can");
-    trashCan.innerHTML = `<i class="fa-solid fa-trash"></i>`;
+    trashCan.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
 
     newTaskLi.appendChild(trashCan);
 
@@ -141,7 +141,7 @@ if (tasksLocal !== null) {
     // creating the trash can element
     let trashCan = document.createElement("span");
     trashCan.classList.add("trash-can");
-    trashCan.innerHTML = `<i class="fa-solid fa-trash"></i>`;
+    trashCan.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
 
     newTaskLi.appendChild(trashCan);
 
@@ -200,7 +200,7 @@ if (completedTasksLocal !== null) {
     let trashCan = document.createElement("span");
     trashCan.classList.add("trash-can");
     trashCan.classList.add("completed");
-    trashCan.innerHTML = `<i class="fa-solid fa-trash"></i>`;
+    trashCan.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
 
     newTaskLi.appendChild(trashCan);
 

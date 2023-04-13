@@ -258,6 +258,16 @@ body.dark #new-task-input,
 body.dark .item-text {
   color: #fafafa;
 }
+body.dark #clear {
+  color: #ff565a;
+}
+body.dark #clear:hover {
+  background-color: #ff565a;
+  color: white;
+}
+body.dark #clear:active {
+  background-color: #ef0006;
+}
 
 @media screen and (max-width: 500px) {
   header {

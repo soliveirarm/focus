@@ -258,6 +258,19 @@ body.dark {
   .item-text {
     color: $white;
   }
+
+  #clear {
+    color: $warning-dark-bg;
+  }
+
+  #clear:hover {
+    background-color: $warning-dark-bg;
+    color: white;
+  }
+
+  #clear:active {
+    background-color: darken($warning-dark-bg, 20%);
+  }
 }
 
 @media screen and (max-width: 500px) {
