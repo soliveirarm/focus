@@ -130,16 +130,46 @@ input::placeholder {
 
 /* <li> from task-container */
 .list-item {
-  font-size: 1.15rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 1.15rem;
   column-gap: 0.5rem;
   list-style-type: none;
   padding: 0.8rem;
   margin-bottom: 0.1rem;
   border-radius: 10px;
   color: $dark;
+}
+
+.item-checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 17px;
+  height: 17px;
+  padding: 0.1rem;
+  background-color: inherit;
+  appearance: none;
+  border: solid 1px $accent;
+  border-radius: 50%;
+  transition: ease-in-out 0.2s;
+}
+
+.item-checkbox:hover {
+  background-color: $accent;
+}
+
+.item-checkbox:checked {
+  background-color: $accent;
+}
+
+.item-checkbox:checked::before,
+.item-checkbox:hover::before {
+  color: $white;
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  content: "\f00c";
 }
 
 .task-container {

@@ -56,6 +56,7 @@ function addNewTask() {
 
     let checkbox = document.createElement("INPUT");
     checkbox.setAttribute("type", "checkbox");
+    checkbox.classList.add("item-checkbox");
 
     let taskContainer = document.createElement("div");
     taskContainer.classList.add("task-container");
@@ -124,6 +125,7 @@ if (tasksLocal !== null) {
 
     let checkbox = document.createElement("INPUT");
     checkbox.setAttribute("type", "checkbox");
+    checkbox.classList.add("item-checkbox");
     checkbox.checked = false;
     newTaskText.classList.remove("checked");
 
@@ -182,6 +184,7 @@ if (completedTasksLocal !== null) {
 
     let checkbox = document.createElement("INPUT");
     checkbox.setAttribute("type", "checkbox");
+    checkbox.classList.add("item-checkbox");
     checkbox.checked = true;
     newTaskText.classList.add("checked");
 
