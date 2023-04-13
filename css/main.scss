@@ -20,6 +20,8 @@ body {
   font-family: "Inter", sans-serif;
   height: 100vh;
   transition: ease-in-out 0.2s;
+  // Prevents blue box from appearing
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* header related */
