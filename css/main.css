@@ -230,6 +230,10 @@ input[type=checkbox] {
   transition: ease-in-out 0.2s;
 }
 
+#clear.hidden {
+  display: none;
+}
+
 #clear:hover {
   background-color: #ff3c41;
   color: #fafafa;

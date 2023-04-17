@@ -244,12 +244,22 @@ newTaskInput.addEventListener("keypress", (e) => {
   }
 });
 
+let clear = document.querySelector("#clear");
+
+function clearCompletedTasks() {
+  completedTasks.innerHTML = "";
+  localStorage.removeItem("completedTodos");
+}
+
+clear.addEventListener("click", clearCompletedTasks);
+
 // Container with the title and the arrow
 let completedTasksBtn = document.querySelector(".completed-tasks__btn");
 let toggleCompletedTasksLocal = localStorage.getItem("toggle");
 
 function toggleCompletedTasks() {
   completedTasks.classList.toggle("hidden");
+  clear.classList.toggle("hidden");
 
   let arrow = document.querySelector(".arrow");
   if (completedTasks.classList.contains("hidden")) {
@@ -291,12 +301,3 @@ if (currentMode !== null) {
 }
 
 darkModeBtn.addEventListener("click", toggleDarkMode);
-
-let clear = document.querySelector("#clear");
-
-function clearCompletedTasks() {
-  completedTasks.innerHTML = "";
-  localStorage.removeItem("completedTodos");
-}
-
-clear.addEventListener("click", clearCompletedTasks);
