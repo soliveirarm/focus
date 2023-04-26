@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
 
 /* Variables */
 $white: #fafafa;
@@ -6,8 +6,8 @@ $dark: hsl(220, 16%, 5%);
 $completed: #7fd1ae;
 $warning: #ff3c41;
 $warning-dark-bg: lighten($warning, 5%);
-$accent: hsl(252, 75%, 60%);
-$accent-dark-bg: hsl(252, 85%, 70%);
+$accent: hsl(246, 100%, 73%);
+$accent-dark-bg: hsl(246, 100%, 77%);
 
 /* Basic reset */
 * {
@@ -18,7 +18,7 @@ $accent-dark-bg: hsl(252, 85%, 70%);
 
 body {
   background-color: $white;
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: "Inter", sans-serif;
   height: 100vh;
   transition: ease-in-out 0.2s;
   // Prevents blue box from appearing
@@ -26,22 +26,17 @@ body {
 }
 
 body::-webkit-scrollbar {
-  width: 0.8rem;
+  width: 8px;
   transition: ease-in-out 0.2s;
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: $accent-dark-bg;
-  border: 2px solid $white;
-  border-radius: 30px;
-}
-
-body.dark::-webkit-scrollbar-thumb {
-  border: 2px solid $dark;
+  background-color: lighten($accent, 20%);
+  border-radius: 20px;
 }
 
 body::-webkit-scrollbar-thumb:hover {
-  background-color: $accent;
+  background-color: $accent-dark-bg;
 }
 
 /* header related */
@@ -113,11 +108,11 @@ main {
 }
 
 #new-task-input {
+  text-align: center;
   background-color: inherit;
-  border: solid $accent 1.9px;
-  border-radius: 30px;
+  border: none;
   color: $dark;
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 1.1rem;
   outline: none;
   padding: 1rem;
@@ -125,7 +120,7 @@ main {
 }
 
 input::placeholder {
-  color: rgba(0, 0, 0, 0.15);
+  color: rgba(0, 0, 0, 0.4);
 }
 
 /* <li> from task-container */
@@ -181,12 +176,15 @@ input::placeholder {
 
 input[type="checkbox"] {
   cursor: pointer;
-  accent-color: $accent;
 }
 
-/* <p> inside <li> */
+/* <input> inside <li> */
 .item-text {
-  color: $dark;
+  border: none;
+  outline: none;
+  appearance: none;
+  background-color: inherit;
+  font-size: 1.1rem;
 }
 
 /* <div> with completed tasks */
@@ -249,11 +247,6 @@ input[type="checkbox"] {
   display: none;
 }
 
-.item-text {
-  text-decoration: none;
-  color: $dark;
-}
-
 .item-text.checked {
   text-decoration: line-through;
   color: rgba(0, 0, 0, 0.15);
@@ -281,10 +274,6 @@ body.dark {
 
   input[type="checkbox"] {
     accent-color: $accent-dark-bg;
-  }
-
-  #new-task-input {
-    border-bottom: solid $accent-dark-bg 1.7px;
   }
 
   input::placeholder,
@@ -368,11 +357,11 @@ body.dark {
     color: $accent;
     cursor: pointer;
   }
-  
-  .trash-can.active {
+
+  .list-item:hover .trash-can {
     display: block;
   }
-  
+
   .trash-can:hover {
     color: $warning;
   }

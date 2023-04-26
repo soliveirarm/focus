@@ -21,27 +21,28 @@ function checkItem(checkbox, li, text) {
   if (checkbox.checked) {
     // Appends the task to the .completed-tasks
     completedTasks.appendChild(li);
-
-    el = tasksLocal.indexOf(text.textContent);
+    text.readOnly = true;
+    el = tasksLocal.indexOf(text.value);
     tasksLocal.splice(el, 1);
-    completedTasksLocal.push(text.textContent);
+    completedTasksLocal.push(text.value);
 
     localStorage.todos = JSON.stringify(tasksLocal);
     localStorage.completedTodos = JSON.stringify(completedTasksLocal);
   } else {
+    text.readOnly = false;
     // Appends the task to the task-list container
     taskList.appendChild(li);
-    el = completedTasksLocal.indexOf(text.textContent);
+    el = completedTasksLocal.indexOf(text.value);
 
     completedTasksLocal.splice(el, 1);
-    tasksLocal.push(text.textContent);
+    tasksLocal.push(text.value);
 
     localStorage.completedTodos = JSON.stringify(completedTasksLocal);
     localStorage.todos = JSON.stringify(tasksLocal);
   }
 }
 
-// MAIN FUNCTION THAT ADDS NEW TASKS TO THE DIV
+// Adds a new task to taskList
 function addNewTask() {
   if (newTaskInput.value == "") {
     alert("There's no text on the input!");
@@ -51,8 +52,9 @@ function addNewTask() {
     newTaskLi.classList.add("list-item");
 
     // input inside li
-    let newTaskText = document.createElement("p");
+    let newTaskText = document.createElement("INPUT");
     newTaskText.classList.add("item-text");
+    newTaskText.readOnly = false;
 
     let checkbox = document.createElement("INPUT");
     checkbox.setAttribute("type", "checkbox");
@@ -77,9 +79,22 @@ function addNewTask() {
     newTaskLi.appendChild(trashCan);
 
     // puts the input text into the <p>
-    newTaskText.textContent = newTaskInput.value;
-    tasksLocal.push(newTaskText.textContent);
+    newTaskText.value = newTaskInput.value;
+    tasksLocal.push(newTaskText.value);
     localStorage.setItem("todos", JSON.stringify(tasksLocal));
+
+    newTaskText.onclick = (e) => {
+      newTaskOldValueIndex = tasksLocal.indexOf(e.target.value);
+
+      function editText() {
+        if (newTaskText.readOnly == false) {
+          tasksLocal.splice(newTaskOldValueIndex, 1, newTaskText.value);
+          localStorage.setItem("todos", JSON.stringify(tasksLocal));
+        }
+      }
+
+      newTaskText.addEventListener("keyup", editText);
+    };
 
     // erases the text in the input
     newTaskInput.value = "";
@@ -87,14 +102,6 @@ function addNewTask() {
     checkbox.addEventListener("click", () => {
       checkItem(checkbox, newTaskLi, newTaskText);
     });
-    // SHOWS THE ICONS WHEN HOVERING
-    function showIconsOnHover() {
-      trashCan.classList.toggle("active");
-    }
-
-    // show and hide the icons
-    newTaskLi.addEventListener("mouseover", showIconsOnHover);
-    newTaskLi.addEventListener("mouseout", showIconsOnHover);
 
     // REMOVES AN ITEM FROM THE LIST
     trashCan.addEventListener("click", () => {
@@ -113,14 +120,21 @@ function addNewTask() {
   }
 }
 
-if (tasksLocal !== null) {
+// EventListener that monitors the input text, if enter is pressed, it runs de addNewTask()
+newTaskInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    addNewTask();
+  }
+});
+
+function showTasks() {
   tasksLocal.forEach((task, i) => {
     // li
     let newTaskLi = document.createElement("li");
     newTaskLi.classList.add("list-item");
 
     // input inside li
-    let newTaskText = document.createElement("p");
+    let newTaskText = document.createElement("INPUT");
     newTaskText.classList.add("item-text");
 
     let checkbox = document.createElement("INPUT");
@@ -140,6 +154,17 @@ if (tasksLocal !== null) {
     // adds <li> in the <ul>
     taskList.appendChild(newTaskLi);
 
+    newTaskText.onclick = (e) => {
+      newTaskOldValueIndex = tasksLocal.indexOf(e.target.value);
+
+      function editText() {
+        tasksLocal.splice(newTaskOldValueIndex, 1, newTaskText.value);
+        localStorage.setItem("todos", JSON.stringify(tasksLocal));
+      }
+
+      newTaskText.addEventListener("keyup", editText);
+    };
+
     // creating the trash can element
     let trashCan = document.createElement("span");
     trashCan.classList.add("trash-can");
@@ -148,19 +173,11 @@ if (tasksLocal !== null) {
     newTaskLi.appendChild(trashCan);
 
     // puts the input text into the <p>
-    newTaskText.textContent = tasksLocal[i];
+    newTaskText.value = tasksLocal[i];
 
     checkbox.addEventListener("click", () => {
       checkItem(checkbox, newTaskLi, newTaskText);
     });
-    // SHOWS THE ICONS WHEN HOVERING
-    function showIconsOnHover() {
-      trashCan.classList.toggle("active");
-    }
-
-    // show and hide the icons
-    newTaskLi.addEventListener("mouseover", showIconsOnHover);
-    newTaskLi.addEventListener("mouseout", showIconsOnHover);
 
     // REMOVES AN ITEM FROM THE LIST
     trashCan.onclick = () => {
@@ -172,15 +189,20 @@ if (tasksLocal !== null) {
   });
 }
 
-if (completedTasksLocal !== null) {
+if (tasksLocal !== null) {
+  showTasks();
+}
+
+function showCompletedTasks() {
   completedTasksLocal.forEach((task, i) => {
     // li
     let newTaskLi = document.createElement("li");
     newTaskLi.classList.add("list-item");
 
     // input inside li
-    let newTaskText = document.createElement("p");
+    let newTaskText = document.createElement("INPUT");
     newTaskText.classList.add("item-text");
+    newTaskText.readOnly = true;
 
     let checkbox = document.createElement("INPUT");
     checkbox.setAttribute("type", "checkbox");
@@ -208,19 +230,11 @@ if (completedTasksLocal !== null) {
     newTaskLi.appendChild(trashCan);
 
     // puts the input text into the <p>
-    newTaskText.textContent = completedTasksLocal[i];
+    newTaskText.value = completedTasksLocal[i];
 
     checkbox.addEventListener("click", () => {
       checkItem(checkbox, newTaskLi, newTaskText);
     });
-    // SHOWS THE ICONS WHEN HOVERING
-    function showIconsOnHover() {
-      trashCan.classList.toggle("active");
-    }
-
-    // show and hide the icons
-    newTaskLi.addEventListener("mouseover", showIconsOnHover);
-    newTaskLi.addEventListener("mouseout", showIconsOnHover);
 
     // REMOVES AN ITEM FROM THE LIST
     trashCan.addEventListener("click", () => {
@@ -237,12 +251,9 @@ if (completedTasksLocal !== null) {
   });
 }
 
-// EventListener that monitors the input text, if enter is pressed, it runs de addNewTask()
-newTaskInput.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") {
-    addNewTask();
-  }
-});
+if (completedTasksLocal !== null) {
+  showCompletedTasks();
+}
 
 let clear = document.querySelector("#clear");
 

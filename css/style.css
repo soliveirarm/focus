@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
 /* Variables */
 /* Basic reset */
 * {
@@ -9,30 +9,25 @@
 
 body {
   background-color: #fafafa;
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: "Inter", sans-serif;
   height: 100vh;
   transition: ease-in-out 0.2s;
   -webkit-tap-highlight-color: transparent;
 }
 
 body::-webkit-scrollbar {
-  width: 0.8rem;
+  width: 8px;
   -webkit-transition: ease-in-out 0.2s;
   transition: ease-in-out 0.2s;
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: hsl(252, 85%, 70%);
-  border: 2px solid #fafafa;
-  border-radius: 30px;
-}
-
-body.dark::-webkit-scrollbar-thumb {
-  border: 2px solid hsl(220, 16%, 5%);
+  background-color: #dfdbff;
+  border-radius: 20px;
 }
 
 body::-webkit-scrollbar-thumb:hover {
-  background-color: hsl(252, 75%, 60%);
+  background-color: hsl(246, 100%, 77%);
 }
 
 /* header related */
@@ -74,14 +69,14 @@ main {
   cursor: pointer;
   height: 20px;
   width: 40px;
-  background-color: hsl(252, 75%, 60%);
+  background-color: hsl(246, 100%, 73%);
   border-radius: 30px;
   box-shadow: inset 0px 0px 20px 1px rgba(0, 0, 0, 0.13);
   transition: ease-in-out 0.2s;
 }
 
 #toggle-dark-mode:checked {
-  background-color: hsl(252, 85%, 70%);
+  background-color: hsl(246, 100%, 77%);
 }
 
 #toggle-dark-mode::before {
@@ -109,11 +104,11 @@ main {
 }
 
 #new-task-input {
+  text-align: center;
   background-color: inherit;
-  border: solid hsl(252, 75%, 60%) 1.9px;
-  border-radius: 30px;
+  border: none;
   color: hsl(220, 16%, 5%);
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 1.1rem;
   outline: none;
   padding: 1rem;
@@ -121,11 +116,11 @@ main {
 }
 
 input::-moz-placeholder {
-  color: rgba(0, 0, 0, 0.15);
+  color: rgba(0, 0, 0, 0.4);
 }
 
 input::placeholder {
-  color: rgba(0, 0, 0, 0.15);
+  color: rgba(0, 0, 0, 0.4);
 }
 
 /* <li> from task-container */
@@ -155,17 +150,17 @@ input::placeholder {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  border: solid 1px hsl(252, 75%, 60%);
+  border: solid 1px hsl(246, 100%, 73%);
   border-radius: 50%;
   transition: ease-in-out 0.2s;
 }
 
 .item-checkbox:hover {
-  background-color: hsl(252, 75%, 60%);
+  background-color: hsl(246, 100%, 73%);
 }
 
 .item-checkbox:checked {
-  background-color: hsl(252, 75%, 60%);
+  background-color: hsl(246, 100%, 73%);
 }
 
 .item-checkbox:checked::before,
@@ -185,12 +180,17 @@ input::placeholder {
 
 input[type=checkbox] {
   cursor: pointer;
-  accent-color: hsl(252, 75%, 60%);
 }
 
-/* <p> inside <li> */
+/* <input> inside <li> */
 .item-text {
-  color: hsl(220, 16%, 5%);
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: inherit;
+  font-size: 1.1rem;
 }
 
 /* <div> with completed tasks */
@@ -239,25 +239,20 @@ input[type=checkbox] {
   -moz-column-gap: 0.5rem;
        column-gap: 0.5rem;
   cursor: pointer;
-  color: hsl(252, 75%, 60%);
+  color: hsl(246, 100%, 73%);
 }
 
 .completed-tasks__title {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-  color: hsl(252, 75%, 60%);
+  color: hsl(246, 100%, 73%);
   font-weight: bold;
   font-size: 1.2rem;
 }
 
 .completed-tasks__list.hidden {
   display: none;
-}
-
-.item-text {
-  text-decoration: none;
-  color: hsl(220, 16%, 5%);
 }
 
 .item-text.checked {
@@ -267,7 +262,7 @@ input[type=checkbox] {
 
 /* Generic reusable class */
 .accent {
-  color: hsl(252, 75%, 60%);
+  color: hsl(246, 100%, 73%);
 }
 
 body.dark {
@@ -277,16 +272,13 @@ body.dark {
 body.dark .accent,
 body.dark .completed-tasks__title,
 body.dark .trash-can {
-  color: hsl(252, 85%, 70%);
+  color: hsl(246, 100%, 77%);
 }
 body.dark .trash-can:hover {
   color: #ff565a;
 }
 body.dark input[type=checkbox] {
-  accent-color: hsl(252, 85%, 70%);
-}
-body.dark #new-task-input {
-  border-bottom: solid hsl(252, 85%, 70%) 1.7px;
+  accent-color: hsl(246, 100%, 77%);
 }
 body.dark input::-moz-placeholder {
   color: grey;
@@ -353,10 +345,10 @@ body.dark #clear:active {
   .trash-can {
     display: none;
     font-size: 1.2rem;
-    color: hsl(252, 75%, 60%);
+    color: hsl(246, 100%, 73%);
     cursor: pointer;
   }
-  .trash-can.active {
+  .list-item:hover .trash-can {
     display: block;
   }
   .trash-can:hover {
@@ -371,4 +363,4 @@ body.dark #clear:active {
   body.dark .trash-can {
     color: #ff565a;
   }
-}/*# sourceMappingURL=main.css.map */
+}/*# sourceMappingURL=style.css.map */
