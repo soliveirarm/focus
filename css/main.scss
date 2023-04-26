@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
 
 /* Variables */
 $white: #fafafa;
@@ -18,7 +18,7 @@ $accent-dark-bg: hsl(252, 85%, 70%);
 
 body {
   background-color: $white;
-  font-family: "Inter", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   height: 100vh;
   transition: ease-in-out 0.2s;
   // Prevents blue box from appearing
@@ -117,7 +117,7 @@ main {
   border: solid $accent 1.9px;
   border-radius: 30px;
   color: $dark;
-  font-family: "Inter", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 1.1rem;
   outline: none;
   padding: 1rem;
@@ -182,21 +182,6 @@ input::placeholder {
 input[type="checkbox"] {
   cursor: pointer;
   accent-color: $accent;
-}
-
-.trash-can {
-  display: none;
-  font-size: 1.2rem;
-  color: $accent;
-  cursor: pointer;
-}
-
-.trash-can.active {
-  display: block;
-}
-
-.trash-can:hover {
-  color: $warning;
 }
 
 /* <p> inside <li> */
@@ -345,11 +330,6 @@ body.dark {
     margin-bottom: 3rem;
   }
 
-  .trash-can {
-    display: block;
-    color: $warning;
-  }
-
   #new-task-input {
     background-color: $white;
     transition: ease-in-out 0.3s;
@@ -377,5 +357,37 @@ body.dark {
   .completed-tasks:has(.list-item) {
     display: block;
     margin: 3rem auto;
+  }
+}
+
+// Desktops
+@media (hover: hover) {
+  .trash-can {
+    display: none;
+    font-size: 1.2rem;
+    color: $accent;
+    cursor: pointer;
+  }
+  
+  .trash-can.active {
+    display: block;
+  }
+  
+  .trash-can:hover {
+    color: $warning;
+  }
+}
+
+// Phones
+@media (hover: none) {
+  .trash-can {
+    display: block;
+    color: $warning;
+  }
+
+  body.dark {
+    .trash-can {
+      color: lighten($warning, 5%);
+    }
   }
 }

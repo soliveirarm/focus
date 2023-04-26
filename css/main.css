@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&display=swap");
 /* Variables */
 /* Basic reset */
 * {
@@ -9,7 +9,7 @@
 
 body {
   background-color: #fafafa;
-  font-family: "Inter", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   height: 100vh;
   transition: ease-in-out 0.2s;
   -webkit-tap-highlight-color: transparent;
@@ -113,7 +113,7 @@ main {
   border: solid hsl(252, 75%, 60%) 1.9px;
   border-radius: 30px;
   color: hsl(220, 16%, 5%);
-  font-family: "Inter", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 1.1rem;
   outline: none;
   padding: 1rem;
@@ -186,21 +186,6 @@ input::placeholder {
 input[type=checkbox] {
   cursor: pointer;
   accent-color: hsl(252, 75%, 60%);
-}
-
-.trash-can {
-  display: none;
-  font-size: 1.2rem;
-  color: hsl(252, 75%, 60%);
-  cursor: pointer;
-}
-
-.trash-can.active {
-  display: block;
-}
-
-.trash-can:hover {
-  color: #ff3c41;
 }
 
 /* <p> inside <li> */
@@ -341,10 +326,6 @@ body.dark #clear:active {
   .task-list {
     margin-bottom: 3rem;
   }
-  .trash-can {
-    display: block;
-    color: #ff3c41;
-  }
   #new-task-input {
     background-color: #fafafa;
     transition: ease-in-out 0.3s;
@@ -366,5 +347,28 @@ body.dark #clear:active {
   .completed-tasks:has(.list-item) {
     display: block;
     margin: 3rem auto;
+  }
+}
+@media (hover: hover) {
+  .trash-can {
+    display: none;
+    font-size: 1.2rem;
+    color: hsl(252, 75%, 60%);
+    cursor: pointer;
+  }
+  .trash-can.active {
+    display: block;
+  }
+  .trash-can:hover {
+    color: #ff3c41;
+  }
+}
+@media (hover: none) {
+  .trash-can {
+    display: block;
+    color: #ff3c41;
+  }
+  body.dark .trash-can {
+    color: #ff565a;
   }
 }/*# sourceMappingURL=main.css.map */
