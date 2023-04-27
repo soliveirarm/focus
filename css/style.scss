@@ -9,6 +9,12 @@ $warning-dark-bg: lighten($warning, 5%);
 $accent: hsl(246, 100%, 73%);
 $accent-dark-bg: hsl(246, 100%, 77%);
 
+@mixin flex($value) {
+  display: flex;
+  align-items: center;
+  justify-content: $value;
+}
+
 /* Basic reset */
 * {
   padding: 0;
@@ -23,28 +29,29 @@ body {
   transition: ease-in-out 0.2s;
   // Prevents blue box from appearing
   -webkit-tap-highlight-color: transparent;
-}
 
-body::-webkit-scrollbar {
-  width: 8px;
-  transition: ease-in-out 0.2s;
-}
+  &::-webkit-scrollbar {
+    width: 8px;
+    transition: ease-in-out 0.2s;
+  }
 
-body::-webkit-scrollbar-thumb {
-  background-color: lighten($accent, 20%);
-  border-radius: 20px;
-}
+  &::-webkit-scrollbar-thumb {
+    background-color: lighten($accent, 20%);
+    border-radius: 20px;
+  }
 
-body::-webkit-scrollbar-thumb:hover {
-  background-color: $accent-dark-bg;
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: $accent-dark-bg;
+  }
 }
 
 /* header related */
 header {
+  @include flex(space-between);
   user-select: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  // display: flex;
+  // justify-content: space-between;
+  // align-items: center;
   padding: 2rem;
 }
 
@@ -77,33 +84,34 @@ main {
   border-radius: 30px;
   box-shadow: inset 0px 0px 20px 1px rgba(0, 0, 0, 0.13);
   transition: ease-in-out 0.2s;
-}
 
-#toggle-dark-mode:checked {
-  background-color: $accent-dark-bg;
-}
+  &:checked {
+    background-color: $accent-dark-bg;
+  }
 
-#toggle-dark-mode::before {
-  content: "";
-  width: 20px;
-  height: 20px;
-  background-color: #fff;
-  border-radius: 50%;
-  position: absolute;
-  box-shadow: 1px 1px 20px 1px rgba(0, 0, 0, 0.13);
-  transform: scale(1.1);
-  transition: ease-in-out 0.2s;
-}
+  &::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: 1px 1px 20px 1px rgba(0, 0, 0, 0.13);
+    transform: scale(1.1);
+    transition: ease-in-out 0.2s;
+  }
 
-#toggle-dark-mode:checked::before {
-  right: 20px;
+  &:checked::before {
+    right: 20px;
+  }
 }
 
 /* input container */
 .new-task-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex(center);
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
   margin-bottom: 1rem;
 }
 
@@ -111,23 +119,25 @@ main {
   text-align: center;
   background-color: inherit;
   border: none;
+  border-bottom: solid $accent 1.9px;
   color: $dark;
   font-family: "Inter", sans-serif;
   font-size: 1.1rem;
   outline: none;
   padding: 1rem;
   width: 100%;
-}
 
-input::placeholder {
-  color: rgba(0, 0, 0, 0.4);
+  &::placeholder {
+    color: rgba(0, 0, 0, 0.4);
+  }
 }
 
 /* <li> from task-container */
 .list-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include flex(space-between);
+  // display: flex;
+  // justify-content: space-between;
+  // align-items: center;
   font-size: 1.15rem;
   column-gap: 0.5rem;
   list-style-type: none;
@@ -138,10 +148,11 @@ input::placeholder {
 }
 
 .item-checkbox {
-  display: flex;
+  @include flex(center);
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
   flex: none;
-  align-items: center;
-  justify-content: center;
   width: 17px;
   height: 17px;
   padding: 0.1rem;
@@ -150,22 +161,22 @@ input::placeholder {
   border: solid 1px $accent;
   border-radius: 50%;
   transition: ease-in-out 0.2s;
-}
 
-.item-checkbox:hover {
-  background-color: $accent;
-}
+  &:hover {
+    background-color: $accent;
+  }
 
-.item-checkbox:checked {
-  background-color: $accent;
-}
+  &:checked {
+    background-color: $accent;
+  }
 
-.item-checkbox:checked::before,
-.item-checkbox:hover::before {
-  color: $white;
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
-  content: "\f00c";
+  &:checked::before,
+  &:hover::before {
+    color: $white;
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    content: "\f00c";
+  }
 }
 
 .task-container {
@@ -174,7 +185,7 @@ input::placeholder {
   align-items: center;
 }
 
-input[type="checkbox"] {
+.item-checkbox {
   cursor: pointer;
 }
 
@@ -185,12 +196,18 @@ input[type="checkbox"] {
   appearance: none;
   background-color: inherit;
   font-size: 1.1rem;
+
+  &.checked {
+    text-decoration: line-through;
+    color: rgba(0, 0, 0, 0.15);
+  }
 }
 
 /* <div> with completed tasks */
 .completed-tasks {
   display: none;
 
+  // ???????? WTF is this
   .container {
     display: flex;
     justify-content: space-between;
@@ -208,19 +225,19 @@ input[type="checkbox"] {
   font-weight: 600;
   cursor: pointer;
   transition: ease-in-out 0.2s;
-}
 
-#clear.hidden {
-  display: none;
-}
+  &.hidden {
+    display: none;
+  }
 
-#clear:hover {
-  background-color: $warning;
-  color: $white;
-}
+  &:hover {
+    background-color: $warning;
+    color: $white;
+  }
 
-#clear:active {
-  background-color: darken($warning, 20%);
+  &:active {
+    background-color: darken($warning, 20%);
+  }
 }
 
 .completed-tasks:has(.list-item) {
@@ -247,11 +264,6 @@ input[type="checkbox"] {
   display: none;
 }
 
-.item-text.checked {
-  text-decoration: line-through;
-  color: rgba(0, 0, 0, 0.15);
-}
-
 /* Generic reusable class */
 .accent {
   color: $accent;
@@ -272,11 +284,15 @@ body.dark {
     color: $warning-dark-bg;
   }
 
-  input[type="checkbox"] {
+  .item-checkbox {
     accent-color: $accent-dark-bg;
   }
 
-  input::placeholder,
+  #new-task-input {
+    border-bottom: solid $accent-dark-bg 1.9px;
+  }
+
+  #new-task-input::placeholder,
   .item-text.checked {
     color: grey;
   }
@@ -288,24 +304,25 @@ body.dark {
 
   #clear {
     color: $warning-dark-bg;
-  }
 
-  #clear:hover {
-    background-color: $warning-dark-bg;
-    color: white;
-  }
+    &:hover {
+      background-color: $warning-dark-bg;
+      color: white;
+    }
 
-  #clear:active {
-    background-color: darken($warning-dark-bg, 20%);
+    &:active {
+      background-color: darken($warning-dark-bg, 20%);
+    }
   }
 }
 
 @media screen and (max-width: 500px) {
   header {
+    @include flex(space-between);
     padding: 0.8rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    // display: flex;
+    // align-items: center;
+    // justify-content: space-between;
     .subtitle {
       display: none;
     }
@@ -356,14 +373,14 @@ body.dark {
     font-size: 1.2rem;
     color: $accent;
     cursor: pointer;
+
+    &:hover {
+      color: $warning;
+    }
   }
 
   .list-item:hover .trash-can {
     display: block;
-  }
-
-  .trash-can:hover {
-    color: $warning;
   }
 }
 

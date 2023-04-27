@@ -14,30 +14,27 @@ body {
   transition: ease-in-out 0.2s;
   -webkit-tap-highlight-color: transparent;
 }
-
 body::-webkit-scrollbar {
   width: 8px;
   -webkit-transition: ease-in-out 0.2s;
   transition: ease-in-out 0.2s;
 }
-
 body::-webkit-scrollbar-thumb {
   background-color: #dfdbff;
   border-radius: 20px;
 }
-
 body::-webkit-scrollbar-thumb:hover {
   background-color: hsl(246, 100%, 77%);
 }
 
 /* header related */
 header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 2rem;
 }
 
@@ -74,11 +71,9 @@ main {
   box-shadow: inset 0px 0px 20px 1px rgba(0, 0, 0, 0.13);
   transition: ease-in-out 0.2s;
 }
-
 #toggle-dark-mode:checked {
   background-color: hsl(246, 100%, 77%);
 }
-
 #toggle-dark-mode::before {
   content: "";
   width: 20px;
@@ -90,7 +85,6 @@ main {
   transform: scale(1.1);
   transition: ease-in-out 0.2s;
 }
-
 #toggle-dark-mode:checked::before {
   right: 20px;
 }
@@ -107,6 +101,7 @@ main {
   text-align: center;
   background-color: inherit;
   border: none;
+  border-bottom: solid hsl(246, 100%, 73%) 1.9px;
   color: hsl(220, 16%, 5%);
   font-family: "Inter", sans-serif;
   font-size: 1.1rem;
@@ -114,20 +109,18 @@ main {
   padding: 1rem;
   width: 100%;
 }
-
-input::-moz-placeholder {
+#new-task-input::-moz-placeholder {
   color: rgba(0, 0, 0, 0.4);
 }
-
-input::placeholder {
+#new-task-input::placeholder {
   color: rgba(0, 0, 0, 0.4);
 }
 
 /* <li> from task-container */
 .list-item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   font-size: 1.15rem;
   -moz-column-gap: 0.5rem;
        column-gap: 0.5rem;
@@ -140,9 +133,9 @@ input::placeholder {
 
 .item-checkbox {
   display: flex;
-  flex: none;
   align-items: center;
   justify-content: center;
+  flex: none;
   width: 17px;
   height: 17px;
   padding: 0.1rem;
@@ -154,17 +147,13 @@ input::placeholder {
   border-radius: 50%;
   transition: ease-in-out 0.2s;
 }
-
 .item-checkbox:hover {
   background-color: hsl(246, 100%, 73%);
 }
-
 .item-checkbox:checked {
   background-color: hsl(246, 100%, 73%);
 }
-
-.item-checkbox:checked::before,
-.item-checkbox:hover::before {
+.item-checkbox:checked::before, .item-checkbox:hover::before {
   color: #fafafa;
   font-family: "Font Awesome 6 Free";
   font-weight: 900;
@@ -178,7 +167,7 @@ input::placeholder {
   align-items: center;
 }
 
-input[type=checkbox] {
+.item-checkbox {
   cursor: pointer;
 }
 
@@ -191,6 +180,10 @@ input[type=checkbox] {
           appearance: none;
   background-color: inherit;
   font-size: 1.1rem;
+}
+.item-text.checked {
+  text-decoration: line-through;
+  color: rgba(0, 0, 0, 0.15);
 }
 
 /* <div> with completed tasks */
@@ -214,16 +207,13 @@ input[type=checkbox] {
   cursor: pointer;
   transition: ease-in-out 0.2s;
 }
-
 #clear.hidden {
   display: none;
 }
-
 #clear:hover {
   background-color: #ff3c41;
   color: #fafafa;
 }
-
 #clear:active {
   background-color: #d50005;
 }
@@ -255,11 +245,6 @@ input[type=checkbox] {
   display: none;
 }
 
-.item-text.checked {
-  text-decoration: line-through;
-  color: rgba(0, 0, 0, 0.15);
-}
-
 /* Generic reusable class */
 .accent {
   color: hsl(246, 100%, 73%);
@@ -277,13 +262,16 @@ body.dark .trash-can {
 body.dark .trash-can:hover {
   color: #ff565a;
 }
-body.dark input[type=checkbox] {
+body.dark .item-checkbox {
   accent-color: hsl(246, 100%, 77%);
 }
-body.dark input::-moz-placeholder {
+body.dark #new-task-input {
+  border-bottom: solid hsl(246, 100%, 77%) 1.9px;
+}
+body.dark #new-task-input::-moz-placeholder {
   color: grey;
 }
-body.dark input::placeholder,
+body.dark #new-task-input::placeholder,
 body.dark .item-text.checked {
   color: grey;
 }
@@ -304,10 +292,10 @@ body.dark #clear:active {
 
 @media screen and (max-width: 500px) {
   header {
-    padding: 0.8rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 0.8rem;
   }
   header .subtitle {
     display: none;
@@ -348,11 +336,11 @@ body.dark #clear:active {
     color: hsl(246, 100%, 73%);
     cursor: pointer;
   }
-  .list-item:hover .trash-can {
-    display: block;
-  }
   .trash-can:hover {
     color: #ff3c41;
+  }
+  .list-item:hover .trash-can {
+    display: block;
   }
 }
 @media (hover: none) {
