@@ -1,10 +1,5 @@
 # Focus - Minimal task manager
 
-<div style="display: inline" align="center">
-<img src="/img/Focus.png">
-<img src="/img/Focus-dark.png">
-</div>
-
 All your tasks are saved locally, so you don't have to worry about logging in for now, although that option might be added in the future.
 
 ## Favicon credit:
