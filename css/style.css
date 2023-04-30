@@ -302,20 +302,30 @@ main {
   text-align: end;
 }
 #edit-modal button {
+  font-family: "Inter", sans-serif;
   font-weight: 600;
   padding: 0.6rem 0.9rem;
   border-radius: 5px;
   cursor: pointer;
+  transition: 0.2s;
 }
 #edit-modal #delete-task {
   border: 2px solid rgba(0, 0, 0, 0.1);
   background-color: inherit;
   color: #ff3c41;
 }
+#edit-modal #delete-task:hover {
+  background-color: #ff3c41;
+  color: #fafafa;
+}
 #edit-modal #edit {
   border: 2px solid #2cb77f;
   background-color: #2cb77f;
   color: #fafafa;
+}
+#edit-modal #edit:hover {
+  color: #2cb77f;
+  background-color: inherit;
 }
 
 body.dark {

@@ -331,16 +331,23 @@ main {
   }
 
   button {
+    font-family: "Inter", sans-serif;
     font-weight: 600;
     padding: 0.6rem 0.9rem;
     border-radius: 5px;
     cursor: pointer;
+    transition: 0.2s;
   }
 
   #delete-task {
     border: 2px solid rgba(0, 0, 0, 0.1);
     background-color: inherit;
     color: $negative;
+
+    &:hover {
+      background-color: $negative;
+      color: $white;
+    }
   }
 
   #edit {
@@ -348,6 +355,11 @@ main {
 
     background-color: $positive;
     color: $white;
+
+    &:hover {
+      color: $positive;
+      background-color: inherit;
+    }
   }
 }
 
