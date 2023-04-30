@@ -3,9 +3,9 @@
 /* Variables */
 $white: #fafafa;
 $dark: hsl(220, 16%, 5%);
-$completed: #7fd1ae;
-$warning: #ff3c41;
-$warning-dark-bg: lighten($warning, 5%);
+$positive: #2cb77f;
+$negative: #ff3c41;
+$negative-dark-bg: lighten($negative, 5%);
 $accent: hsl(246, 100%, 73%);
 $accent-dark-bg: hsl(246, 100%, 77%);
 
@@ -13,6 +13,24 @@ $accent-dark-bg: hsl(246, 100%, 77%);
   display: flex;
   align-items: center;
   justify-content: $value;
+}
+
+@mixin icons-color($light: true) {
+  @if $light {
+    .fa-sun {
+      color: $accent;
+    }
+    .fa-moon {
+      color: $dark;
+    }
+  } @else {
+    .fa-sun {
+      color: $white;
+    }
+    .fa-moon {
+      color: $accent-dark-bg;
+    }
+  }
 }
 
 /* Basic reset */
@@ -23,6 +41,7 @@ $accent-dark-bg: hsl(246, 100%, 77%);
 }
 
 body {
+  @include icons-color($light: true);
   background-color: $white;
   font-family: "Inter", sans-serif;
   height: 100vh;
@@ -49,9 +68,6 @@ body {
 header {
   @include flex(space-between);
   user-select: none;
-  // display: flex;
-  // justify-content: space-between;
-  // align-items: center;
   padding: 2rem;
 }
 
@@ -79,9 +95,9 @@ main {
   appearance: none;
   cursor: pointer;
   height: 20px;
-  width: 40px;
+  width: 45px;
   background-color: $accent;
-  border-radius: 30px;
+  border-radius: 3px;
   box-shadow: inset 0px 0px 20px 1px rgba(0, 0, 0, 0.13);
   transition: ease-in-out 0.2s;
 
@@ -91,10 +107,10 @@ main {
 
   &::before {
     content: "";
-    width: 20px;
+    width: 23px;
     height: 20px;
     background-color: #fff;
-    border-radius: 50%;
+    border-radius: 3px;
     position: absolute;
     box-shadow: 1px 1px 20px 1px rgba(0, 0, 0, 0.13);
     transform: scale(1.1);
@@ -109,22 +125,19 @@ main {
 /* input container */
 .new-task-container {
   @include flex(center);
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
   margin-bottom: 1rem;
 }
 
 #new-task-input {
-  text-align: center;
   background-color: inherit;
-  border: none;
-  border-bottom: solid $accent 1.9px;
+  border-radius: 10px;
+  border: solid $accent 1.9px;
   color: $dark;
   font-family: "Inter", sans-serif;
   font-size: 1.1rem;
   outline: none;
   padding: 1rem;
+  text-align: center;
   width: 100%;
 
   &::placeholder {
@@ -134,24 +147,19 @@ main {
 
 /* <li> from task-container */
 .list-item {
-  @include flex(space-between);
-  // display: flex;
-  // justify-content: space-between;
-  // align-items: center;
+  display: flex;
+  align-items: center;
   font-size: 1.15rem;
   column-gap: 0.5rem;
   list-style-type: none;
   padding: 0.8rem;
   margin-bottom: 0.1rem;
-  border-radius: 10px;
   color: $dark;
+  cursor: pointer;
 }
 
 .item-checkbox {
   @include flex(center);
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
   flex: none;
   width: 17px;
   height: 17px;
@@ -159,7 +167,7 @@ main {
   background-color: inherit;
   appearance: none;
   border: solid 1px $accent;
-  border-radius: 50%;
+  border-radius: 3px;
   transition: ease-in-out 0.2s;
 
   &:hover {
@@ -191,6 +199,7 @@ main {
 
 /* <input> inside <li> */
 .item-text {
+  flex: 1;
   border: none;
   outline: none;
   appearance: none;
@@ -217,7 +226,7 @@ main {
 #clear {
   font-size: 0.9rem;
   background-color: inherit;
-  color: $warning;
+  color: $negative;
   outline: none;
   border-radius: 30px;
   padding: 0.5rem;
@@ -231,12 +240,12 @@ main {
   }
 
   &:hover {
-    background-color: $warning;
+    background-color: $negative;
     color: $white;
   }
 
   &:active {
-    background-color: darken($warning, 20%);
+    background-color: darken($negative, 20%);
   }
 }
 
@@ -269,8 +278,83 @@ main {
   color: $accent;
 }
 
+// Modal
+#edit-modal {
+  width: 250px;
+  border: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: $white;
+  padding: 1rem;
+  border-radius: 10px;
+
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #close {
+    align-self: end;
+    color: $dark;
+    cursor: pointer;
+    padding: 8px 12px;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+    }
+  }
+
+  #edit-input {
+    align-self: center;
+    width: 100%;
+    height: 80px;
+    outline: none;
+    padding: 0.8rem;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 3px;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+
+    &:focus {
+      outline: 2px solid rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  .options {
+    text-align: end;
+  }
+
+  button {
+    font-weight: 600;
+    padding: 0.6rem 0.9rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  #delete-task {
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    background-color: inherit;
+    color: $negative;
+  }
+
+  #edit {
+    border: 2px solid $positive;
+
+    background-color: $positive;
+    color: $white;
+  }
+}
+
 // Dark Mode
 body.dark {
+  @include icons-color($light: false);
+
   background-color: $dark;
   color: $white;
 
@@ -281,7 +365,7 @@ body.dark {
   }
 
   .trash-can:hover {
-    color: $warning-dark-bg;
+    color: $negative-dark-bg;
   }
 
   .item-checkbox {
@@ -303,15 +387,15 @@ body.dark {
   }
 
   #clear {
-    color: $warning-dark-bg;
+    color: $negative-dark-bg;
 
     &:hover {
-      background-color: $warning-dark-bg;
+      background-color: $negative-dark-bg;
       color: white;
     }
 
     &:active {
-      background-color: darken($warning-dark-bg, 20%);
+      background-color: darken($negative-dark-bg, 20%);
     }
   }
 }
@@ -320,9 +404,6 @@ body.dark {
   header {
     @include flex(space-between);
     padding: 0.8rem;
-    // display: flex;
-    // align-items: center;
-    // justify-content: space-between;
     .subtitle {
       display: none;
     }
@@ -343,7 +424,7 @@ body.dark {
 
   body.dark {
     .trash-can {
-      color: lighten($warning, 5%);
+      color: lighten($negative, 5%);
     }
 
     #new-task-input {
@@ -375,7 +456,7 @@ body.dark {
     cursor: pointer;
 
     &:hover {
-      color: $warning;
+      color: $negative;
     }
   }
 
@@ -387,13 +468,6 @@ body.dark {
 // Phones
 @media (hover: none) {
   .trash-can {
-    display: block;
-    color: $warning;
-  }
-
-  body.dark {
-    .trash-can {
-      color: lighten($warning, 5%);
-    }
+    display: none;
   }
 }

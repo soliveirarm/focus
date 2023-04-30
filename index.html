@@ -11,15 +11,15 @@
   </head>
   <body>
     <header>
-      <article class="name">
+      <section class="name">
         <h1 class="page-title">Focus<span class="accent">!</span></h1>
         <p class="subtitle"><span class="accent">Minimal</span> task manager</p>
-      </article>
-      <div class="dark-mode-btn">
+      </section>
+      <section class="dark-mode-btn">
         <i class="fa-solid fa-sun"></i>
         <input type="checkbox" id="toggle-dark-mode" class="toggle-icon" />
         <i class="fa-solid fa-moon"></i>
-      </div>
+      </section>
     </header>
 
     <main>
@@ -51,6 +51,19 @@
         <ul class="completed-tasks__list"></ul>
       </section>
     </main>
+
+    <dialog id="edit-modal">
+      <div class="container">
+        <span id="close"><i class="fa-solid fa-xmark"></i></span>
+        <span id="edit-input" contenteditable="true"></span>
+        <div class="options">
+          <button id="delete-task">
+            <i class="fa-solid fa-trash-can"></i> Delete Task
+          </button>
+          <button id="edit">Save</button>
+        </div>
+      </div>
+    </dialog>
 
     <script
       src="https://kit.fontawesome.com/a14430386d.js"

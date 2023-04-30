@@ -13,7 +13,22 @@ let tasksLocal = JSON.parse(localStorage.getItem("todos")) || [];
 let completedTasksLocal =
   JSON.parse(localStorage.getItem("completedTodos")) || [];
 
-// MARKS THE ITEM AS COMPLETED
+// Modal related variables
+const editModal = document.querySelector("#edit-modal");
+const editInput = document.querySelector("#edit-input");
+const editBtn = document.querySelector("#edit");
+const deleteTaskBtn = document.querySelector("#delete-task");
+
+const closeBtn = document.querySelector("#close");
+closeBtn.addEventListener("click", () => {
+  editModal.close();
+});
+
+document.addEventListener("contextmenu", (e) => {
+  e.preventDefault();
+});
+
+// Marks the item as completed
 function checkItem(checkbox, li, text) {
   text.classList.toggle("checked");
   let el;
@@ -21,21 +36,19 @@ function checkItem(checkbox, li, text) {
   if (checkbox.checked) {
     // Appends the task to the .completed-tasks
     completedTasks.appendChild(li);
-    text.readOnly = true;
-    el = tasksLocal.indexOf(text.value);
+    el = tasksLocal.indexOf(text.textContent);
     tasksLocal.splice(el, 1);
-    completedTasksLocal.push(text.value);
+    completedTasksLocal.push(text.textContent);
 
     localStorage.todos = JSON.stringify(tasksLocal);
     localStorage.completedTodos = JSON.stringify(completedTasksLocal);
   } else {
-    text.readOnly = false;
     // Appends the task to the task-list container
     taskList.appendChild(li);
-    el = completedTasksLocal.indexOf(text.value);
+    el = completedTasksLocal.indexOf(text.textContent);
 
     completedTasksLocal.splice(el, 1);
-    tasksLocal.push(text.value);
+    tasksLocal.push(text.textContent);
 
     localStorage.completedTodos = JSON.stringify(completedTasksLocal);
     localStorage.todos = JSON.stringify(tasksLocal);
@@ -51,71 +64,82 @@ function addNewTask() {
     let newTaskLi = document.createElement("li");
     newTaskLi.classList.add("list-item");
 
-    // input inside li
-    let newTaskText = document.createElement("INPUT");
+    // span inside li
+    let newTaskText = document.createElement("span");
     newTaskText.classList.add("item-text");
-    newTaskText.readOnly = false;
 
     let checkbox = document.createElement("INPUT");
     checkbox.setAttribute("type", "checkbox");
     checkbox.classList.add("item-checkbox");
 
-    let taskContainer = document.createElement("div");
-    taskContainer.classList.add("task-container");
-
-    taskContainer.appendChild(checkbox);
-    taskContainer.appendChild(newTaskText);
-
-    newTaskLi.appendChild(taskContainer);
-
+    newTaskLi.appendChild(checkbox);
+    newTaskLi.appendChild(newTaskText);
     // adds <li> in the <ul>
     taskList.appendChild(newTaskLi);
 
-    // creating the trash can element
-    let trashCan = document.createElement("span");
-    trashCan.classList.add("trash-can");
-    trashCan.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
-
-    newTaskLi.appendChild(trashCan);
-
     // puts the input text into the <p>
-    newTaskText.value = newTaskInput.value;
-    tasksLocal.push(newTaskText.value);
+    newTaskText.textContent = newTaskInput.value;
+    tasksLocal.push(newTaskText.textContent);
     localStorage.setItem("todos", JSON.stringify(tasksLocal));
 
+    // Editing on double click
     newTaskText.onclick = (e) => {
-      newTaskOldValueIndex = tasksLocal.indexOf(e.target.value);
+      editModal.showModal();
 
-      function editText() {
-        if (newTaskText.readOnly == false) {
-          tasksLocal.splice(newTaskOldValueIndex, 1, newTaskText.value);
+      // Stores the current value on the item
+      let oldValue = e.target.textContent;
+      // Stores the index of the current value
+      let oldValueIndex = tasksLocal.indexOf(oldValue);
+
+      function deleteTask() {
+        newTaskLi.remove();
+        let element;
+        if (checkbox.checked) {
+          // Removes it from completedTasks storage
+          element = completedTasksLocal.indexOf(oldValue);
+          completedTasksLocal.splice(element, 1);
+          localStorage.completedTodos = JSON.stringify(completedTasksLocal);
+        } else {
+          // Removes it from todos storage
+          element = tasksLocal.indexOf(oldValue);
+          tasksLocal.splice(element, 1);
+          localStorage.todos = JSON.stringify(tasksLocal);
+        }
+        editModal.close();
+      }
+
+      deleteTaskBtn.addEventListener("click", deleteTask);
+
+      // Puts the current value inside of editInput
+      editInput.textContent = oldValue;
+
+      // Edits only the user actually wrote something
+      function editItem() {
+        let newValue = editInput.textContent;
+
+        if (newValue != "") {
+          e.target.textContent = newValue;
+          tasksLocal.splice(oldValueIndex, 1, newValue);
           localStorage.setItem("todos", JSON.stringify(tasksLocal));
+          editModal.close();
         }
       }
 
-      newTaskText.addEventListener("keyup", editText);
+      // EventListener for the editBtn that is in the modal
+      editBtn.addEventListener("click", editItem);
+      editInput.addEventListener("keyup", (e) => {
+        if (e.ctrlKey === true && e.key === "Enter") {
+          editItem();
+        }
+      });
     };
 
-    // erases the text in the input
+    // Erases the text in the input
     newTaskInput.value = "";
 
+    // Marks the item as checked
     checkbox.addEventListener("click", () => {
       checkItem(checkbox, newTaskLi, newTaskText);
-    });
-
-    // REMOVES AN ITEM FROM THE LIST
-    trashCan.addEventListener("click", () => {
-      newTaskLi.remove();
-      let element;
-      if (checkbox.checked) {
-        element = completedTasksLocal.indexOf(newTaskText.textContent);
-        completedTasksLocal.splice(element, 1);
-        localStorage.completedTodos = JSON.stringify(completedTasksLocal);
-      } else {
-        element = tasksLocal.indexOf(newTaskText.textContent);
-        tasksLocal.splice(element, 1);
-        localStorage.todos = JSON.stringify(tasksLocal);
-      }
     });
   }
 }
@@ -134,7 +158,7 @@ function showTasks() {
     newTaskLi.classList.add("list-item");
 
     // input inside li
-    let newTaskText = document.createElement("INPUT");
+    let newTaskText = document.createElement("span");
     newTaskText.classList.add("item-text");
 
     let checkbox = document.createElement("INPUT");
@@ -173,7 +197,7 @@ function showTasks() {
     newTaskLi.appendChild(trashCan);
 
     // puts the input text into the <p>
-    newTaskText.value = tasksLocal[i];
+    newTaskText.textContent = tasksLocal[i];
 
     checkbox.addEventListener("click", () => {
       checkItem(checkbox, newTaskLi, newTaskText);

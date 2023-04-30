@@ -14,6 +14,12 @@ body {
   transition: ease-in-out 0.2s;
   -webkit-tap-highlight-color: transparent;
 }
+body .fa-sun {
+  color: hsl(246, 100%, 73%);
+}
+body .fa-moon {
+  color: hsl(220, 16%, 5%);
+}
 body::-webkit-scrollbar {
   width: 8px;
   -webkit-transition: ease-in-out 0.2s;
@@ -65,9 +71,9 @@ main {
           appearance: none;
   cursor: pointer;
   height: 20px;
-  width: 40px;
+  width: 45px;
   background-color: hsl(246, 100%, 73%);
-  border-radius: 30px;
+  border-radius: 3px;
   box-shadow: inset 0px 0px 20px 1px rgba(0, 0, 0, 0.13);
   transition: ease-in-out 0.2s;
 }
@@ -76,10 +82,10 @@ main {
 }
 #toggle-dark-mode::before {
   content: "";
-  width: 20px;
+  width: 23px;
   height: 20px;
   background-color: #fff;
-  border-radius: 50%;
+  border-radius: 3px;
   position: absolute;
   box-shadow: 1px 1px 20px 1px rgba(0, 0, 0, 0.13);
   transform: scale(1.1);
@@ -98,15 +104,15 @@ main {
 }
 
 #new-task-input {
-  text-align: center;
   background-color: inherit;
-  border: none;
-  border-bottom: solid hsl(246, 100%, 73%) 1.9px;
+  border-radius: 10px;
+  border: solid hsl(246, 100%, 73%) 1.9px;
   color: hsl(220, 16%, 5%);
   font-family: "Inter", sans-serif;
   font-size: 1.1rem;
   outline: none;
   padding: 1rem;
+  text-align: center;
   width: 100%;
 }
 #new-task-input::-moz-placeholder {
@@ -120,15 +126,14 @@ main {
 .list-item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   font-size: 1.15rem;
   -moz-column-gap: 0.5rem;
        column-gap: 0.5rem;
   list-style-type: none;
   padding: 0.8rem;
   margin-bottom: 0.1rem;
-  border-radius: 10px;
   color: hsl(220, 16%, 5%);
+  cursor: pointer;
 }
 
 .item-checkbox {
@@ -144,7 +149,7 @@ main {
      -moz-appearance: none;
           appearance: none;
   border: solid 1px hsl(246, 100%, 73%);
-  border-radius: 50%;
+  border-radius: 3px;
   transition: ease-in-out 0.2s;
 }
 .item-checkbox:hover {
@@ -173,6 +178,7 @@ main {
 
 /* <input> inside <li> */
 .item-text {
+  flex: 1;
   border: none;
   outline: none;
   -webkit-appearance: none;
@@ -250,9 +256,77 @@ main {
   color: hsl(246, 100%, 73%);
 }
 
+#edit-modal {
+  width: 250px;
+  border: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fafafa;
+  padding: 1rem;
+  border-radius: 10px;
+}
+#edit-modal::backdrop {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+#edit-modal .container {
+  display: flex;
+  flex-direction: column;
+}
+#edit-modal #close {
+  align-self: end;
+  color: hsl(220, 16%, 5%);
+  cursor: pointer;
+  padding: 8px 12px;
+}
+#edit-modal #close:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+}
+#edit-modal #edit-input {
+  align-self: center;
+  width: 100%;
+  height: 80px;
+  outline: none;
+  padding: 0.8rem;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+#edit-modal #edit-input:focus {
+  outline: 2px solid rgba(0, 0, 0, 0.3);
+}
+#edit-modal .options {
+  text-align: end;
+}
+#edit-modal button {
+  font-weight: 600;
+  padding: 0.6rem 0.9rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#edit-modal #delete-task {
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  background-color: inherit;
+  color: #ff3c41;
+}
+#edit-modal #edit {
+  border: 2px solid #2cb77f;
+  background-color: #2cb77f;
+  color: #fafafa;
+}
+
 body.dark {
   background-color: hsl(220, 16%, 5%);
   color: #fafafa;
+}
+body.dark .fa-sun {
+  color: #fafafa;
+}
+body.dark .fa-moon {
+  color: hsl(246, 100%, 77%);
 }
 body.dark .accent,
 body.dark .completed-tasks__title,
@@ -345,10 +419,6 @@ body.dark #clear:active {
 }
 @media (hover: none) {
   .trash-can {
-    display: block;
-    color: #ff3c41;
-  }
-  body.dark .trash-can {
-    color: #ff565a;
+    display: none;
   }
 }/*# sourceMappingURL=style.css.map */

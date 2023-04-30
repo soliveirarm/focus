@@ -4,4 +4,4 @@ All your tasks are saved locally, so you don't have to worry about logging in fo
 
 ## Favicon credit:
 
-<a href="https://www.flaticon.com/free-icons/foursquare-check-in" title="foursquare check in icons">Foursquare check in icons created by Pixel perfect - Flaticon</a>
+<div> Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect"> Pixel perfect </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com'</a></div>
