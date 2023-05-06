@@ -12,17 +12,6 @@ let tasksLocal = JSON.parse(localStorage.getItem("todos")) || [];
 let completedTasksLocal =
   JSON.parse(localStorage.getItem("completedTodos")) || [];
 
-// Modal related variables
-const editModal = document.querySelector("#edit-modal");
-const editInput = document.querySelector("#edit-input");
-const editBtn = document.querySelector("#edit");
-const deleteTaskBtn = document.querySelector("#delete-task");
-
-const closeBtn = document.querySelector("#close");
-closeBtn.addEventListener("click", () => {
-  editModal.close();
-});
-
 document.addEventListener("contextmenu", (e) => {
   e.preventDefault();
 });
