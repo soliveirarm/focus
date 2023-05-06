@@ -71,9 +71,9 @@ main {
           appearance: none;
   cursor: pointer;
   height: 20px;
-  width: 45px;
+  width: 40px;
   background-color: hsl(246, 100%, 73%);
-  border-radius: 3px;
+  border-radius: 10px;
   box-shadow: inset 0px 0px 20px 1px rgba(0, 0, 0, 0.13);
   transition: ease-in-out 0.2s;
 }
@@ -82,10 +82,10 @@ main {
 }
 #toggle-dark-mode::before {
   content: "";
-  width: 23px;
+  width: 20px;
   height: 20px;
   background-color: #fff;
-  border-radius: 3px;
+  border-radius: 50%;
   position: absolute;
   box-shadow: 1px 1px 20px 1px rgba(0, 0, 0, 0.13);
   transform: scale(1.1);
@@ -105,8 +105,8 @@ main {
 
 #new-task-input {
   background-color: inherit;
-  border-radius: 10px;
-  border: solid hsl(246, 100%, 73%) 1.9px;
+  border: none;
+  border-bottom: solid hsl(246, 100%, 73%) 1.9px;
   color: hsl(220, 16%, 5%);
   font-family: "Inter", sans-serif;
   font-size: 1.1rem;
@@ -149,10 +149,12 @@ main {
      -moz-appearance: none;
           appearance: none;
   border: solid 1px hsl(246, 100%, 73%);
-  border-radius: 3px;
+  border-radius: 50%;
   transition: ease-in-out 0.2s;
+  cursor: pointer;
 }
 .item-checkbox:hover {
+  transform: scale(1.2);
   background-color: hsl(246, 100%, 73%);
 }
 .item-checkbox:checked {
@@ -172,10 +174,6 @@ main {
   align-items: center;
 }
 
-.item-checkbox {
-  cursor: pointer;
-}
-
 /* <input> inside <li> */
 .item-text {
   flex: 1;
@@ -190,6 +188,23 @@ main {
 .item-text.checked {
   text-decoration: line-through;
   color: rgba(0, 0, 0, 0.15);
+}
+
+.item-checkbox:checked .item-text::after {
+  content: "";
+  position: absolute;
+  height: 3px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.trash {
+  color: hsl(246, 100%, 73%);
+}
+.trash:hover {
+  color: #ff3c41;
 }
 
 /* <div> with completed tasks */
@@ -341,10 +356,10 @@ body.dark .fa-moon {
 }
 body.dark .accent,
 body.dark .completed-tasks__title,
-body.dark .trash-can {
+body.dark .trash {
   color: hsl(246, 100%, 77%);
 }
-body.dark .trash-can:hover {
+body.dark .trash:hover {
   color: #ff565a;
 }
 body.dark .item-checkbox {
@@ -395,9 +410,6 @@ body.dark #clear:active {
     background-color: #fafafa;
     transition: ease-in-out 0.3s;
   }
-  body.dark .trash-can {
-    color: #ff565a;
-  }
   body.dark #new-task-input {
     background-color: hsl(220, 16%, 5%);
   }
@@ -415,21 +427,21 @@ body.dark #clear:active {
   }
 }
 @media (hover: hover) {
-  .trash-can {
+  .trash {
     display: none;
     font-size: 1.2rem;
-    color: hsl(246, 100%, 73%);
     cursor: pointer;
   }
-  .trash-can:hover {
-    color: #ff3c41;
-  }
-  .list-item:hover .trash-can {
+  .list-item:hover .trash {
     display: block;
   }
 }
 @media (hover: none) {
-  .trash-can {
-    display: none;
+  .trash {
+    display: block;
+    color: #ff3c41;
+  }
+  body.dark .trash {
+    color: #ff565a;
   }
 }/*# sourceMappingURL=style.css.map */

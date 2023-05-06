@@ -95,9 +95,9 @@ main {
   appearance: none;
   cursor: pointer;
   height: 20px;
-  width: 45px;
+  width: 40px;
   background-color: $accent;
-  border-radius: 3px;
+  border-radius: 10px;
   box-shadow: inset 0px 0px 20px 1px rgba(0, 0, 0, 0.13);
   transition: ease-in-out 0.2s;
 
@@ -107,10 +107,10 @@ main {
 
   &::before {
     content: "";
-    width: 23px;
+    width: 20px;
     height: 20px;
     background-color: #fff;
-    border-radius: 3px;
+    border-radius: 50%;
     position: absolute;
     box-shadow: 1px 1px 20px 1px rgba(0, 0, 0, 0.13);
     transform: scale(1.1);
@@ -130,8 +130,8 @@ main {
 
 #new-task-input {
   background-color: inherit;
-  border-radius: 10px;
-  border: solid $accent 1.9px;
+  border: none;
+  border-bottom: solid $accent 1.9px;
   color: $dark;
   font-family: "Inter", sans-serif;
   font-size: 1.1rem;
@@ -167,10 +167,12 @@ main {
   background-color: inherit;
   appearance: none;
   border: solid 1px $accent;
-  border-radius: 3px;
+  border-radius: 50%;
   transition: ease-in-out 0.2s;
+  cursor: pointer;
 
   &:hover {
+    transform: scale(1.2);
     background-color: $accent;
   }
 
@@ -193,10 +195,6 @@ main {
   align-items: center;
 }
 
-.item-checkbox {
-  cursor: pointer;
-}
-
 /* <input> inside <li> */
 .item-text {
   flex: 1;
@@ -209,6 +207,24 @@ main {
   &.checked {
     text-decoration: line-through;
     color: rgba(0, 0, 0, 0.15);
+  }
+}
+
+.item-checkbox:checked .item-text::after {
+  content: "";
+  position: absolute;
+  height: 3px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.trash {
+  color: $accent;
+
+  &:hover {
+    color: $negative;
   }
 }
 
@@ -372,11 +388,11 @@ body.dark {
 
   .accent,
   .completed-tasks__title,
-  .trash-can {
+  .trash {
     color: $accent-dark-bg;
   }
 
-  .trash-can:hover {
+  .trash:hover {
     color: $negative-dark-bg;
   }
 
@@ -435,10 +451,6 @@ body.dark {
   }
 
   body.dark {
-    .trash-can {
-      color: lighten($negative, 5%);
-    }
-
     #new-task-input {
       background-color: $dark;
     }
@@ -461,25 +473,27 @@ body.dark {
 
 // Desktops
 @media (hover: hover) {
-  .trash-can {
+  .trash {
     display: none;
     font-size: 1.2rem;
-    color: $accent;
     cursor: pointer;
-
-    &:hover {
-      color: $negative;
-    }
   }
 
-  .list-item:hover .trash-can {
+  .list-item:hover .trash {
     display: block;
   }
 }
 
 // Phones
 @media (hover: none) {
-  .trash-can {
-    display: none;
+  .trash {
+    display: block;
+    color: $negative;
+  }
+
+  body.dark {
+    .trash {
+      color: $negative-dark-bg;
+    }
   }
 }
