@@ -4,8 +4,8 @@ const newTaskInput = document.querySelector("#new-task-input");
 const taskList = document.querySelector(".task-list");
 // section .completed-tasks
 const completedTasksContainer = document.querySelector(".completed-tasks");
-// ul .completed-tasks__list
-const completedTasks = document.querySelector(".completed-tasks__list");
+// ul .completed-tasks-list
+const completedTasks = document.querySelector(".completed-tasks-list");
 
 // localStorage arrays
 let tasksLocal = JSON.parse(localStorage.getItem("todos")) || [];
@@ -231,7 +231,7 @@ function clearCompletedTasks() {
 clear.addEventListener("click", clearCompletedTasks);
 
 // Container with the title and the arrow
-let completedTasksBtn = document.querySelector(".completed-tasks__btn");
+let completedTasksBtn = document.querySelector(".completed-tasks-btn");
 let toggleCompletedTasksLocal = localStorage.getItem("toggle");
 
 function toggleCompletedTasks() {

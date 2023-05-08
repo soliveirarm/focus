@@ -1,20 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
 
-/* Variables */
-$white: #fafafa;
-$dark: hsl(220, 16%, 5%);
-$positive: #2cb77f;
-$negative: #ff3c41;
+// Variables
+$white: hsl(0, 0%, 98%);
+$dark: hsl(246, 20%, 5%);
+$negative: hsl(358, 100%, 62%);
 $negative-dark-bg: lighten($negative, 5%);
 $accent: hsl(246, 100%, 73%);
 $accent-dark-bg: hsl(246, 100%, 77%);
 
+// Flex
 @mixin flex($value) {
   display: flex;
   align-items: center;
   justify-content: $value;
 }
 
+// Changes the moon and sun color depending if light mode is activated or not
 @mixin icons-color($light: true) {
   @if $light {
     .fa-sun {
@@ -33,8 +34,10 @@ $accent-dark-bg: hsl(246, 100%, 77%);
   }
 }
 
-/* Basic reset */
-* {
+// Basic reset
+*,
+*::before,
+*::after {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -64,65 +67,65 @@ body {
   }
 }
 
-/* header related */
+// Header related
 header {
   @include flex(space-between);
   user-select: none;
   padding: 2rem;
+
+  .subtitle {
+    letter-spacing: 0.08rem;
+    font-size: 1.1rem;
+  }
+
+  .dark-mode-btn {
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+    background-color: inherit;
+    position: relative;
+  }
+
+  #toggle-dark-mode {
+    appearance: none;
+    cursor: pointer;
+    height: 20px;
+    width: 40px;
+    background-color: $accent;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 20px 1px rgba(0, 0, 0, 0.13);
+    transition: ease-in-out 0.2s;
+
+    &:checked {
+      background-color: $accent-dark-bg;
+    }
+
+    &::before {
+      content: "";
+      width: 20px;
+      height: 20px;
+      background-color: #fff;
+      border-radius: 50%;
+      position: absolute;
+      box-shadow: 1px 1px 20px 1px rgba(0, 0, 0, 0.13);
+      transform: scale(1.1);
+      transition: ease-in-out 0.2s;
+    }
+
+    &:checked::before {
+      right: 20px;
+    }
+  }
 }
 
-.subtitle {
-  letter-spacing: 0.08rem;
-  font-size: 1.1rem;
-}
-
-/* main related */
+// Main related
 main {
   max-width: 760px;
   margin: 0 auto;
   padding: 2rem;
 }
 
-.dark-mode-btn {
-  display: flex;
-  align-items: center;
-  column-gap: 0.5rem;
-  background-color: inherit;
-  position: relative;
-}
-
-#toggle-dark-mode {
-  appearance: none;
-  cursor: pointer;
-  height: 20px;
-  width: 40px;
-  background-color: $accent;
-  border-radius: 10px;
-  box-shadow: inset 0px 0px 20px 1px rgba(0, 0, 0, 0.13);
-  transition: ease-in-out 0.2s;
-
-  &:checked {
-    background-color: $accent-dark-bg;
-  }
-
-  &::before {
-    content: "";
-    width: 20px;
-    height: 20px;
-    background-color: #fff;
-    border-radius: 50%;
-    position: absolute;
-    box-shadow: 1px 1px 20px 1px rgba(0, 0, 0, 0.13);
-    transform: scale(1.1);
-    transition: ease-in-out 0.2s;
-  }
-
-  &:checked::before {
-    right: 20px;
-  }
-}
-
-/* input container */
+// Input container
 .new-task-container {
   @include flex(center);
   margin-bottom: 1rem;
@@ -180,8 +183,7 @@ main {
     background-color: $accent;
   }
 
-  &:checked::before,
-  &:hover::before {
+  &:checked::before {
     color: $white;
     font-family: "Font Awesome 6 Free";
     font-weight: 900;
@@ -195,7 +197,7 @@ main {
   align-items: center;
 }
 
-/* <input> inside <li> */
+// <input> inside <li>
 .item-text {
   flex: 1;
   border: none;
@@ -228,11 +230,10 @@ main {
   }
 }
 
-/* <div> with completed tasks */
+// <div> with completed tasks
 .completed-tasks {
   display: none;
 
-  // ???????? WTF is this
   .container {
     display: flex;
     justify-content: space-between;
@@ -244,8 +245,8 @@ main {
   background-color: inherit;
   color: $negative;
   outline: none;
-  border-radius: 5px;
-  padding: 0.5rem;
+  border-radius: 20px;
+  padding: 0.6rem;
   border: none;
   font-weight: 600;
   cursor: pointer;
@@ -270,7 +271,7 @@ main {
   margin-top: 2rem;
 }
 
-.completed-tasks__btn {
+.completed-tasks-btn {
   display: flex;
   align-items: center;
   column-gap: 0.5rem;
@@ -278,18 +279,18 @@ main {
   color: $accent;
 }
 
-.completed-tasks__title {
+.completed-tasks-title {
   user-select: none;
   color: $accent;
   font-weight: bold;
   font-size: 1.2rem;
 }
 
-.completed-tasks__list.hidden {
+.completed-tasks-list.hidden {
   display: none;
 }
 
-/* Generic reusable class */
+// Generic reusable class
 .accent {
   color: $accent;
 }
@@ -365,18 +366,6 @@ main {
       color: $white;
     }
   }
-
-  #edit {
-    border: 2px solid $positive;
-
-    background-color: $positive;
-    color: $white;
-
-    &:hover {
-      color: $positive;
-      background-color: inherit;
-    }
-  }
 }
 
 // Dark Mode
@@ -387,7 +376,7 @@ body.dark {
   color: $white;
 
   .accent,
-  .completed-tasks__title,
+  .completed-tasks-title,
   .trash {
     color: $accent-dark-bg;
   }
@@ -396,22 +385,21 @@ body.dark {
     color: $negative-dark-bg;
   }
 
-  .item-checkbox {
-    accent-color: $accent-dark-bg;
-  }
-
   #new-task-input {
     border-bottom: solid $accent-dark-bg 1.9px;
+    color: $white;
+
+    &::placeholder {
+      color: hsl(0, 0%, 65%);
+    }
   }
 
-  #new-task-input::placeholder,
-  .item-text.checked {
-    color: grey;
-  }
-
-  #new-task-input,
   .item-text {
     color: $white;
+
+    &.checked {
+      color: hsl(0, 0%, 65%);
+    }
   }
 
   #clear {
@@ -419,7 +407,7 @@ body.dark {
 
     &:hover {
       background-color: $negative-dark-bg;
-      color: white;
+      color: $white;
     }
 
     &:active {
@@ -428,6 +416,7 @@ body.dark {
   }
 }
 
+// Mobile media query
 @media screen and (max-width: 500px) {
   header {
     @include flex(space-between);
@@ -445,17 +434,6 @@ body.dark {
     margin-bottom: 3rem;
   }
 
-  #new-task-input {
-    background-color: $white;
-    transition: ease-in-out 0.3s;
-  }
-
-  body.dark {
-    #new-task-input {
-      background-color: $dark;
-    }
-  }
-
   .new-task-container {
     padding: 1rem;
     position: fixed;
@@ -471,7 +449,7 @@ body.dark {
   }
 }
 
-// Desktops
+// Hover config for desktop
 @media (hover: hover) {
   .trash {
     display: none;
@@ -482,9 +460,16 @@ body.dark {
   .list-item:hover .trash {
     display: block;
   }
+
+  .item-checkbox:hover::before {
+    color: $white;
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    content: "\f00c";
+  }
 }
 
-// Phones
+// Hover config for phones
 @media (hover: none) {
   .trash {
     display: block;
