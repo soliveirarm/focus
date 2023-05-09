@@ -5,33 +5,14 @@ $white: hsl(0, 0%, 98%);
 $dark: hsl(246, 20%, 5%);
 $negative: hsl(358, 100%, 62%);
 $negative-dark-bg: lighten($negative, 5%);
-$accent: hsl(246, 100%, 73%);
-$accent-dark-bg: hsl(246, 100%, 77%);
+$accent: hsl(231, 97%, 72%);
+$accent-dark-bg: hsl(231, 100%, 77%);
 
 // Flex
 @mixin flex($value) {
   display: flex;
   align-items: center;
   justify-content: $value;
-}
-
-// Changes the moon and sun color depending if light mode is activated or not
-@mixin icons-color($light: true) {
-  @if $light {
-    .fa-sun {
-      color: $accent;
-    }
-    .fa-moon {
-      color: $dark;
-    }
-  } @else {
-    .fa-sun {
-      color: $white;
-    }
-    .fa-moon {
-      color: $accent-dark-bg;
-    }
-  }
 }
 
 // Basic reset
@@ -43,8 +24,12 @@ $accent-dark-bg: hsl(246, 100%, 77%);
   box-sizing: border-box;
 }
 
+// Generic reusable class
+.accent {
+  color: $accent;
+}
+
 body {
-  @include icons-color($light: true);
   background-color: $white;
   font-family: "Inter", sans-serif;
   height: 100vh;
@@ -72,50 +57,57 @@ header {
   @include flex(space-between);
   user-select: none;
   padding: 2rem;
+}
 
-  .subtitle {
-    letter-spacing: 0.08rem;
-    font-size: 1.1rem;
+.subtitle {
+  letter-spacing: 0.08rem;
+  font-size: 1.1rem;
+}
+
+.dark-mode-btn {
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+  background-color: inherit;
+  position: relative;
+}
+
+#toggle-dark-mode {
+  appearance: none;
+  cursor: pointer;
+  height: 20px;
+  width: 40px;
+  background-color: $accent;
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 20px 1px rgba(0, 0, 0, 0.13);
+  transition: ease-in-out 0.2s;
+
+  &:checked {
+    background-color: $accent-dark-bg;
   }
 
-  .dark-mode-btn {
-    display: flex;
-    align-items: center;
-    column-gap: 0.5rem;
-    background-color: inherit;
-    position: relative;
-  }
-
-  #toggle-dark-mode {
-    appearance: none;
-    cursor: pointer;
+  &::before {
+    content: "";
+    width: 20px;
     height: 20px;
-    width: 40px;
-    background-color: $accent;
-    border-radius: 10px;
-    box-shadow: inset 0px 0px 20px 1px rgba(0, 0, 0, 0.13);
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: 1px 1px 20px 1px rgba(0, 0, 0, 0.13);
+    transform: scale(1.1);
     transition: ease-in-out 0.2s;
-
-    &:checked {
-      background-color: $accent-dark-bg;
-    }
-
-    &::before {
-      content: "";
-      width: 20px;
-      height: 20px;
-      background-color: #fff;
-      border-radius: 50%;
-      position: absolute;
-      box-shadow: 1px 1px 20px 1px rgba(0, 0, 0, 0.13);
-      transform: scale(1.1);
-      transition: ease-in-out 0.2s;
-    }
-
-    &:checked::before {
-      right: 20px;
-    }
   }
+
+  &:checked::before {
+    right: 20px;
+  }
+}
+
+.fa-sun {
+  color: $accent;
+}
+.fa-moon {
+  color: $dark;
 }
 
 // Main related
@@ -234,10 +226,33 @@ main {
 .completed-tasks {
   display: none;
 
-  .container {
-    display: flex;
-    justify-content: space-between;
+  &:has(.list-item) {
+    display: block;
+    margin-top: 2rem;
   }
+
+  .container {
+    @include flex(center);
+  }
+}
+
+.completed-tasks-btn {
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+  cursor: pointer;
+  color: $accent;
+}
+
+.completed-tasks-title {
+  user-select: none;
+  color: $accent;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.completed-tasks-list.hidden {
+  display: none;
 }
 
 #clear {
@@ -266,114 +281,17 @@ main {
   }
 }
 
-.completed-tasks:has(.list-item) {
-  display: block;
-  margin-top: 2rem;
-}
-
-.completed-tasks-btn {
-  display: flex;
-  align-items: center;
-  column-gap: 0.5rem;
-  cursor: pointer;
-  color: $accent;
-}
-
-.completed-tasks-title {
-  user-select: none;
-  color: $accent;
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-
-.completed-tasks-list.hidden {
-  display: none;
-}
-
-// Generic reusable class
-.accent {
-  color: $accent;
-}
-
-// Modal
-#edit-modal {
-  width: 250px;
-  border: none;
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background-color: $white;
-  padding: 1rem;
-  border-radius: 10px;
-
-  &::backdrop {
-    background-color: rgba(0, 0, 0, 0.4);
-  }
-  .container {
-    display: flex;
-    flex-direction: column;
-  }
-
-  #close {
-    align-self: end;
-    color: $dark;
-    cursor: pointer;
-    padding: 8px 12px;
-
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.1);
-      border-radius: 50%;
-    }
-  }
-
-  #edit-input {
-    align-self: center;
-    width: 100%;
-    height: fit-content;
-    outline: none;
-    padding: 0.8rem;
-    background-color: rgba(0, 0, 0, 0.05);
-    border-radius: 3px;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-
-    &:focus {
-      outline: 2px solid rgba(0, 0, 0, 0.3);
-    }
-  }
-
-  .options {
-    text-align: end;
-  }
-
-  button {
-    font-family: "Inter", sans-serif;
-    font-weight: 600;
-    padding: 0.6rem 0.9rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.2s;
-  }
-
-  #delete-task {
-    border: 2px solid rgba(0, 0, 0, 0.1);
-    background-color: inherit;
-    color: $negative;
-
-    &:hover {
-      background-color: $negative;
-      color: $white;
-    }
-  }
-}
-
 // Dark Mode
 body.dark {
-  @include icons-color($light: false);
-
   background-color: $dark;
   color: $white;
+
+  .fa-sun {
+    color: $white;
+  }
+  .fa-moon {
+    color: $accent-dark-bg;
+  }
 
   .accent,
   .completed-tasks-title,
@@ -387,19 +305,16 @@ body.dark {
 
   #new-task-input {
     border-bottom: solid $accent-dark-bg 1.9px;
-    color: $white;
-
-    &::placeholder {
-      color: hsl(0, 0%, 65%);
-    }
   }
 
+  #new-task-input,
   .item-text {
     color: $white;
+  }
 
-    &.checked {
-      color: hsl(0, 0%, 65%);
-    }
+  #new-task-input::placeholder,
+  .item-text.checked {
+    color: hsl(0, 0%, 65%);
   }
 
   #clear {
@@ -421,9 +336,10 @@ body.dark {
   header {
     @include flex(space-between);
     padding: 0.8rem;
-    .subtitle {
-      display: none;
-    }
+  }
+
+  .subtitle {
+    display: none;
   }
 
   main {

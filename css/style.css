@@ -7,6 +7,10 @@
   box-sizing: border-box;
 }
 
+.accent {
+  color: hsl(231, 97%, 72%);
+}
+
 body {
   background-color: hsl(0, 0%, 98%);
   font-family: "Inter", sans-serif;
@@ -14,23 +18,17 @@ body {
   transition: ease-in-out 0.2s;
   -webkit-tap-highlight-color: transparent;
 }
-body .fa-sun {
-  color: hsl(246, 100%, 73%);
-}
-body .fa-moon {
-  color: hsl(246, 20%, 5%);
-}
 body::-webkit-scrollbar {
   width: 8px;
   -webkit-transition: ease-in-out 0.2s;
   transition: ease-in-out 0.2s;
 }
 body::-webkit-scrollbar-thumb {
-  background-color: #dfdbff;
+  background-color: #d7ddfe;
   border-radius: 20px;
 }
 body::-webkit-scrollbar-thumb:hover {
-  background-color: hsl(246, 100%, 77%);
+  background-color: hsl(231, 100%, 77%);
 }
 
 header {
@@ -42,11 +40,13 @@ header {
           user-select: none;
   padding: 2rem;
 }
-header .subtitle {
+
+.subtitle {
   letter-spacing: 0.08rem;
   font-size: 1.1rem;
 }
-header .dark-mode-btn {
+
+.dark-mode-btn {
   display: flex;
   align-items: center;
   -moz-column-gap: 0.5rem;
@@ -54,22 +54,23 @@ header .dark-mode-btn {
   background-color: inherit;
   position: relative;
 }
-header #toggle-dark-mode {
+
+#toggle-dark-mode {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
   cursor: pointer;
   height: 20px;
   width: 40px;
-  background-color: hsl(246, 100%, 73%);
+  background-color: hsl(231, 97%, 72%);
   border-radius: 10px;
   box-shadow: inset 0px 0px 20px 1px rgba(0, 0, 0, 0.13);
   transition: ease-in-out 0.2s;
 }
-header #toggle-dark-mode:checked {
-  background-color: hsl(246, 100%, 77%);
+#toggle-dark-mode:checked {
+  background-color: hsl(231, 100%, 77%);
 }
-header #toggle-dark-mode::before {
+#toggle-dark-mode::before {
   content: "";
   width: 20px;
   height: 20px;
@@ -80,8 +81,16 @@ header #toggle-dark-mode::before {
   transform: scale(1.1);
   transition: ease-in-out 0.2s;
 }
-header #toggle-dark-mode:checked::before {
+#toggle-dark-mode:checked::before {
   right: 20px;
+}
+
+.fa-sun {
+  color: hsl(231, 97%, 72%);
+}
+
+.fa-moon {
+  color: hsl(246, 20%, 5%);
 }
 
 main {
@@ -100,7 +109,7 @@ main {
 #new-task-input {
   background-color: inherit;
   border: none;
-  border-bottom: solid hsl(246, 100%, 73%) 1.9px;
+  border-bottom: solid hsl(231, 97%, 72%) 1.9px;
   color: hsl(246, 20%, 5%);
   font-family: "Inter", sans-serif;
   font-size: 1.1rem;
@@ -142,17 +151,17 @@ main {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  border: solid 1px hsl(246, 100%, 73%);
+  border: solid 1px hsl(231, 97%, 72%);
   border-radius: 50%;
   transition: ease-in-out 0.2s;
   cursor: pointer;
 }
 .item-checkbox:hover {
   transform: scale(1.2);
-  background-color: hsl(246, 100%, 73%);
+  background-color: hsl(231, 97%, 72%);
 }
 .item-checkbox:checked {
-  background-color: hsl(246, 100%, 73%);
+  background-color: hsl(231, 97%, 72%);
 }
 .item-checkbox:checked::before {
   color: hsl(0, 0%, 98%);
@@ -194,7 +203,7 @@ main {
 }
 
 .trash {
-  color: hsl(246, 100%, 73%);
+  color: hsl(231, 97%, 72%);
 }
 .trash:hover {
   color: hsl(358, 100%, 62%);
@@ -203,9 +212,36 @@ main {
 .completed-tasks {
   display: none;
 }
+.completed-tasks:has(.list-item) {
+  display: block;
+  margin-top: 2rem;
+}
 .completed-tasks .container {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+}
+
+.completed-tasks-btn {
+  display: flex;
+  align-items: center;
+  -moz-column-gap: 0.5rem;
+       column-gap: 0.5rem;
+  cursor: pointer;
+  color: hsl(231, 97%, 72%);
+}
+
+.completed-tasks-title {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  color: hsl(231, 97%, 72%);
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.completed-tasks-list.hidden {
+  display: none;
 }
 
 #clear {
@@ -231,101 +267,6 @@ main {
   background-color: #d60007;
 }
 
-.completed-tasks:has(.list-item) {
-  display: block;
-  margin-top: 2rem;
-}
-
-.completed-tasks-btn {
-  display: flex;
-  align-items: center;
-  -moz-column-gap: 0.5rem;
-       column-gap: 0.5rem;
-  cursor: pointer;
-  color: hsl(246, 100%, 73%);
-}
-
-.completed-tasks-title {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-  color: hsl(246, 100%, 73%);
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-
-.completed-tasks-list.hidden {
-  display: none;
-}
-
-.accent {
-  color: hsl(246, 100%, 73%);
-}
-
-#edit-modal {
-  width: 250px;
-  border: none;
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background-color: hsl(0, 0%, 98%);
-  padding: 1rem;
-  border-radius: 10px;
-}
-#edit-modal::backdrop {
-  background-color: rgba(0, 0, 0, 0.4);
-}
-#edit-modal .container {
-  display: flex;
-  flex-direction: column;
-}
-#edit-modal #close {
-  align-self: end;
-  color: hsl(246, 20%, 5%);
-  cursor: pointer;
-  padding: 8px 12px;
-}
-#edit-modal #close:hover {
-  background-color: rgba(0, 0, 0, 0.1);
-  border-radius: 50%;
-}
-#edit-modal #edit-input {
-  align-self: center;
-  width: 100%;
-  height: -moz-fit-content;
-  height: fit-content;
-  outline: none;
-  padding: 0.8rem;
-  background-color: rgba(0, 0, 0, 0.05);
-  border-radius: 3px;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-}
-#edit-modal #edit-input:focus {
-  outline: 2px solid rgba(0, 0, 0, 0.3);
-}
-#edit-modal .options {
-  text-align: end;
-}
-#edit-modal button {
-  font-family: "Inter", sans-serif;
-  font-weight: 600;
-  padding: 0.6rem 0.9rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-#edit-modal #delete-task {
-  border: 2px solid rgba(0, 0, 0, 0.1);
-  background-color: inherit;
-  color: hsl(358, 100%, 62%);
-}
-#edit-modal #delete-task:hover {
-  background-color: hsl(358, 100%, 62%);
-  color: hsl(0, 0%, 98%);
-}
-
 body.dark {
   background-color: hsl(246, 20%, 5%);
   color: hsl(0, 0%, 98%);
@@ -334,29 +275,27 @@ body.dark .fa-sun {
   color: hsl(0, 0%, 98%);
 }
 body.dark .fa-moon {
-  color: hsl(246, 100%, 77%);
+  color: hsl(231, 100%, 77%);
 }
 body.dark .accent,
 body.dark .completed-tasks-title,
 body.dark .trash {
-  color: hsl(246, 100%, 77%);
+  color: hsl(231, 100%, 77%);
 }
 body.dark .trash:hover {
   color: #ff575c;
 }
 body.dark #new-task-input {
-  border-bottom: solid hsl(246, 100%, 77%) 1.9px;
+  border-bottom: solid hsl(231, 100%, 77%) 1.9px;
+}
+body.dark #new-task-input,
+body.dark .item-text {
   color: hsl(0, 0%, 98%);
 }
 body.dark #new-task-input::-moz-placeholder {
   color: hsl(0, 0%, 65%);
 }
-body.dark #new-task-input::placeholder {
-  color: hsl(0, 0%, 65%);
-}
-body.dark .item-text {
-  color: hsl(0, 0%, 98%);
-}
+body.dark #new-task-input::placeholder,
 body.dark .item-text.checked {
   color: hsl(0, 0%, 65%);
 }
@@ -378,7 +317,7 @@ body.dark #clear:active {
     justify-content: space-between;
     padding: 0.8rem;
   }
-  header .subtitle {
+  .subtitle {
     display: none;
   }
   main {
