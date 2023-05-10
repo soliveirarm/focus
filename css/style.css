@@ -90,7 +90,7 @@ header {
 }
 
 .fa-moon {
-  color: hsl(246, 20%, 5%);
+  color: #000;
 }
 
 main {
@@ -110,7 +110,7 @@ main {
   background-color: inherit;
   border: none;
   border-bottom: solid hsl(231, 97%, 72%) 1.9px;
-  color: hsl(246, 20%, 5%);
+  color: #000;
   font-family: "Inter", sans-serif;
   font-size: 1.1rem;
   outline: none;
@@ -135,7 +135,7 @@ main {
   list-style-type: none;
   padding: 0.8rem;
   margin-bottom: 0.1rem;
-  color: hsl(246, 20%, 5%);
+  color: #000;
   cursor: pointer;
 }
 
@@ -268,7 +268,7 @@ main {
 }
 
 body.dark {
-  background-color: hsl(246, 20%, 5%);
+  background-color: #000;
   color: hsl(0, 0%, 98%);
 }
 body.dark .fa-sun {
