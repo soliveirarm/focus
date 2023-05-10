@@ -12,52 +12,66 @@ let tasksLocal = JSON.parse(localStorage.getItem("todos")) || [];
 let completedTasksLocal =
   JSON.parse(localStorage.getItem("completedTodos")) || [];
 
-document.addEventListener("contextmenu", (e) => {
-  e.preventDefault();
-});
+// localStorage manipulation functions
+function updateTodos() {
+  localStorage.todos = JSON.stringify(tasksLocal);
+}
+
+function updateCompletedTodos() {
+  localStorage.completedTodos = JSON.stringify(completedTasksLocal);
+}
+
+function deleteFromLocalStorage(text, array) {
+  let index = array.indexOf(text.textContent);
+  array.splice(index, 1);
+}
 
 // Marks the item as completed
 function checkItem(checkbox, li, text) {
   text.classList.toggle("checked");
-  let el;
+  // let el;
 
   if (checkbox.checked) {
     text.contentEditable = false;
+
     // Appends the task to the .completed-tasks
     completedTasks.appendChild(li);
-    el = tasksLocal.indexOf(text.textContent);
-    tasksLocal.splice(el, 1);
+
+    // Deletes it from tasksLocal
+    deleteFromLocalStorage(text, tasksLocal);
+
+    // Adds it to completedTasksLocal
     completedTasksLocal.push(text.textContent);
 
-    localStorage.todos = JSON.stringify(tasksLocal);
-    localStorage.completedTodos = JSON.stringify(completedTasksLocal);
+    // Updates the localStorage
+    updateTodos();
+    updateCompletedTodos();
   } else {
     text.contentEditable = true;
+
     // Appends the task to the task-list container
     taskList.appendChild(li);
-    el = completedTasksLocal.indexOf(text.textContent);
 
-    completedTasksLocal.splice(el, 1);
+    // Deletes it from completedTasksLocal
+    deleteFromLocalStorage(text, completedTasksLocal);
+
+    // Adds it to tasksLocal
     tasksLocal.push(text.textContent);
 
-    localStorage.completedTodos = JSON.stringify(completedTasksLocal);
-    localStorage.todos = JSON.stringify(tasksLocal);
+    // Updates the localStorage
+    updateTodos();
+    updateCompletedTodos();
   }
 }
 
 function deleteTask(checkbox, li, text) {
   li.remove();
-  let element;
   if (checkbox.checked) {
-    // Removes it from completedTasks storage
-    element = completedTasksLocal.indexOf(text.textContent);
-    completedTasksLocal.splice(element, 1);
-    localStorage.completedTodos = JSON.stringify(completedTasksLocal);
+    deleteFromLocalStorage(text, completedTasksLocal);
+    updateCompletedTodos();
   } else {
-    // Removes it from todos storage
-    element = tasksLocal.indexOf(text.textContent);
-    tasksLocal.splice(element, 1);
-    localStorage.todos = JSON.stringify(tasksLocal);
+    deleteFromLocalStorage(text, tasksLocal);
+    updateTodos();
   }
 }
 
@@ -65,28 +79,30 @@ function editText(text) {
   let textIndex = tasksLocal.indexOf(text.textContent);
   text.addEventListener("keyup", () => {
     tasksLocal.splice(textIndex, 1, text.textContent);
-    localStorage.setItem("todos", JSON.stringify(tasksLocal));
+    updateTodos();
   });
 }
 
 // Adds a new task to taskList
 function addNewTask() {
   if (!newTaskInput.value == "") {
-    // li
+    // Declaring variables
     let li = document.createElement("li");
-    li.classList.add("list-item");
-
-    // span inside li
     let text = document.createElement("span");
-    text.classList.add("item-text");
-    text.contentEditable = true;
-
     let checkbox = document.createElement("INPUT");
-    checkbox.setAttribute("type", "checkbox");
-    checkbox.classList.add("item-checkbox");
-
     let trash = document.createElement("span");
+
+    // Adding classes to the created items
+    li.classList.add("list-item");
+    text.classList.add("item-text");
+    checkbox.classList.add("item-checkbox");
     trash.classList.add("trash");
+
+    checkbox.setAttribute("type", "checkbox");
+
+    text.contentEditable = true;
+    text.textContent = newTaskInput.value;
+
     trash.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
 
     li.appendChild(checkbox);
@@ -94,12 +110,9 @@ function addNewTask() {
     li.appendChild(trash);
     taskList.appendChild(li);
 
-    // puts the input text into the <p>
-    text.textContent = newTaskInput.value;
-
     // pushes it into localStorage
     tasksLocal.push(text.textContent);
-    localStorage.setItem("todos", JSON.stringify(tasksLocal));
+    updateTodos();
 
     // Marks the item as checked
     checkbox.addEventListener("click", () => {
@@ -111,6 +124,7 @@ function addNewTask() {
       deleteTask(checkbox, li, text);
     });
 
+    // Edits the text
     text.addEventListener("click", () => {
       editText(text);
     });
@@ -129,32 +143,29 @@ newTaskInput.addEventListener("keypress", (e) => {
 
 function showTasks() {
   tasksLocal.forEach((task, i) => {
-    // li
     let li = document.createElement("li");
-    li.classList.add("list-item");
-
-    // span inside li
     let text = document.createElement("span");
-    text.classList.add("item-text");
-    text.contentEditable = true;
-
     let checkbox = document.createElement("INPUT");
-    checkbox.setAttribute("type", "checkbox");
-    checkbox.classList.add("item-checkbox");
-    checkbox.checked = false;
-    text.classList.remove("checked");
-
     let trash = document.createElement("span");
+
+    li.classList.add("list-item");
+    text.classList.add("item-text");
+    checkbox.classList.add("item-checkbox");
     trash.classList.add("trash");
+
+    text.contentEditable = true;
+    text.classList.remove("checked");
+    text.textContent = tasksLocal[i];
+
+    checkbox.setAttribute("type", "checkbox");
+    checkbox.checked = false;
+
     trash.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
 
     li.appendChild(checkbox);
     li.appendChild(text);
     li.appendChild(trash);
     taskList.appendChild(li);
-
-    // puts the input text into the <p>
-    text.textContent = tasksLocal[i];
 
     // Marks the item as checked
     checkbox.addEventListener("click", () => {
@@ -178,32 +189,30 @@ if (tasksLocal !== null) {
 
 function showCompletedTasks() {
   completedTasksLocal.forEach((task, i) => {
-    // li
     let li = document.createElement("li");
-    li.classList.add("list-item");
-
-    // span inside li
     let text = document.createElement("span");
-    text.classList.add("item-text");
-    text.contentEditable = true;
-
     let checkbox = document.createElement("INPUT");
-    checkbox.setAttribute("type", "checkbox");
+    let trash = document.createElement("span");
+
+    li.classList.add("list-item");
+    text.classList.add("item-text");
     checkbox.classList.add("item-checkbox");
-    checkbox.checked = true;
+    trash.classList.add("trash");
+
+    text.contentEditable = false;
     text.classList.add("checked");
 
-    let trash = document.createElement("span");
-    trash.classList.add("trash");
+    checkbox.setAttribute("type", "checkbox");
+    checkbox.checked = true;
+
+    text.textContent = completedTasksLocal[i];
+
     trash.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
 
     li.appendChild(checkbox);
     li.appendChild(text);
     li.appendChild(trash);
-    taskList.appendChild(li);
-
-    // puts the input text into the <p>
-    text.textContent = tasksLocal[i];
+    completedTasks.appendChild(li);
 
     // Marks the item as checked
     checkbox.addEventListener("click", () => {
@@ -278,3 +287,7 @@ if (currentMode !== null) {
 }
 
 darkModeBtn.addEventListener("click", toggleDarkMode);
+
+document.addEventListener("contextmenu", (e) => {
+  e.preventDefault();
+});

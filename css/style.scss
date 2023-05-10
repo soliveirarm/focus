@@ -232,7 +232,7 @@ main {
   }
 
   .container {
-    @include flex(center);
+    @include flex(space-between);
   }
 }
 
