@@ -5,7 +5,7 @@ $white: hsl(0, 0%, 98%);
 $dark: #000;
 $negative: hsl(358, 100%, 62%);
 $negative-dark-bg: lighten($negative, 5%);
-$accent: #7856ff;
+$accent: hsl(252, 100%, 67%);
 
 // Flex
 @mixin flex($value) {
@@ -245,7 +245,7 @@ main {
   font-size: 1.2rem;
 }
 
-.completed-tasks-list.hidden {
+.hidden {
   display: none;
 }
 
@@ -306,7 +306,6 @@ body.dark {
     color: $negative-dark-bg;
 
     &:hover {
-      background-color: $negative-dark-bg;
       color: $white;
     }
 
@@ -362,6 +361,10 @@ body.dark {
     display: block;
   }
 
+  .completed-tasks:has(.list-item) .trash {
+    display: none;
+  }
+
   .item-checkbox:hover::before {
     color: $white;
     font-family: "Font Awesome 6 Free";
@@ -375,6 +378,10 @@ body.dark {
   .trash {
     display: block;
     color: $negative;
+  }
+
+  .completed-tasks:has(.list-item) .trash {
+    display: none;
   }
 
   body.dark {

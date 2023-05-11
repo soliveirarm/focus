@@ -12,6 +12,9 @@ let tasksLocal = JSON.parse(localStorage.getItem("todos")) || [];
 let completedTasksLocal =
   JSON.parse(localStorage.getItem("completedTodos")) || [];
 
+let checkSound = new Audio("/assets/check_sound.wav");
+let uncheckSound = new Audio("/assets/uncheck_sound.wav");
+
 // localStorage manipulation functions
 function updateTodos() {
   localStorage.todos = JSON.stringify(tasksLocal);
@@ -29,7 +32,6 @@ function deleteFromLocalStorage(text, array) {
 // Marks the item as completed
 function checkItem(checkbox, li, text) {
   text.classList.toggle("checked");
-  // let el;
 
   if (checkbox.checked) {
     text.contentEditable = false;
@@ -64,15 +66,10 @@ function checkItem(checkbox, li, text) {
   }
 }
 
-function deleteTask(checkbox, li, text) {
+function deleteTask(li, text) {
   li.remove();
-  if (checkbox.checked) {
-    deleteFromLocalStorage(text, completedTasksLocal);
-    updateCompletedTodos();
-  } else {
-    deleteFromLocalStorage(text, tasksLocal);
-    updateTodos();
-  }
+  deleteFromLocalStorage(text, tasksLocal);
+  updateTodos();
 }
 
 function editText(text) {
@@ -117,11 +114,17 @@ function addNewTask() {
     // Marks the item as checked
     checkbox.addEventListener("click", () => {
       checkItem(checkbox, li, text);
+
+      if (checkbox.checked) {
+        checkSound.play();
+      } else {
+        uncheckSound.play();
+      }
     });
 
     // Removes an item
     trash.addEventListener("click", () => {
-      deleteTask(checkbox, li, text);
+      deleteTask(li, text);
     });
 
     // Edits the text
@@ -170,11 +173,17 @@ function showTasks() {
     // Marks the item as checked
     checkbox.addEventListener("click", () => {
       checkItem(checkbox, li, text);
+
+      if (checkbox.checked) {
+        checkSound.play();
+      } else {
+        uncheckSound.play();
+      }
     });
 
     // Removes an item
     trash.addEventListener("click", () => {
-      deleteTask(checkbox, li, text);
+      deleteTask(li, text);
     });
 
     text.addEventListener("click", () => {
@@ -217,11 +226,16 @@ function showCompletedTasks() {
     // Marks the item as checked
     checkbox.addEventListener("click", () => {
       checkItem(checkbox, li, text);
+      if (checkbox.checked) {
+        checkSound.play();
+      } else {
+        uncheckSound.play();
+      }
     });
 
     // Removes an item
     trash.addEventListener("click", () => {
-      deleteTask(checkbox, li, text);
+      deleteTask(li, text);
     });
   });
 }

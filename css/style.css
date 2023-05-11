@@ -8,7 +8,7 @@
 }
 
 .accent {
-  color: #7856ff;
+  color: hsl(252, 100%, 67%);
 }
 
 body {
@@ -24,11 +24,11 @@ body::-webkit-scrollbar {
   transition: ease-in-out 0.2s;
 }
 body::-webkit-scrollbar-thumb {
-  background-color: #c9bcff;
+  background-color: #cabdff;
   border-radius: 20px;
 }
 body::-webkit-scrollbar-thumb:hover {
-  background-color: #a189ff;
+  background-color: #a18aff;
 }
 
 header {
@@ -62,7 +62,7 @@ header {
   cursor: pointer;
   height: 20px;
   width: 40px;
-  background-color: #7856ff;
+  background-color: hsl(252, 100%, 67%);
   border-radius: 10px;
   box-shadow: inset 0px 0px 20px 1px rgba(0, 0, 0, 0.13);
   transition: ease-in-out 0.2s;
@@ -83,7 +83,7 @@ header {
 }
 
 .fa-sun {
-  color: #7856ff;
+  color: hsl(252, 100%, 67%);
 }
 
 .fa-moon {
@@ -106,7 +106,7 @@ main {
 #new-task-input {
   background-color: inherit;
   border: none;
-  border-bottom: solid #7856ff 1.9px;
+  border-bottom: solid hsl(252, 100%, 67%) 1.9px;
   color: #000;
   font-family: "Inter", sans-serif;
   font-size: 1.1rem;
@@ -147,17 +147,17 @@ main {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  border: solid 1px #7856ff;
+  border: solid 1px hsl(252, 100%, 67%);
   border-radius: 50%;
   transition: ease-in-out 0.2s;
   cursor: pointer;
 }
 .item-checkbox:hover {
   transform: scale(1.2);
-  background-color: #7856ff;
+  background-color: hsl(252, 100%, 67%);
 }
 .item-checkbox:checked {
-  background-color: #7856ff;
+  background-color: hsl(252, 100%, 67%);
 }
 .item-checkbox:checked::before {
   color: hsl(0, 0%, 98%);
@@ -199,7 +199,7 @@ main {
 }
 
 .trash {
-  color: #7856ff;
+  color: hsl(252, 100%, 67%);
 }
 .trash:hover {
   color: hsl(358, 100%, 62%);
@@ -224,19 +224,19 @@ main {
   -moz-column-gap: 0.5rem;
        column-gap: 0.5rem;
   cursor: pointer;
-  color: #7856ff;
+  color: hsl(252, 100%, 67%);
 }
 
 .completed-tasks-title {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-  color: #7856ff;
+  color: hsl(252, 100%, 67%);
   font-weight: bold;
   font-size: 1.2rem;
 }
 
-.completed-tasks-list.hidden {
+.hidden {
   display: none;
 }
 
@@ -268,7 +268,7 @@ body.dark {
   color: hsl(0, 0%, 98%);
 }
 body.dark .fa-moon {
-  color: #7856ff;
+  color: hsl(252, 100%, 67%);
 }
 body.dark .fa-sun {
   color: hsl(0, 0%, 98%);
@@ -291,7 +291,6 @@ body.dark #clear {
   color: #ff575c;
 }
 body.dark #clear:hover {
-  background-color: #ff575c;
   color: hsl(0, 0%, 98%);
 }
 body.dark #clear:active {
@@ -336,6 +335,9 @@ body.dark #clear:active {
   .list-item:hover .trash {
     display: block;
   }
+  .completed-tasks:has(.list-item) .trash {
+    display: none;
+  }
   .item-checkbox:hover::before {
     color: hsl(0, 0%, 98%);
     font-family: "Font Awesome 6 Free";
@@ -347,6 +349,9 @@ body.dark #clear:active {
   .trash {
     display: block;
     color: hsl(358, 100%, 62%);
+  }
+  .completed-tasks:has(.list-item) .trash {
+    display: none;
   }
   body.dark .trash {
     color: #ff575c;
