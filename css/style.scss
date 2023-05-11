@@ -5,8 +5,7 @@ $white: hsl(0, 0%, 98%);
 $dark: #000;
 $negative: hsl(358, 100%, 62%);
 $negative-dark-bg: lighten($negative, 5%);
-$accent: hsl(231, 97%, 72%);
-$accent-dark-bg: hsl(231, 100%, 77%);
+$accent: #7856ff;
 
 // Flex
 @mixin flex($value) {
@@ -48,7 +47,7 @@ body {
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background-color: $accent-dark-bg;
+    background-color: lighten($accent, 10%);
   }
 }
 
@@ -81,10 +80,6 @@ header {
   border-radius: 10px;
   box-shadow: inset 0px 0px 20px 1px rgba(0, 0, 0, 0.13);
   transition: ease-in-out 0.2s;
-
-  &:checked {
-    background-color: $accent-dark-bg;
-  }
 
   &::before {
     content: "";
@@ -286,25 +281,16 @@ body.dark {
   background-color: $dark;
   color: $white;
 
-  .fa-sun {
-    color: $white;
-  }
   .fa-moon {
-    color: $accent-dark-bg;
+    color: $accent;
   }
 
-  .accent,
-  .completed-tasks-title,
-  .trash {
-    color: $accent-dark-bg;
+  .fa-sun {
+    color: $white;
   }
 
   .trash:hover {
     color: $negative-dark-bg;
-  }
-
-  #new-task-input {
-    border-bottom: solid $accent-dark-bg 1.9px;
   }
 
   #new-task-input,

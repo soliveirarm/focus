@@ -8,7 +8,7 @@
 }
 
 .accent {
-  color: hsl(231, 97%, 72%);
+  color: #7856ff;
 }
 
 body {
@@ -24,11 +24,11 @@ body::-webkit-scrollbar {
   transition: ease-in-out 0.2s;
 }
 body::-webkit-scrollbar-thumb {
-  background-color: #d7ddfe;
+  background-color: #c9bcff;
   border-radius: 20px;
 }
 body::-webkit-scrollbar-thumb:hover {
-  background-color: hsl(231, 100%, 77%);
+  background-color: #a189ff;
 }
 
 header {
@@ -62,13 +62,10 @@ header {
   cursor: pointer;
   height: 20px;
   width: 40px;
-  background-color: hsl(231, 97%, 72%);
+  background-color: #7856ff;
   border-radius: 10px;
   box-shadow: inset 0px 0px 20px 1px rgba(0, 0, 0, 0.13);
   transition: ease-in-out 0.2s;
-}
-#toggle-dark-mode:checked {
-  background-color: hsl(231, 100%, 77%);
 }
 #toggle-dark-mode::before {
   content: "";
@@ -86,7 +83,7 @@ header {
 }
 
 .fa-sun {
-  color: hsl(231, 97%, 72%);
+  color: #7856ff;
 }
 
 .fa-moon {
@@ -109,7 +106,7 @@ main {
 #new-task-input {
   background-color: inherit;
   border: none;
-  border-bottom: solid hsl(231, 97%, 72%) 1.9px;
+  border-bottom: solid #7856ff 1.9px;
   color: #000;
   font-family: "Inter", sans-serif;
   font-size: 1.1rem;
@@ -151,17 +148,17 @@ main {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  border: solid 1px hsl(231, 97%, 72%);
+  border: solid 1px #7856ff;
   border-radius: 50%;
   transition: ease-in-out 0.2s;
   cursor: pointer;
 }
 .item-checkbox:hover {
   transform: scale(1.2);
-  background-color: hsl(231, 97%, 72%);
+  background-color: #7856ff;
 }
 .item-checkbox:checked {
-  background-color: hsl(231, 97%, 72%);
+  background-color: #7856ff;
 }
 .item-checkbox:checked::before {
   color: hsl(0, 0%, 98%);
@@ -203,7 +200,7 @@ main {
 }
 
 .trash {
-  color: hsl(231, 97%, 72%);
+  color: #7856ff;
 }
 .trash:hover {
   color: hsl(358, 100%, 62%);
@@ -228,14 +225,14 @@ main {
   -moz-column-gap: 0.5rem;
        column-gap: 0.5rem;
   cursor: pointer;
-  color: hsl(231, 97%, 72%);
+  color: #7856ff;
 }
 
 .completed-tasks-title {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-  color: hsl(231, 97%, 72%);
+  color: #7856ff;
   font-weight: bold;
   font-size: 1.2rem;
 }
@@ -271,22 +268,14 @@ body.dark {
   background-color: #000;
   color: hsl(0, 0%, 98%);
 }
+body.dark .fa-moon {
+  color: #7856ff;
+}
 body.dark .fa-sun {
   color: hsl(0, 0%, 98%);
 }
-body.dark .fa-moon {
-  color: hsl(231, 100%, 77%);
-}
-body.dark .accent,
-body.dark .completed-tasks-title,
-body.dark .trash {
-  color: hsl(231, 100%, 77%);
-}
 body.dark .trash:hover {
   color: #ff575c;
-}
-body.dark #new-task-input {
-  border-bottom: solid hsl(231, 100%, 77%) 1.9px;
 }
 body.dark #new-task-input,
 body.dark .item-text {
