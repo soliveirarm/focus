@@ -28,6 +28,10 @@ $accent: hsl(252, 100%, 67%);
   color: $accent;
 }
 
+.hidden {
+  display: none;
+}
+
 body {
   background-color: $white;
   font-family: "Inter", sans-serif;
@@ -150,8 +154,8 @@ main {
 .item-checkbox {
   @include flex(center);
   flex: none;
-  width: 17px;
-  height: 17px;
+  width: 20px;
+  height: 20px;
   padding: 0.1rem;
   background-color: inherit;
   appearance: none;
@@ -162,7 +166,6 @@ main {
 
   &:hover {
     transform: scale(1.2);
-    background-color: $accent;
   }
 
   &:checked {
@@ -245,10 +248,6 @@ main {
   font-size: 1.2rem;
 }
 
-.hidden {
-  display: none;
-}
-
 #clear {
   font-size: 0.9rem;
   background-color: inherit;
@@ -260,10 +259,6 @@ main {
   font-weight: 600;
   cursor: pointer;
   transition: ease-in-out 0.2s;
-
-  &.hidden {
-    display: none;
-  }
 
   &:hover {
     background-color: $negative;
@@ -365,11 +360,15 @@ body.dark {
     display: none;
   }
 
-  .item-checkbox:hover::before {
-    color: $white;
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
-    content: "\f00c";
+  .item-checkbox:hover {
+    background-color: $accent;
+
+    &::before {
+      color: $white;
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      content: "\f00c";
+    }
   }
 }
 

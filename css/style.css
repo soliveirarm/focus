@@ -11,6 +11,10 @@
   color: hsl(252, 100%, 67%);
 }
 
+.hidden {
+  display: none;
+}
+
 body {
   background-color: hsl(0, 0%, 98%);
   font-family: "Inter", sans-serif;
@@ -140,8 +144,8 @@ main {
   align-items: center;
   justify-content: center;
   flex: none;
-  width: 17px;
-  height: 17px;
+  width: 20px;
+  height: 20px;
   padding: 0.1rem;
   background-color: inherit;
   -webkit-appearance: none;
@@ -154,7 +158,6 @@ main {
 }
 .item-checkbox:hover {
   transform: scale(1.2);
-  background-color: hsl(252, 100%, 67%);
 }
 .item-checkbox:checked {
   background-color: hsl(252, 100%, 67%);
@@ -236,10 +239,6 @@ main {
   font-size: 1.2rem;
 }
 
-.hidden {
-  display: none;
-}
-
 #clear {
   font-size: 0.9rem;
   background-color: inherit;
@@ -251,9 +250,6 @@ main {
   font-weight: 600;
   cursor: pointer;
   transition: ease-in-out 0.2s;
-}
-#clear.hidden {
-  display: none;
 }
 #clear:hover {
   background-color: hsl(358, 100%, 62%);
@@ -337,6 +333,9 @@ body.dark #clear:active {
   }
   .completed-tasks:has(.list-item) .trash {
     display: none;
+  }
+  .item-checkbox:hover {
+    background-color: hsl(252, 100%, 67%);
   }
   .item-checkbox:hover::before {
     color: hsl(0, 0%, 98%);
