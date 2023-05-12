@@ -13,7 +13,6 @@ let completedTasksLocal =
   JSON.parse(localStorage.getItem("completedTodos")) || [];
 
 let checkSound = new Audio("/assets/check_sound.wav");
-let uncheckSound = new Audio("/assets/uncheck_sound.wav");
 
 // localStorage manipulation functions
 function updateTodos() {
@@ -117,8 +116,6 @@ function addNewTask() {
 
       if (checkbox.checked) {
         checkSound.play();
-      } else {
-        uncheckSound.play();
       }
     });
 
@@ -176,8 +173,6 @@ function showTasks() {
 
       if (checkbox.checked) {
         checkSound.play();
-      } else {
-        uncheckSound.play();
       }
     });
 
@@ -226,11 +221,6 @@ function showCompletedTasks() {
     // Marks the item as checked
     checkbox.addEventListener("click", () => {
       checkItem(checkbox, li, text);
-      if (checkbox.checked) {
-        checkSound.play();
-      } else {
-        uncheckSound.play();
-      }
     });
 
     // Removes an item
