@@ -221,6 +221,10 @@ function showCompletedTasks() {
     // Marks the item as checked
     checkbox.addEventListener("click", () => {
       checkItem(checkbox, li, text);
+
+      if (checkbox.checked) {
+        checkSound.play();
+      }
     });
 
     // Removes an item
