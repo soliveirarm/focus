@@ -100,14 +100,14 @@ main {
   padding: 2rem;
 }
 
-.new-task-container {
+.new-task {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 1rem;
 }
 
-#new-task-input {
+#new-task--input {
   background-color: inherit;
   border: none;
   border-bottom: solid hsl(252, 100%, 67%) 1.9px;
@@ -119,10 +119,10 @@ main {
   text-align: center;
   width: 100%;
 }
-#new-task-input::-moz-placeholder {
+#new-task--input::-moz-placeholder {
   color: rgba(0, 0, 0, 0.4);
 }
-#new-task-input::placeholder {
+#new-task--input::placeholder {
   color: rgba(0, 0, 0, 0.4);
 }
 
@@ -207,7 +207,7 @@ main {
   justify-content: space-between;
 }
 
-.completed-tasks-btn {
+.completed-tasks--btn {
   display: flex;
   align-items: center;
   -moz-column-gap: 0.5rem;
@@ -216,7 +216,7 @@ main {
   color: hsl(252, 100%, 67%);
 }
 
-.completed-tasks-title {
+.completed-tasks--title {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
@@ -258,14 +258,14 @@ body.dark .fa-sun {
 body.dark .trash:hover {
   color: #ff575c;
 }
-body.dark #new-task-input,
+body.dark #new-task--input,
 body.dark .item-text {
   color: hsl(0, 0%, 98%);
 }
-body.dark #new-task-input::-moz-placeholder {
+body.dark #new-task--input::-moz-placeholder {
   color: hsl(0, 0%, 65%);
 }
-body.dark #new-task-input::placeholder,
+body.dark #new-task--input::placeholder,
 body.dark .item-text.checked {
   color: hsl(0, 0%, 65%);
 }
@@ -292,10 +292,10 @@ body.dark #clear:active {
   main {
     position: relative;
   }
-  .task-list {
+  .tasks--list {
     margin-bottom: 3rem;
   }
-  .new-task-container {
+  .new-task {
     padding: 1rem;
     position: fixed;
     left: 0;

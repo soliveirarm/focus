@@ -12,49 +12,52 @@
   <body>
     <header>
       <section class="name">
-        <h1 class="page-title">Focus<span class="accent">!</span></h1>
+        <h1 class="title">Focus<span class="accent">!</span></h1>
         <p class="subtitle"><span class="accent">Minimal</span> task manager</p>
       </section>
-      <section class="dark-mode-btn">
+      <div class="dark-mode-btn">
         <i class="fa-solid fa-sun"></i>
         <input type="checkbox" id="toggle-dark-mode" class="toggle-icon" />
         <i class="fa-solid fa-moon"></i>
-      </section>
+      </div>
     </header>
 
     <main>
-      <section class="new-task-container">
+      <section class="new-task">
         <input
           type="text"
-          id="new-task-input"
+          id="new-task--input"
           placeholder="Enter the task name"
           autofocus
         />
       </section>
 
-      <section class="tasks-container">
-        <ul class="task-list"></ul>
+      <section class="tasks">
+        <ul class="tasks--list"></ul>
       </section>
 
       <section class="completed-tasks">
         <div class="container">
-          <div class="completed-tasks-btn">
-            <p class="completed-tasks-title">Completed tasks</p>
+          <div class="completed-tasks--btn">
+            <p class="completed-tasks--title">Completed tasks</p>
             <div class="arrow">
               <i class="fa-solid fa-chevron-down"></i>
             </div>
           </div>
+
           <button id="clear">
             <i class="fa-solid fa-trash-can fa-lg"></i> Clear
           </button>
         </div>
-        <ul class="completed-tasks-list"></ul>
+
+        <ul class="completed-tasks--list"></ul>
       </section>
     </main>
     <script
       src="https://kit.fontawesome.com/a14430386d.js"
       crossorigin="anonymous"
     ></script>
-    <script src="script.js"></script>
+    <script src="/js/local_storage.js"></script>
+    <script src="/js/script.js"></script>
   </body>
 </html>

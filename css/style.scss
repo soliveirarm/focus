@@ -117,12 +117,12 @@ main {
 }
 
 // Input container
-.new-task-container {
+.new-task {
   @include flex(center);
   margin-bottom: 1rem;
 }
 
-#new-task-input {
+#new-task--input {
   background-color: inherit;
   border: none;
   border-bottom: solid $accent 1.9px;
@@ -221,7 +221,7 @@ main {
   }
 }
 
-.completed-tasks-btn {
+.completed-tasks--btn {
   display: flex;
   align-items: center;
   column-gap: 0.5rem;
@@ -229,7 +229,7 @@ main {
   color: $accent;
 }
 
-.completed-tasks-title {
+.completed-tasks--title {
   user-select: none;
   color: $accent;
   font-weight: bold;
@@ -275,12 +275,12 @@ body.dark {
     color: $negative-dark-bg;
   }
 
-  #new-task-input,
+  #new-task--input,
   .item-text {
     color: $white;
   }
 
-  #new-task-input::placeholder,
+  #new-task--input::placeholder,
   .item-text.checked {
     color: hsl(0, 0%, 65%);
   }
@@ -313,11 +313,11 @@ body.dark {
     position: relative;
   }
 
-  .task-list {
+  .tasks--list {
     margin-bottom: 3rem;
   }
 
-  .new-task-container {
+  .new-task {
     padding: 1rem;
     position: fixed;
     left: 0;

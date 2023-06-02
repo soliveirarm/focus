@@ -1,83 +1,11 @@
 // add task input
-const newTaskInput = document.querySelector("#new-task-input");
+const newTaskInput = document.querySelector("#new-task--input");
 // <ul> that receives <li>
-const taskList = document.querySelector(".task-list");
-// section .completed-tasks
-const completedTasksContainer = document.querySelector(".completed-tasks");
-// ul .completed-tasks-list
-const completedTasks = document.querySelector(".completed-tasks-list");
-
-// localStorage arrays
-let tasksLocal = JSON.parse(localStorage.getItem("todos")) || [];
-let completedTasksLocal =
-  JSON.parse(localStorage.getItem("completedTodos")) || [];
+const taskList = document.querySelector(".tasks--list");
+// ul .completed-tasks--list
+const completedTasks = document.querySelector(".completed-tasks--list");
 
 let checkSound = new Audio("/assets/check_sound.wav");
-
-// localStorage manipulation functions
-function updateTodos() {
-  localStorage.todos = JSON.stringify(tasksLocal);
-}
-
-function updateCompletedTodos() {
-  localStorage.completedTodos = JSON.stringify(completedTasksLocal);
-}
-
-function deleteFromLocalStorage(text, array) {
-  let index = array.indexOf(text.textContent);
-  array.splice(index, 1);
-}
-
-// Marks the item as completed
-function checkItem(checkbox, li, text) {
-  text.classList.toggle("checked");
-
-  if (checkbox.checked) {
-    text.contentEditable = false;
-
-    // Appends the task to the .completed-tasks
-    completedTasks.appendChild(li);
-
-    // Deletes it from tasksLocal
-    deleteFromLocalStorage(text, tasksLocal);
-
-    // Adds it to completedTasksLocal
-    completedTasksLocal.push(text.textContent);
-
-    // Updates the localStorage
-    updateTodos();
-    updateCompletedTodos();
-  } else {
-    text.contentEditable = true;
-
-    // Appends the task to the task-list container
-    taskList.appendChild(li);
-
-    // Deletes it from completedTasksLocal
-    deleteFromLocalStorage(text, completedTasksLocal);
-
-    // Adds it to tasksLocal
-    tasksLocal.push(text.textContent);
-
-    // Updates the localStorage
-    updateTodos();
-    updateCompletedTodos();
-  }
-}
-
-function deleteTask(li, text) {
-  li.remove();
-  deleteFromLocalStorage(text, tasksLocal);
-  updateTodos();
-}
-
-function editText(text) {
-  let textIndex = tasksLocal.indexOf(text.textContent);
-  text.addEventListener("keyup", () => {
-    tasksLocal.splice(textIndex, 1, text.textContent);
-    updateTodos();
-  });
-}
 
 // Adds a new task to taskList
 function addNewTask() {
@@ -106,8 +34,9 @@ function addNewTask() {
     li.appendChild(trash);
     taskList.appendChild(li);
 
-    // pushes it into localStorage
+    // pushes it into the array tasksLocal
     tasksLocal.push(text.textContent);
+    // updates the array on localStorage
     updateTodos();
 
     // Marks the item as checked
@@ -238,22 +167,13 @@ if (completedTasksLocal !== null) {
   showCompletedTasks();
 }
 
-let clear = document.querySelector("#clear");
-
-function clearCompletedTasks() {
-  completedTasks.innerHTML = "";
-  localStorage.removeItem("completedTodos");
-}
-
-clear.addEventListener("click", clearCompletedTasks);
-
 // Container with the title and the arrow
-let completedTasksBtn = document.querySelector(".completed-tasks-btn");
+let completedTasksBtn = document.querySelector(".completed-tasks--btn");
 let toggleCompletedTasksLocal = localStorage.getItem("toggle");
 
 function toggleCompletedTasks() {
   completedTasks.classList.toggle("hidden");
-  clear.classList.toggle("hidden");
+  clearBtn.classList.toggle("hidden");
 
   let arrow = document.querySelector(".arrow");
   if (completedTasks.classList.contains("hidden")) {
@@ -275,7 +195,7 @@ if (toggleCompletedTasksLocal !== null) {
 
 // Dark mode
 
-let darkModeBtn = document.querySelector("#toggle-dark-mode");
+const darkModeBtn = document.querySelector("#toggle-dark-mode");
 let currentMode = localStorage.getItem("darkMode");
 
 function toggleDarkMode() {
