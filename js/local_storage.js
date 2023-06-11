@@ -52,6 +52,8 @@ function checkItem(checkbox, li, text) {
     // Updates the localStorage
     updateTodos();
     updateCompletedTodos();
+
+    completedTasksCounter.innerHTML = completedTasksLocal.length;
   } else {
     text.contentEditable = true;
 
@@ -67,6 +69,8 @@ function checkItem(checkbox, li, text) {
     // Updates the localStorage
     updateTodos();
     updateCompletedTodos();
+
+    completedTasksCounter.innerHTML = completedTasksLocal.length;
   }
 }
 
@@ -75,6 +79,7 @@ const clearBtn = document.querySelector("#clear");
 function clearCompletedTasks() {
   completedTasks.innerHTML = "";
   localStorage.removeItem("completedTodos");
+  completedTasksCounter.innerHTML = 0;
 }
 
 clearBtn.addEventListener("click", clearCompletedTasks);

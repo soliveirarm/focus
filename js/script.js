@@ -5,7 +5,10 @@ const taskList = document.querySelector(".tasks--list");
 // ul .completed-tasks--list
 const completedTasks = document.querySelector(".completed-tasks--list");
 
-let checkSound = new Audio("/assets/check_sound.wav");
+const completedTasksCounter = document.querySelector(
+  "#completed-tasks--counter"
+);
+completedTasksCounter.innerHTML = completedTasksLocal.length;
 
 // Adds a new task to taskList
 function addNewTask() {
@@ -42,10 +45,6 @@ function addNewTask() {
     // Marks the item as checked
     checkbox.addEventListener("click", () => {
       checkItem(checkbox, li, text);
-
-      if (checkbox.checked) {
-        checkSound.play();
-      }
     });
 
     // Removes an item
@@ -99,10 +98,6 @@ function showTasks() {
     // Marks the item as checked
     checkbox.addEventListener("click", () => {
       checkItem(checkbox, li, text);
-
-      if (checkbox.checked) {
-        checkSound.play();
-      }
     });
 
     // Removes an item
@@ -150,10 +145,6 @@ function showCompletedTasks() {
     // Marks the item as checked
     checkbox.addEventListener("click", () => {
       checkItem(checkbox, li, text);
-
-      if (checkbox.checked) {
-        checkSound.play();
-      }
     });
 
     // Removes an item

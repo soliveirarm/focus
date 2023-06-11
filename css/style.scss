@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&display=swap");
 
 // Variables
 $white: hsl(0, 0%, 98%);
@@ -34,7 +34,7 @@ $accent: hsl(252, 100%, 67%);
 
 body {
   background-color: $white;
-  font-family: "Fira Sans", sans-serif;
+  font-family: "Inter Tight", sans-serif;
   height: 100vh;
   transition: ease-in-out 0.2s;
   // Prevents blue box from appearing
@@ -127,7 +127,7 @@ main {
   border: none;
   border-bottom: solid $accent 1.9px;
   color: $dark;
-  font-family: "Fira Sans", sans-serif;
+  font-family: "Inter Tight", sans-serif;
   font-size: 1.1rem;
   outline: none;
   padding: 1rem;
