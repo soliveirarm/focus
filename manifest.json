@@ -2,17 +2,17 @@
   "name": "Focus!",
   "icons": [
     {
-      "src": "/assets/check_128.png",
+      "src": "/img/check_128.png",
       "type": "image/png",
       "sizes": "128x128"
     },
     {
-      "src": "/assets/check_256.png",
+      "src": "/img/check_256.png",
       "type": "image/png",
       "sizes": "256x256"
     },
     {
-      "src": "/assets/check.png",
+      "src": "/img/check.png",
       "type": "image/png",
       "sizes": "512x512"
     }
