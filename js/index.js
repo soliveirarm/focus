@@ -1,25 +1,18 @@
-// add task input
 const newTaskInput = document.querySelector("#new-task--input");
-// <ul> that receives <li>
 const taskList = document.querySelector(".tasks--list");
-// ul .completed-tasks--list
 const completedTasks = document.querySelector(".completed-tasks--list");
-
 const completedTasksCounter = document.querySelector(
   "#completed-tasks--counter"
 );
 completedTasksCounter.innerHTML = completedTasksLocal.length;
 
-// Adds a new task to taskList
 function addNewTask() {
   if (!newTaskInput.value == "") {
-    // Declaring variables
     let li = document.createElement("li");
     let text = document.createElement("span");
     let checkbox = document.createElement("INPUT");
     let trash = document.createElement("span");
 
-    // Adding classes to the created items
     li.classList.add("list-item");
     text.classList.add("item-text");
     checkbox.classList.add("item-checkbox");
@@ -37,32 +30,25 @@ function addNewTask() {
     li.appendChild(trash);
     taskList.appendChild(li);
 
-    // pushes it into the array tasksLocal
     tasksLocal.push(text.textContent);
-    // updates the array on localStorage
     updateTodos();
 
-    // Marks the item as checked
     checkbox.addEventListener("click", () => {
       checkItem(checkbox, li, text);
     });
 
-    // Removes an item
     trash.addEventListener("click", () => {
       deleteTask(li, text);
     });
 
-    // Edits the text
     text.addEventListener("click", () => {
       editText(text);
     });
   }
 
-  // Erases the text in the input
   newTaskInput.value = "";
 }
 
-// EventListener that monitors the input text, if enter is pressed, it runs de addNewTask()
 newTaskInput.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     addNewTask();
@@ -95,12 +81,10 @@ function showTasks() {
     li.appendChild(trash);
     taskList.appendChild(li);
 
-    // Marks the item as checked
     checkbox.addEventListener("click", () => {
       checkItem(checkbox, li, text);
     });
 
-    // Removes an item
     trash.addEventListener("click", () => {
       deleteTask(li, text);
     });
@@ -142,12 +126,10 @@ function showCompletedTasks() {
     li.appendChild(trash);
     completedTasks.appendChild(li);
 
-    // Marks the item as checked
     checkbox.addEventListener("click", () => {
       checkItem(checkbox, li, text);
     });
 
-    // Removes an item
     trash.addEventListener("click", () => {
       deleteTask(li, text);
     });
@@ -158,7 +140,6 @@ if (completedTasksLocal !== null) {
   showCompletedTasks();
 }
 
-// Container with the title and the arrow
 let completedTasksBtn = document.querySelector(".completed-tasks--btn");
 let toggleCompletedTasksLocal = localStorage.getItem("toggle");
 
@@ -168,9 +149,7 @@ function toggleCompletedTasks() {
 
   let arrow = document.querySelector(".arrow");
   if (completedTasks.classList.contains("hidden")) {
-    // Changes the icon
     arrow.innerHTML = `<i class="fa-solid fa-chevron-up"></i>`;
-    // Stores the current "position" (hidden)
     localStorage.setItem("toggle", "hidden");
   } else {
     arrow.innerHTML = `<i class="fa-solid fa-chevron-down"></i>`;

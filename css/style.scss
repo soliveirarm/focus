@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
 
 // Variables
 $white: hsl(0, 0%, 98%);
@@ -34,7 +34,7 @@ $accent: hsl(252, 100%, 67%);
 
 body {
   background-color: $white;
-  font-family: "Inter Tight", sans-serif;
+  font-family: "Inter", sans-serif;
   height: 100vh;
   transition: ease-in-out 0.2s;
   // Prevents blue box from appearing

@@ -1,11 +1,7 @@
-// VARIABLES AND FUNCTION THAT HAVE TO DO WITH LOCALSTORAGE
-
-// localStorage arrays
 let tasksLocal = JSON.parse(localStorage.getItem("todos")) || [];
 let completedTasksLocal =
   JSON.parse(localStorage.getItem("completedTodos")) || [];
 
-// localStorage manipulation functions
 function updateTodos() {
   localStorage.todos = JSON.stringify(tasksLocal);
 }
@@ -33,23 +29,18 @@ function editText(text) {
   });
 }
 
-// Marks the item as completed
 function checkItem(checkbox, li, text) {
   text.classList.toggle("checked");
 
   if (checkbox.checked) {
     text.contentEditable = false;
 
-    // Appends the task to the .completed-tasks
     completedTasks.appendChild(li);
 
-    // Deletes it from tasksLocal
     deleteFromLocalStorage(text, tasksLocal);
 
-    // Adds it to completedTasksLocal
     completedTasksLocal.push(text.textContent);
 
-    // Updates the localStorage
     updateTodos();
     updateCompletedTodos();
 
@@ -57,16 +48,12 @@ function checkItem(checkbox, li, text) {
   } else {
     text.contentEditable = true;
 
-    // Appends the task to the task-list container
     taskList.appendChild(li);
 
-    // Deletes it from completedTasksLocal
     deleteFromLocalStorage(text, completedTasksLocal);
 
-    // Adds it to tasksLocal
     tasksLocal.push(text.textContent);
 
-    // Updates the localStorage
     updateTodos();
     updateCompletedTodos();
 
