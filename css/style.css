@@ -157,10 +157,15 @@ main {
   cursor: pointer;
 }
 .item-checkbox:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 .item-checkbox:checked {
-  background-color: #7857ff;
+  background-color: #1ed760;
+  border: solid 1px #1ed760;
+}
+.item-checkbox:checked:hover {
+  background-color: inherit;
+  border: solid 1px #7857ff;
 }
 .item-checkbox:checked::before {
   color: #fafafa;
@@ -248,6 +253,9 @@ main {
 body.dark {
   background-color: #0c0c0c;
   color: #fafafa;
+}
+body.dark .item-checkbox:checked:hover::before {
+  content: "";
 }
 body.dark .fa-moon {
   color: #7857ff;

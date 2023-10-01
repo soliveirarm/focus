@@ -5,6 +5,7 @@ $white: #fafafa;
 $dark: #0c0c0c;
 $negative: #ff3d44;
 $negative-dark-bg: lighten($negative, 5%);
+$positive: #1ed760;
 $accent: #7857ff;
 
 // Flex
@@ -165,11 +166,17 @@ main {
   cursor: pointer;
 
   &:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
   }
 
   &:checked {
-    background-color: $accent;
+    background-color: $positive;
+    border: solid 1px $positive;
+  }
+
+  &:checked:hover {
+    background-color: inherit;
+    border: solid 1px $accent;
   }
 
   &:checked::before {
@@ -262,6 +269,10 @@ main {
 body.dark {
   background-color: $dark;
   color: $white;
+
+  .item-checkbox:checked:hover::before {
+    content: "";
+  }
 
   .fa-moon {
     color: $accent;
