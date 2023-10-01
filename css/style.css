@@ -8,7 +8,7 @@
 }
 
 .accent {
-  color: hsl(252, 100%, 67%);
+  color: #7857ff;
 }
 
 .hidden {
@@ -16,7 +16,7 @@
 }
 
 body {
-  background-color: hsl(0, 0%, 98%);
+  background-color: #fafafa;
   font-family: "Inter", sans-serif;
   height: 100vh;
   transition: ease-in-out 0.2s;
@@ -66,7 +66,7 @@ header {
   cursor: pointer;
   height: 20px;
   width: 40px;
-  background-color: hsl(252, 100%, 67%);
+  background-color: #7857ff;
   border-radius: 10px;
   box-shadow: inset 0px 0px 20px 1px rgba(0, 0, 0, 0.13);
   transition: ease-in-out 0.2s;
@@ -87,7 +87,7 @@ header {
 }
 
 .fa-sun {
-  color: hsl(252, 100%, 67%);
+  color: #7857ff;
 }
 
 .fa-moon {
@@ -110,9 +110,9 @@ main {
 #new-task--input {
   background-color: inherit;
   border: none;
-  border-bottom: solid hsl(252, 100%, 67%) 1.9px;
+  border-bottom: solid #7857ff 1.9px;
   color: #0c0c0c;
-  font-family: "Inter Tight", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 1.1rem;
   outline: none;
   padding: 1rem;
@@ -151,7 +151,7 @@ main {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  border: solid 1px hsl(252, 100%, 67%);
+  border: solid 1px #7857ff;
   border-radius: 50%;
   transition: transform 300ms ease-in-out;
   cursor: pointer;
@@ -160,10 +160,10 @@ main {
   transform: scale(1.2);
 }
 .item-checkbox:checked {
-  background-color: hsl(252, 100%, 67%);
+  background-color: #7857ff;
 }
 .item-checkbox:checked::before {
-  color: hsl(0, 0%, 98%);
+  color: #fafafa;
   font-family: "Font Awesome 6 Free";
   font-weight: 900;
   content: "\f00c";
@@ -188,10 +188,10 @@ main {
 }
 
 .trash {
-  color: hsl(252, 100%, 67%);
+  color: #7857ff;
 }
 .trash:hover {
-  color: hsl(358, 100%, 62%);
+  color: #ff3d44;
 }
 
 .completed-tasks {
@@ -213,14 +213,14 @@ main {
   -moz-column-gap: 0.5rem;
        column-gap: 0.5rem;
   cursor: pointer;
-  color: hsl(252, 100%, 67%);
+  color: #7857ff;
 }
 
 .completed-tasks--title {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-  color: hsl(252, 100%, 67%);
+  color: #7857ff;
   font-weight: bold;
   font-size: 1.2rem;
 }
@@ -228,7 +228,7 @@ main {
 #clear {
   font-size: 0.9rem;
   background-color: inherit;
-  color: hsl(358, 100%, 62%);
+  color: #ff3d44;
   outline: none;
   border-radius: 20px;
   padding: 0.6rem;
@@ -238,29 +238,29 @@ main {
   transition: ease-in-out 0.2s;
 }
 #clear:hover {
-  background-color: hsl(358, 100%, 62%);
-  color: hsl(0, 0%, 98%);
+  background-color: #ff3d44;
+  color: #fafafa;
 }
 #clear:active {
-  background-color: #d60007;
+  background-color: #d60008;
 }
 
 body.dark {
   background-color: #0c0c0c;
-  color: hsl(0, 0%, 98%);
+  color: #fafafa;
 }
 body.dark .fa-moon {
-  color: hsl(252, 100%, 67%);
+  color: #7857ff;
 }
 body.dark .fa-sun {
-  color: hsl(0, 0%, 98%);
+  color: #fafafa;
 }
 body.dark .trash:hover {
-  color: #ff575c;
+  color: #ff575d;
 }
 body.dark #new-task--input,
 body.dark .item-text {
-  color: hsl(0, 0%, 98%);
+  color: #fafafa;
 }
 body.dark #new-task--input::-moz-placeholder {
   color: hsl(0, 0%, 65%);
@@ -270,13 +270,13 @@ body.dark .item-text.checked {
   color: hsl(0, 0%, 65%);
 }
 body.dark #clear {
-  color: #ff575c;
+  color: #ff575d;
 }
 body.dark #clear:hover {
-  color: hsl(0, 0%, 98%);
+  color: #fafafa;
 }
 body.dark #clear:active {
-  background-color: #f00008;
+  background-color: #f00009;
 }
 
 @media screen and (max-width: 500px) {
@@ -321,10 +321,10 @@ body.dark #clear:active {
     display: none;
   }
   .item-checkbox:hover {
-    background-color: hsl(252, 100%, 67%);
+    background-color: #7857ff;
   }
   .item-checkbox:hover::before {
-    color: hsl(0, 0%, 98%);
+    color: #fafafa;
     font-family: "Font Awesome 6 Free";
     font-weight: 900;
     content: "\f00c";
@@ -333,12 +333,12 @@ body.dark #clear:active {
 @media (hover: none) {
   .trash {
     display: block;
-    color: hsl(358, 100%, 62%);
+    color: #ff3d44;
   }
   .completed-tasks:has(.list-item) .trash {
     display: none;
   }
   body.dark .trash {
-    color: #ff575c;
+    color: #ff575d;
   }
 }/*# sourceMappingURL=style.css.map */

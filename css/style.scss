@@ -1,11 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
 
 // Variables
-$white: hsl(0, 0%, 98%);
+$white: #fafafa;
 $dark: #0c0c0c;
-$negative: hsl(358, 100%, 62%);
+$negative: #ff3d44;
 $negative-dark-bg: lighten($negative, 5%);
-$accent: hsl(252, 100%, 67%);
+$accent: #7857ff;
 
 // Flex
 @mixin flex($value) {
@@ -127,7 +127,7 @@ main {
   border: none;
   border-bottom: solid $accent 1.9px;
   color: $dark;
-  font-family: "Inter Tight", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 1.1rem;
   outline: none;
   padding: 1rem;

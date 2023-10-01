@@ -72,7 +72,8 @@ const clearBtn = document.querySelector("#clear");
 
 function clearCompletedTasks() {
   completedTasks.innerHTML = "";
-  localStorage.removeItem("completedTodos");
+  completedTasksLocal = [];
+  updateCompletedTodos();
   completedTasksCounter.innerHTML = 0;
 }
 
