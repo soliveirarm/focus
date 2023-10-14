@@ -63,7 +63,7 @@ header {
   padding: 2rem;
 }
 
-.subtitle {
+.app-name__subtitle {
   letter-spacing: 0.08rem;
   font-size: 1.1rem;
 }
@@ -123,7 +123,7 @@ main {
   margin-bottom: 1rem;
 }
 
-#new-task--input {
+#new-task__input {
   background-color: inherit;
   border: none;
   border-bottom: solid $accent 1.9px;
@@ -141,7 +141,7 @@ main {
 }
 
 /* <li> from task-container */
-.list-item {
+.task {
   display: flex;
   align-items: center;
   font-size: 1.15rem;
@@ -152,7 +152,7 @@ main {
   color: $dark;
 }
 
-.item-checkbox {
+.task__checkbox {
   @include flex(center);
   flex: none;
   width: 20px;
@@ -187,14 +187,14 @@ main {
   }
 }
 
-.task-container {
+.task__container {
   display: flex;
   column-gap: 0.5rem;
   align-items: center;
 }
 
 // <span> inside <li>
-.item-text {
+.task__text {
   flex: 1;
   outline: none;
   background-color: inherit;
@@ -206,7 +206,7 @@ main {
   }
 }
 
-.trash {
+.task__trash {
   color: $accent;
 
   &:hover {
@@ -218,7 +218,7 @@ main {
 .completed-tasks {
   display: none;
 
-  &:has(.list-item) {
+  &:has(.task) {
     display: block;
     margin-top: 2rem;
   }
@@ -228,7 +228,7 @@ main {
   }
 }
 
-.completed-tasks--btn {
+.completed-tasks__btn {
   display: flex;
   align-items: center;
   column-gap: 0.5rem;
@@ -236,7 +236,7 @@ main {
   color: $accent;
 }
 
-.completed-tasks--title {
+.completed-tasks__title {
   user-select: none;
   color: $accent;
   font-weight: bold;
@@ -270,7 +270,7 @@ body.dark {
   background-color: $dark;
   color: $white;
 
-  .item-checkbox:checked:hover::before {
+  .task__checkbox:checked:hover::before {
     content: "";
   }
 
@@ -282,17 +282,17 @@ body.dark {
     color: $white;
   }
 
-  .trash:hover {
+  .task__trash:hover {
     color: $negative-dark-bg;
   }
 
-  #new-task--input,
-  .item-text {
+  #new-task__input,
+  .task__text {
     color: $white;
   }
 
-  #new-task--input::placeholder,
-  .item-text.checked {
+  #new-task__input::placeholder,
+  .task__text.checked {
     color: hsl(0, 0%, 65%);
   }
 
@@ -316,7 +316,7 @@ body.dark {
     padding: 0.8rem;
   }
 
-  .subtitle {
+  .app-name__subtitle {
     display: none;
   }
 
@@ -324,7 +324,7 @@ body.dark {
     position: relative;
   }
 
-  .tasks--list {
+  .tasks__list {
     margin-bottom: 3rem;
   }
 
@@ -337,7 +337,7 @@ body.dark {
     margin: auto;
   }
 
-  .completed-tasks:has(.list-item) {
+  .completed-tasks:has(.task) {
     display: block;
     margin: 3rem auto;
   }
@@ -345,21 +345,21 @@ body.dark {
 
 // Hover config for desktop
 @media (hover: hover) {
-  .trash {
+  .task__trash {
     display: none;
     font-size: 1.2rem;
     cursor: pointer;
   }
 
-  .list-item:hover .trash {
+  .task:hover .task__trash {
     display: block;
   }
 
-  .completed-tasks:has(.list-item) .trash {
+  .completed-tasks:has(.task) .task__trash {
     display: none;
   }
 
-  .item-checkbox:hover {
+  .task__checkbox:hover {
     background-color: $accent;
 
     &::before {
@@ -373,17 +373,17 @@ body.dark {
 
 // Hover config for phones
 @media (hover: none) {
-  .trash {
+  .task__trash {
     display: block;
     color: $negative;
   }
 
-  .completed-tasks:has(.list-item) .trash {
+  .completed-tasks:has(.task) .task__trash {
     display: none;
   }
 
   body.dark {
-    .trash {
+    .task__trash {
       color: $negative-dark-bg;
     }
   }

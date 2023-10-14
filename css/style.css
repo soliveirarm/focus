@@ -45,7 +45,7 @@ header {
   padding: 2rem;
 }
 
-.subtitle {
+.app-name__subtitle {
   letter-spacing: 0.08rem;
   font-size: 1.1rem;
 }
@@ -107,7 +107,7 @@ main {
   margin-bottom: 1rem;
 }
 
-#new-task--input {
+#new-task__input {
   background-color: inherit;
   border: none;
   border-bottom: solid #7857ff 1.9px;
@@ -119,15 +119,15 @@ main {
   text-align: center;
   width: 100%;
 }
-#new-task--input::-moz-placeholder {
+#new-task__input::-moz-placeholder {
   color: rgba(0, 0, 0, 0.4);
 }
-#new-task--input::placeholder {
+#new-task__input::placeholder {
   color: rgba(0, 0, 0, 0.4);
 }
 
 /* <li> from task-container */
-.list-item {
+.task {
   display: flex;
   align-items: center;
   font-size: 1.15rem;
@@ -139,7 +139,7 @@ main {
   color: #0c0c0c;
 }
 
-.item-checkbox {
+.task__checkbox {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -156,53 +156,53 @@ main {
   transition: transform 300ms ease-in-out;
   cursor: pointer;
 }
-.item-checkbox:hover {
+.task__checkbox:hover {
   transform: scale(1.1);
 }
-.item-checkbox:checked {
+.task__checkbox:checked {
   background-color: #1ed760;
   border: solid 1px #1ed760;
 }
-.item-checkbox:checked:hover {
+.task__checkbox:checked:hover {
   background-color: inherit;
   border: solid 1px #7857ff;
 }
-.item-checkbox:checked::before {
+.task__checkbox:checked::before {
   color: #fafafa;
   font-family: "Font Awesome 6 Free";
   font-weight: 900;
   content: "\f00c";
 }
 
-.task-container {
+.task__container {
   display: flex;
   -moz-column-gap: 0.5rem;
        column-gap: 0.5rem;
   align-items: center;
 }
 
-.item-text {
+.task__text {
   flex: 1;
   outline: none;
   background-color: inherit;
   font-size: 1.1rem;
 }
-.item-text.checked {
+.task__text.checked {
   text-decoration: line-through;
   color: rgba(0, 0, 0, 0.15);
 }
 
-.trash {
+.task__trash {
   color: #7857ff;
 }
-.trash:hover {
+.task__trash:hover {
   color: #ff3d44;
 }
 
 .completed-tasks {
   display: none;
 }
-.completed-tasks:has(.list-item) {
+.completed-tasks:has(.task) {
   display: block;
   margin-top: 2rem;
 }
@@ -212,7 +212,7 @@ main {
   justify-content: space-between;
 }
 
-.completed-tasks--btn {
+.completed-tasks__btn {
   display: flex;
   align-items: center;
   -moz-column-gap: 0.5rem;
@@ -221,7 +221,7 @@ main {
   color: #7857ff;
 }
 
-.completed-tasks--title {
+.completed-tasks__title {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
@@ -254,7 +254,7 @@ body.dark {
   background-color: #0c0c0c;
   color: #fafafa;
 }
-body.dark .item-checkbox:checked:hover::before {
+body.dark .task__checkbox:checked:hover::before {
   content: "";
 }
 body.dark .fa-moon {
@@ -263,18 +263,18 @@ body.dark .fa-moon {
 body.dark .fa-sun {
   color: #fafafa;
 }
-body.dark .trash:hover {
+body.dark .task__trash:hover {
   color: #ff575d;
 }
-body.dark #new-task--input,
-body.dark .item-text {
+body.dark #new-task__input,
+body.dark .task__text {
   color: #fafafa;
 }
-body.dark #new-task--input::-moz-placeholder {
+body.dark #new-task__input::-moz-placeholder {
   color: hsl(0, 0%, 65%);
 }
-body.dark #new-task--input::placeholder,
-body.dark .item-text.checked {
+body.dark #new-task__input::placeholder,
+body.dark .task__text.checked {
   color: hsl(0, 0%, 65%);
 }
 body.dark #clear {
@@ -294,13 +294,13 @@ body.dark #clear:active {
     justify-content: space-between;
     padding: 0.8rem;
   }
-  .subtitle {
+  .app-name__subtitle {
     display: none;
   }
   main {
     position: relative;
   }
-  .tasks--list {
+  .tasks__list {
     margin-bottom: 3rem;
   }
   .new-task {
@@ -311,27 +311,27 @@ body.dark #clear:active {
     bottom: 0;
     margin: auto;
   }
-  .completed-tasks:has(.list-item) {
+  .completed-tasks:has(.task) {
     display: block;
     margin: 3rem auto;
   }
 }
 @media (hover: hover) {
-  .trash {
+  .task__trash {
     display: none;
     font-size: 1.2rem;
     cursor: pointer;
   }
-  .list-item:hover .trash {
+  .task:hover .task__trash {
     display: block;
   }
-  .completed-tasks:has(.list-item) .trash {
+  .completed-tasks:has(.task) .task__trash {
     display: none;
   }
-  .item-checkbox:hover {
+  .task__checkbox:hover {
     background-color: #7857ff;
   }
-  .item-checkbox:hover::before {
+  .task__checkbox:hover::before {
     color: #fafafa;
     font-family: "Font Awesome 6 Free";
     font-weight: 900;
@@ -339,14 +339,14 @@ body.dark #clear:active {
   }
 }
 @media (hover: none) {
-  .trash {
+  .task__trash {
     display: block;
     color: #ff3d44;
   }
-  .completed-tasks:has(.list-item) .trash {
+  .completed-tasks:has(.task) .task__trash {
     display: none;
   }
-  body.dark .trash {
+  body.dark .task__trash {
     color: #ff575d;
   }
 }/*# sourceMappingURL=style.css.map */

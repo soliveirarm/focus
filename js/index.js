@@ -1,8 +1,8 @@
-const newTaskInput = document.querySelector("#new-task--input");
-const taskList = document.querySelector(".tasks--list");
-const completedTasks = document.querySelector(".completed-tasks--list");
+const newTaskInput = document.querySelector("#new-task__input");
+const taskList = document.querySelector(".tasks__list");
+const completedTasks = document.querySelector(".completed-tasks__list");
 const completedTasksCounter = document.querySelector(
-  "#completed-tasks--counter"
+  "#completed-tasks__counter"
 );
 
 let tasksLocal = JSON.parse(localStorage.getItem("todos")) || [];
@@ -88,10 +88,10 @@ function addNewTask() {
     let checkbox = document.createElement("INPUT");
     let trash = document.createElement("span");
 
-    li.classList.add("list-item");
-    text.classList.add("item-text");
-    checkbox.classList.add("item-checkbox");
-    trash.classList.add("trash");
+    li.classList.add("task");
+    text.classList.add("task__text");
+    checkbox.classList.add("task__checkbox");
+    trash.classList.add("task__trash");
 
     checkbox.setAttribute("type", "checkbox");
 
@@ -136,10 +136,10 @@ function showTasks() {
     let checkbox = document.createElement("INPUT");
     let trash = document.createElement("span");
 
-    li.classList.add("list-item");
-    text.classList.add("item-text");
-    checkbox.classList.add("item-checkbox");
-    trash.classList.add("trash");
+    li.classList.add("task");
+    text.classList.add("task__text");
+    checkbox.classList.add("task__checkbox");
+    trash.classList.add("task__trash");
 
     text.contentEditable = true;
     text.classList.remove("checked");
@@ -180,10 +180,10 @@ function showCompletedTasks() {
     let checkbox = document.createElement("INPUT");
     let trash = document.createElement("span");
 
-    li.classList.add("list-item");
-    text.classList.add("item-text");
-    checkbox.classList.add("item-checkbox");
-    trash.classList.add("trash");
+    li.classList.add("task");
+    text.classList.add("task__text");
+    checkbox.classList.add("task__checkbox");
+    trash.classList.add("task__trash");
 
     text.contentEditable = false;
     text.classList.add("checked");
@@ -214,7 +214,7 @@ if (completedTasksLocal !== null) {
   showCompletedTasks();
 }
 
-let completedTasksBtn = document.querySelector(".completed-tasks--btn");
+let completedTasksBtn = document.querySelector(".completed-tasks__btn");
 let toggleCompletedTasksLocal = localStorage.getItem("toggle");
 
 function toggleCompletedTasks() {

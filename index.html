@@ -11,9 +11,11 @@
   </head>
   <body>
     <header>
-      <section class="name">
-        <h1 class="title">Focus<span class="accent">!</span></h1>
-        <p class="subtitle"><span class="accent">Minimal</span> task manager</p>
+      <section class="app-name">
+        <h1 class="app-name__title">Focus<span class="accent">!</span></h1>
+        <p class="app-name__subtitle">
+          <span class="accent">Minimal</span> task manager
+        </p>
       </section>
       <div class="dark-mode-btn">
         <i class="fa-solid fa-sun"></i>
@@ -26,21 +28,21 @@
       <form class="new-task">
         <input
           type="text"
-          id="new-task--input"
+          id="new-task__input"
           placeholder="Enter the task name"
           autofocus
         />
       </form>
 
       <section class="tasks">
-        <ul class="tasks--list"></ul>
+        <ul class="tasks__list"></ul>
       </section>
 
       <section class="completed-tasks">
         <div class="container">
-          <div class="completed-tasks--btn">
-            <p class="completed-tasks--title">
-              Completed tasks (<span id="completed-tasks--counter"></span>)
+          <div class="completed-tasks__btn">
+            <p class="completed-tasks__title">
+              Completed tasks (<span id="completed-tasks__counter"></span>)
             </p>
             <div class="arrow">
               <i class="fa-solid fa-chevron-down"></i>
@@ -52,7 +54,7 @@
           </button>
         </div>
 
-        <ul class="completed-tasks--list"></ul>
+        <ul class="completed-tasks__list"></ul>
       </section>
     </main>
     <script
