@@ -82,7 +82,7 @@ clearBtn.addEventListener("click", clearCompletedTasks);
 completedTasksCounter.innerHTML = completedTasksLocal.length;
 
 function addNewTask() {
-  if (!newTaskInput.value == "") {
+  if (newTaskInput.value !== "") {
     let li = document.createElement("li");
     let text = document.createElement("span");
     let checkbox = document.createElement("INPUT");
@@ -124,10 +124,9 @@ function addNewTask() {
   newTaskInput.value = "";
 }
 
-newTaskInput.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") {
-    addNewTask();
-  }
+document.querySelector(".new-task").addEventListener("submit", (e) => {
+  e.preventDefault();
+  addNewTask();
 });
 
 function showTasks() {
