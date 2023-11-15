@@ -5,6 +5,40 @@ const completedTasksCounter = document.querySelector(
   "#completed-tasks__counter"
 );
 
+function createTaskElements() {
+  let elements = {
+    li: document.createElement("li"),
+    text: document.createElement("span"),
+    checkbox: document.createElement("INPUT"),
+    trash: document.createElement("span"),
+  };
+
+  let { li, text, checkbox, trash } = elements;
+
+  li.classList.add("task");
+  text.classList.add("task__text");
+  checkbox.classList.add("task__checkbox");
+  trash.classList.add("task__trash");
+
+  checkbox.setAttribute("type", "checkbox");
+
+  text.contentEditable = true;
+
+  trash.innerHTML = `<i class="fa-solid fa-xmark"></i>`;
+
+  li.appendChild(checkbox);
+  li.appendChild(text);
+  li.appendChild(trash);
+
+  checkbox.addEventListener("click", () => checkItem(checkbox, li, text));
+
+  trash.addEventListener("click", () => deleteTask(li, text));
+
+  text.addEventListener("click", () => editText(text));
+
+  return { li, text, checkbox, trash };
+}
+
 let tasksLocal = JSON.parse(localStorage.getItem("todos")) || [];
 let completedTasksLocal =
   JSON.parse(localStorage.getItem("completedTodos")) || [];
@@ -48,9 +82,6 @@ function checkItem(checkbox, li, text) {
 
     completedTasksLocal.push(text.textContent);
 
-    updateTodos();
-    updateCompletedTodos();
-
     completedTasksCounter.innerHTML = completedTasksLocal.length;
   } else {
     text.contentEditable = true;
@@ -61,11 +92,11 @@ function checkItem(checkbox, li, text) {
 
     tasksLocal.push(text.textContent);
 
-    updateTodos();
-    updateCompletedTodos();
-
     completedTasksCounter.innerHTML = completedTasksLocal.length;
   }
+
+  updateTodos();
+  updateCompletedTodos();
 }
 
 const clearBtn = document.querySelector("#clear");
@@ -83,36 +114,15 @@ completedTasksCounter.innerHTML = completedTasksLocal.length;
 
 function addNewTask() {
   if (newTaskInput.value !== "") {
-    let li = document.createElement("li");
-    let text = document.createElement("span");
-    let checkbox = document.createElement("INPUT");
-    let trash = document.createElement("span");
+    let elements = createTaskElements();
+    let { li, text, checkbox, trash } = elements;
 
-    li.classList.add("task");
-    text.classList.add("task__text");
-    checkbox.classList.add("task__checkbox");
-    trash.classList.add("task__trash");
-
-    checkbox.setAttribute("type", "checkbox");
-
-    text.contentEditable = true;
     text.textContent = newTaskInput.value;
-
-    trash.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
-
-    li.appendChild(checkbox);
-    li.appendChild(text);
-    li.appendChild(trash);
-    taskList.appendChild(li);
 
     tasksLocal.push(text.textContent);
     updateTodos();
 
-    checkbox.addEventListener("click", () => checkItem(checkbox, li, text));
-
-    trash.addEventListener("click", () => deleteTask(li, text));
-
-    text.addEventListener("click", () => editText(text));
+    taskList.appendChild(li);
   }
 
   newTaskInput.value = "";
@@ -125,35 +135,13 @@ document.querySelector(".new-task").addEventListener("submit", (e) => {
 
 function showTasks() {
   tasksLocal.forEach((task, i) => {
-    let li = document.createElement("li");
-    let text = document.createElement("span");
-    let checkbox = document.createElement("INPUT");
-    let trash = document.createElement("span");
+    let elements = createTaskElements();
+    let { li, text, checkbox, trash } = elements;
 
-    li.classList.add("task");
-    text.classList.add("task__text");
-    checkbox.classList.add("task__checkbox");
-    trash.classList.add("task__trash");
-
-    text.contentEditable = true;
     text.classList.remove("checked");
     text.textContent = tasksLocal[i];
 
-    checkbox.setAttribute("type", "checkbox");
-    checkbox.checked = false;
-
-    trash.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
-
-    li.appendChild(checkbox);
-    li.appendChild(text);
-    li.appendChild(trash);
     taskList.appendChild(li);
-
-    checkbox.addEventListener("click", () => checkItem(checkbox, li, text));
-
-    trash.addEventListener("click", () => deleteTask(li, text));
-
-    text.addEventListener("click", () => editText(text));
   });
 }
 
@@ -163,34 +151,16 @@ if (tasksLocal !== null) {
 
 function showCompletedTasks() {
   completedTasksLocal.forEach((task, i) => {
-    let li = document.createElement("li");
-    let text = document.createElement("span");
-    let checkbox = document.createElement("INPUT");
-    let trash = document.createElement("span");
-
-    li.classList.add("task");
-    text.classList.add("task__text");
-    checkbox.classList.add("task__checkbox");
-    trash.classList.add("task__trash");
+    let elements = createTaskElements();
+    let { li, text, checkbox, trash } = elements;
 
     text.contentEditable = false;
     text.classList.add("checked");
-
-    checkbox.setAttribute("type", "checkbox");
-    checkbox.checked = true;
-
     text.textContent = completedTasksLocal[i];
 
-    trash.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
+    checkbox.checked = true;
 
-    li.appendChild(checkbox);
-    li.appendChild(text);
-    li.appendChild(trash);
     completedTasks.appendChild(li);
-
-    checkbox.addEventListener("click", () => checkItem(checkbox, li, text));
-
-    trash.addEventListener("click", () => deleteTask(li, text));
   });
 }
 

@@ -16,7 +16,8 @@
 }
 
 body {
-  background-color: #fafafa;
+  background: rgb(238, 238, 238);
+  background: linear-gradient(210deg, rgb(238, 238, 238) 35%, rgb(247, 247, 247) 65%);
   font-family: "Inter", sans-serif;
   height: 100vh;
   transition: ease-in-out 0.2s;
@@ -251,6 +252,8 @@ main {
 }
 
 body.dark {
+  background: rgb(0, 0, 0);
+  background: linear-gradient(210deg, rgb(0, 0, 0) 35%, rgb(13, 13, 13) 65%);
   background-color: #0c0c0c;
   color: #fafafa;
 }

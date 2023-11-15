@@ -15,6 +15,24 @@ $accent: #7857ff;
   justify-content: $value;
 }
 
+@mixin gradient($light: true) {
+  @if $light {
+    background: rgb(238, 238, 238);
+    background: linear-gradient(
+      210deg,
+      rgba(238, 238, 238, 1) 35%,
+      rgba(247, 247, 247, 1) 65%
+    );
+  } @else {
+    background: rgb(0, 0, 0);
+    background: linear-gradient(
+      210deg,
+      rgba(0, 0, 0, 1) 35%,
+      rgba(13, 13, 13, 1) 65%
+    );
+  }
+}
+
 // Basic reset
 *,
 *::before,
@@ -34,7 +52,7 @@ $accent: #7857ff;
 }
 
 body {
-  background-color: $white;
+  @include gradient();
   font-family: "Inter", sans-serif;
   height: 100vh;
   transition: ease-in-out 0.2s;
@@ -267,6 +285,8 @@ main {
 
 // Dark Mode
 body.dark {
+  @include gradient($light: false);
+
   background-color: $dark;
   color: $white;
 
