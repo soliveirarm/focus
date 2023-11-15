@@ -108,17 +108,11 @@ function addNewTask() {
     tasksLocal.push(text.textContent);
     updateTodos();
 
-    checkbox.addEventListener("click", () => {
-      checkItem(checkbox, li, text);
-    });
+    checkbox.addEventListener("click", () => checkItem(checkbox, li, text));
 
-    trash.addEventListener("click", () => {
-      deleteTask(li, text);
-    });
+    trash.addEventListener("click", () => deleteTask(li, text));
 
-    text.addEventListener("click", () => {
-      editText(text);
-    });
+    text.addEventListener("click", () => editText(text));
   }
 
   newTaskInput.value = "";
@@ -155,17 +149,11 @@ function showTasks() {
     li.appendChild(trash);
     taskList.appendChild(li);
 
-    checkbox.addEventListener("click", () => {
-      checkItem(checkbox, li, text);
-    });
+    checkbox.addEventListener("click", () => checkItem(checkbox, li, text));
 
-    trash.addEventListener("click", () => {
-      deleteTask(li, text);
-    });
+    trash.addEventListener("click", () => deleteTask(li, text));
 
-    text.addEventListener("click", () => {
-      editText(text);
-    });
+    text.addEventListener("click", () => editText(text));
   });
 }
 
@@ -200,13 +188,9 @@ function showCompletedTasks() {
     li.appendChild(trash);
     completedTasks.appendChild(li);
 
-    checkbox.addEventListener("click", () => {
-      checkItem(checkbox, li, text);
-    });
+    checkbox.addEventListener("click", () => checkItem(checkbox, li, text));
 
-    trash.addEventListener("click", () => {
-      deleteTask(li, text);
-    });
+    trash.addEventListener("click", () => deleteTask(li, text));
   });
 }
 
@@ -260,6 +244,4 @@ if (currentMode !== null) {
 
 darkModeBtn.addEventListener("click", toggleDarkMode);
 
-document.addEventListener("contextmenu", (e) => {
-  e.preventDefault();
-});
+document.addEventListener("contextmenu", (e) => e.preventDefault());
