@@ -1,39 +1,18 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600&display=swap");
 
-// Variables
-$white: #fafafa;
-$dark: #0c0c0c;
-$negative: #ff3d44;
-$negative-dark-bg: lighten($negative, 5%);
-$positive: #1ed760;
-$accent: #7857ff;
+$font: "Onest", sans-serif;
+$white: hsl(0, 0%, 97%);
+$dark: hsl(0, 0%, 5%);
+$red: #ff3d44;
+$red-dark: lighten($red, 5%);
+$accent: #6cc6d1;
 
-// Flex
 @mixin flex($value) {
   display: flex;
   align-items: center;
   justify-content: $value;
 }
 
-@mixin gradient($light: true) {
-  @if $light {
-    background: rgb(238, 238, 238);
-    background: linear-gradient(
-      210deg,
-      rgba(238, 238, 238, 1) 35%,
-      rgba(247, 247, 247, 1) 65%
-    );
-  } @else {
-    background: rgb(0, 0, 0);
-    background: linear-gradient(
-      210deg,
-      rgba(0, 0, 0, 1) 35%,
-      rgba(13, 13, 13, 1) 65%
-    );
-  }
-}
-
-// Basic reset
 *,
 *::before,
 *::after {
@@ -42,7 +21,6 @@ $accent: #7857ff;
   box-sizing: border-box;
 }
 
-// Generic reusable class
 .accent {
   color: $accent;
 }
@@ -52,8 +30,9 @@ $accent: #7857ff;
 }
 
 body {
-  @include gradient();
-  font-family: "Inter", sans-serif;
+  background-color: $white;
+  color: $dark;
+  font-family: $font;
   height: 100vh;
   transition: ease-in-out 0.2s;
   // Prevents blue box from appearing
@@ -146,7 +125,7 @@ main {
   border: none;
   border-bottom: solid $accent 1.9px;
   color: $dark;
-  font-family: "Inter", sans-serif;
+  font-family: $font;
   font-size: 1.1rem;
   outline: none;
   padding: 1rem;
@@ -188,8 +167,8 @@ main {
   }
 
   &:checked {
-    background-color: $positive;
-    border: solid 1px $positive;
+    background-color: $accent;
+    border: solid 1px $accent;
   }
 
   &:checked:hover {
@@ -228,7 +207,7 @@ main {
   color: $accent;
 
   &:hover {
-    color: $negative;
+    color: $red;
   }
 }
 
@@ -264,7 +243,7 @@ main {
 #clear {
   font-size: 0.9rem;
   background-color: inherit;
-  color: $negative;
+  color: $red;
   outline: none;
   border-radius: 20px;
   padding: 0.6rem;
@@ -274,19 +253,17 @@ main {
   transition: ease-in-out 0.2s;
 
   &:hover {
-    background-color: $negative;
+    background-color: $red;
     color: $white;
   }
 
   &:active {
-    background-color: darken($negative, 20%);
+    background-color: darken($red, 20%);
   }
 }
 
 // Dark Mode
 body.dark {
-  @include gradient($light: false);
-
   background-color: $dark;
   color: $white;
 
@@ -303,7 +280,7 @@ body.dark {
   }
 
   .task__trash:hover {
-    color: $negative-dark-bg;
+    color: $red-dark;
   }
 
   #new-task__input,
@@ -317,14 +294,14 @@ body.dark {
   }
 
   #clear {
-    color: $negative-dark-bg;
+    color: $red-dark;
 
     &:hover {
       color: $white;
     }
 
     &:active {
-      background-color: darken($negative-dark-bg, 20%);
+      background-color: darken($red-dark, 20%);
     }
   }
 }
@@ -395,7 +372,7 @@ body.dark {
 @media (hover: none) {
   .task__trash {
     display: block;
-    color: $negative;
+    color: $red;
   }
 
   .completed-tasks:has(.task) .task__trash {
@@ -404,7 +381,7 @@ body.dark {
 
   body.dark {
     .task__trash {
-      color: $negative-dark-bg;
+      color: $red-dark;
     }
   }
 }

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600&display=swap");
 *,
 *::before,
 *::after {
@@ -8,7 +8,7 @@
 }
 
 .accent {
-  color: #7857ff;
+  color: #6cc6d1;
 }
 
 .hidden {
@@ -16,9 +16,9 @@
 }
 
 body {
-  background: rgb(238, 238, 238);
-  background: linear-gradient(210deg, rgb(238, 238, 238) 35%, rgb(247, 247, 247) 65%);
-  font-family: "Inter", sans-serif;
+  background-color: hsl(0, 0%, 97%);
+  color: hsl(0, 0%, 5%);
+  font-family: "Onest", sans-serif;
   height: 100vh;
   transition: ease-in-out 0.2s;
   -webkit-tap-highlight-color: transparent;
@@ -29,11 +29,11 @@ body::-webkit-scrollbar {
   transition: ease-in-out 0.2s;
 }
 body::-webkit-scrollbar-thumb {
-  background-color: #cabdff;
+  background-color: #bae4e9;
   border-radius: 20px;
 }
 body::-webkit-scrollbar-thumb:hover {
-  background-color: #a18aff;
+  background-color: #93d5dd;
 }
 
 header {
@@ -67,7 +67,7 @@ header {
   cursor: pointer;
   height: 20px;
   width: 40px;
-  background-color: #7857ff;
+  background-color: #6cc6d1;
   border-radius: 10px;
   box-shadow: inset 0px 0px 20px 1px rgba(0, 0, 0, 0.13);
   transition: ease-in-out 0.2s;
@@ -88,11 +88,11 @@ header {
 }
 
 .fa-sun {
-  color: #7857ff;
+  color: #6cc6d1;
 }
 
 .fa-moon {
-  color: #0c0c0c;
+  color: hsl(0, 0%, 5%);
 }
 
 main {
@@ -111,9 +111,9 @@ main {
 #new-task__input {
   background-color: inherit;
   border: none;
-  border-bottom: solid #7857ff 1.9px;
-  color: #0c0c0c;
-  font-family: "Inter", sans-serif;
+  border-bottom: solid #6cc6d1 1.9px;
+  color: hsl(0, 0%, 5%);
+  font-family: "Onest", sans-serif;
   font-size: 1.1rem;
   outline: none;
   padding: 1rem;
@@ -137,7 +137,7 @@ main {
   list-style-type: none;
   padding: 0.8rem;
   margin-bottom: 0.1rem;
-  color: #0c0c0c;
+  color: hsl(0, 0%, 5%);
 }
 
 .task__checkbox {
@@ -152,7 +152,7 @@ main {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  border: solid 1px #7857ff;
+  border: solid 1px #6cc6d1;
   border-radius: 50%;
   transition: transform 300ms ease-in-out;
   cursor: pointer;
@@ -161,15 +161,15 @@ main {
   transform: scale(1.1);
 }
 .task__checkbox:checked {
-  background-color: #1ed760;
-  border: solid 1px #1ed760;
+  background-color: #6cc6d1;
+  border: solid 1px #6cc6d1;
 }
 .task__checkbox:checked:hover {
   background-color: inherit;
-  border: solid 1px #7857ff;
+  border: solid 1px #6cc6d1;
 }
 .task__checkbox:checked::before {
-  color: #fafafa;
+  color: hsl(0, 0%, 97%);
   font-family: "Font Awesome 6 Free";
   font-weight: 900;
   content: "\f00c";
@@ -194,7 +194,7 @@ main {
 }
 
 .task__trash {
-  color: #7857ff;
+  color: #6cc6d1;
 }
 .task__trash:hover {
   color: #ff3d44;
@@ -219,14 +219,14 @@ main {
   -moz-column-gap: 0.5rem;
        column-gap: 0.5rem;
   cursor: pointer;
-  color: #7857ff;
+  color: #6cc6d1;
 }
 
 .completed-tasks__title {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-  color: #7857ff;
+  color: #6cc6d1;
   font-weight: bold;
   font-size: 1.2rem;
 }
@@ -245,33 +245,31 @@ main {
 }
 #clear:hover {
   background-color: #ff3d44;
-  color: #fafafa;
+  color: hsl(0, 0%, 97%);
 }
 #clear:active {
   background-color: #d60008;
 }
 
 body.dark {
-  background: rgb(0, 0, 0);
-  background: linear-gradient(210deg, rgb(0, 0, 0) 35%, rgb(13, 13, 13) 65%);
-  background-color: #0c0c0c;
-  color: #fafafa;
+  background-color: hsl(0, 0%, 5%);
+  color: hsl(0, 0%, 97%);
 }
 body.dark .task__checkbox:checked:hover::before {
   content: "";
 }
 body.dark .fa-moon {
-  color: #7857ff;
+  color: #6cc6d1;
 }
 body.dark .fa-sun {
-  color: #fafafa;
+  color: hsl(0, 0%, 97%);
 }
 body.dark .task__trash:hover {
   color: #ff575d;
 }
 body.dark #new-task__input,
 body.dark .task__text {
-  color: #fafafa;
+  color: hsl(0, 0%, 97%);
 }
 body.dark #new-task__input::-moz-placeholder {
   color: hsl(0, 0%, 65%);
@@ -284,7 +282,7 @@ body.dark #clear {
   color: #ff575d;
 }
 body.dark #clear:hover {
-  color: #fafafa;
+  color: hsl(0, 0%, 97%);
 }
 body.dark #clear:active {
   background-color: #f00009;
@@ -332,10 +330,10 @@ body.dark #clear:active {
     display: none;
   }
   .task__checkbox:hover {
-    background-color: #7857ff;
+    background-color: #6cc6d1;
   }
   .task__checkbox:hover::before {
-    color: #fafafa;
+    color: hsl(0, 0%, 97%);
     font-family: "Font Awesome 6 Free";
     font-weight: 900;
     content: "\f00c";
