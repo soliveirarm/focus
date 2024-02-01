@@ -1,4 +1,4 @@
-# [Focus - Minimal Task Manager](https://focus-minimal.netlify.app/)
+# [Focus - Minimal Task Manager](https://focus-minimal.vercel.app/)
 
 All your tasks are saved locally, so you don't have to worry about logging in for now, although that option might be added in the future.
 
