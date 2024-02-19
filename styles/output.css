@@ -25,7 +25,6 @@ body {
 }
 body::-webkit-scrollbar {
   width: 8px;
-  -webkit-transition: ease-in-out 0.2s;
   transition: ease-in-out 0.2s;
 }
 body::-webkit-scrollbar-thumb {
@@ -40,9 +39,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
   padding: 2rem;
 }
 
@@ -54,16 +51,13 @@ header {
 .dark-mode-btn {
   display: flex;
   align-items: center;
-  -moz-column-gap: 0.5rem;
-       column-gap: 0.5rem;
+  column-gap: 0.5rem;
   background-color: inherit;
   position: relative;
 }
 
 #toggle-dark-mode {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  appearance: none;
   cursor: pointer;
   height: 20px;
   width: 40px;
@@ -120,9 +114,6 @@ main {
   text-align: center;
   width: 100%;
 }
-#new-task__input::-moz-placeholder {
-  color: rgba(0, 0, 0, 0.4);
-}
 #new-task__input::placeholder {
   color: rgba(0, 0, 0, 0.4);
 }
@@ -132,8 +123,7 @@ main {
   display: flex;
   align-items: center;
   font-size: 1.15rem;
-  -moz-column-gap: 0.5rem;
-       column-gap: 0.5rem;
+  column-gap: 0.5rem;
   list-style-type: none;
   padding: 0.8rem;
   margin-bottom: 0.1rem;
@@ -149,9 +139,7 @@ main {
   height: 20px;
   padding: 0.1rem;
   background-color: inherit;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  appearance: none;
   border: solid 1px #6cc6d1;
   border-radius: 50%;
   transition: transform 300ms ease-in-out;
@@ -177,8 +165,7 @@ main {
 
 .task__container {
   display: flex;
-  -moz-column-gap: 0.5rem;
-       column-gap: 0.5rem;
+  column-gap: 0.5rem;
   align-items: center;
 }
 
@@ -216,16 +203,13 @@ main {
 .completed-tasks__btn {
   display: flex;
   align-items: center;
-  -moz-column-gap: 0.5rem;
-       column-gap: 0.5rem;
+  column-gap: 0.5rem;
   cursor: pointer;
   color: #6cc6d1;
 }
 
 .completed-tasks__title {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
   color: #6cc6d1;
   font-weight: bold;
   font-size: 1.2rem;
@@ -270,9 +254,6 @@ body.dark .task__trash:hover {
 body.dark #new-task__input,
 body.dark .task__text {
   color: hsl(0, 0%, 97%);
-}
-body.dark #new-task__input::-moz-placeholder {
-  color: hsl(0, 0%, 65%);
 }
 body.dark #new-task__input::placeholder,
 body.dark .task__text.checked {
@@ -350,4 +331,6 @@ body.dark #clear:active {
   body.dark .task__trash {
     color: #ff575d;
   }
-}/*# sourceMappingURL=style.css.map */
+}
+
+/*# sourceMappingURL=output.css.map */
