@@ -162,17 +162,19 @@ main {
   transition: transform 300ms ease-in-out;
   cursor: pointer;
 
-  &:hover {
-    transform: scale(1.1);
+  @media (hover: hover) {
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &:checked:hover {
+      background-color: inherit;
+      border: solid 1px $accent;
+    }
   }
 
   &:checked {
     background-color: $accent;
-    border: solid 1px $accent;
-  }
-
-  &:checked:hover {
-    background-color: inherit;
     border: solid 1px $accent;
   }
 

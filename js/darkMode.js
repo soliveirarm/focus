@@ -1,19 +1,19 @@
 const darkModeBtn = document.querySelector("#toggle-dark-mode");
-let currentMode = localStorage.getItem("darkMode");
+let DARK_MODE = localStorage.getItem("DARK_MODE");
 
 function toggleDarkMode() {
   document.body.classList.toggle("dark");
 
   if (document.body.classList.contains("dark")) {
     darkModeBtn.checked = true;
-    localStorage.setItem("darkMode", "enabled");
+    localStorage.setItem("DARK_MODE", "enabled");
   } else {
     darkModeBtn.checked = false;
-    localStorage.removeItem("darkMode");
+    localStorage.removeItem("DARK_MODE");
   }
 }
 
-if (currentMode !== null) {
+if (DARK_MODE !== null) {
   toggleDarkMode();
 }
 

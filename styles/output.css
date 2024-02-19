@@ -145,15 +145,17 @@ main {
   transition: transform 300ms ease-in-out;
   cursor: pointer;
 }
-.task__checkbox:hover {
-  transform: scale(1.1);
+@media (hover: hover) {
+  .task__checkbox:hover {
+    transform: scale(1.1);
+  }
+  .task__checkbox:checked:hover {
+    background-color: inherit;
+    border: solid 1px #6cc6d1;
+  }
 }
 .task__checkbox:checked {
   background-color: #6cc6d1;
-  border: solid 1px #6cc6d1;
-}
-.task__checkbox:checked:hover {
-  background-color: inherit;
   border: solid 1px #6cc6d1;
 }
 .task__checkbox:checked::before {
