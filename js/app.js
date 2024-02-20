@@ -1,45 +1,31 @@
 import "./darkMode.js";
 
 const newTaskInput = document.querySelector("#new-task__input");
-const taskList = document.querySelector(".tasks__list");
+const tasks = document.querySelector(".tasks__list");
 const completedTasks = document.querySelector(".completed-tasks__list");
 const completedTasksCounter = document.querySelector(
   "#completed-tasks__counter"
 );
 
-let TASKS_LOCAL = JSON.parse(localStorage.getItem("TODOS")) || [];
-let COMPLETED_TASKS_LOCAL =
-  JSON.parse(localStorage.getItem("COMPLETED_TODOS")) || [];
+let TASKS_LOCAL = JSON.parse(localStorage.getItem("tasks")) || [];
 
-const updateTodos = () => {
-  localStorage.setItem("TODOS", JSON.stringify(TASKS_LOCAL));
-};
+const updateTodos = () => (localStorage.tasks = JSON.stringify(TASKS_LOCAL));
 
-const updateCompletedTodos = () => {
-  localStorage.setItem(
-    "COMPLETED_TODOS",
-    JSON.stringify(COMPLETED_TASKS_LOCAL)
-  );
-};
-
-const deleteFromLocalStorage = (text, array) => {
-  let index = array.indexOf(text.textContent);
-  array.splice(index, 1);
-};
-
-const deleteTask = (li, text) => {
+function deleteTask(li, text) {
   li.remove();
-  deleteFromLocalStorage(text, TASKS_LOCAL);
-  updateTodos();
-};
 
-const editText = (text) => {
-  let textIndex = TASKS_LOCAL.indexOf(text.textContent);
+  let taskIndex = TASKS_LOCAL.indexOf(text.textContent);
+  TASKS_LOCAL.splice(taskIndex, 1);
+  updateTodos();
+}
+
+function editText(text) {
+  let taskIndex = TASKS_LOCAL.indexOf(text.textContent);
   text.addEventListener("keyup", () => {
-    TASKS_LOCAL.splice(textIndex, 1, text.textContent);
+    TASKS_LOCAL.splice(taskIndex, 1, text.textContent);
     updateTodos();
   });
-};
+}
 
 const checkItem = (checkbox, li, text) => {
   text.classList.toggle("checked");
@@ -49,25 +35,27 @@ const checkItem = (checkbox, li, text) => {
 
     completedTasks.appendChild(li);
 
-    deleteFromLocalStorage(text, TASKS_LOCAL);
-
-    COMPLETED_TASKS_LOCAL.push(text.textContent);
-
-    completedTasksCounter.innerHTML = COMPLETED_TASKS_LOCAL.length;
+    TASKS_LOCAL.map((task) => {
+      if (task.title == text.textContent) {
+        task.status = "done";
+      }
+    });
   } else {
     text.contentEditable = true;
 
-    taskList.appendChild(li);
+    tasks.appendChild(li);
 
-    deleteFromLocalStorage(text, COMPLETED_TASKS_LOCAL);
-
-    TASKS_LOCAL.push(text.textContent);
-
-    completedTasksCounter.innerHTML = COMPLETED_TASKS_LOCAL.length;
+    TASKS_LOCAL.map((task) => {
+      if (task.title == text.textContent) {
+        task.status = null;
+      }
+    });
   }
 
+  completedTasksCounter.innerHTML = TASKS_LOCAL.filter(
+    (task) => task.status == "done"
+  ).length;
   updateTodos();
-  updateCompletedTodos();
 };
 
 const createTaskElements = () => {
@@ -106,16 +94,17 @@ const createTaskElements = () => {
 
 const clearBtn = document.querySelector("#clear");
 
-function clearCompletedTasks() {
+clearBtn.addEventListener("click", () => {
   completedTasks.innerHTML = "";
-  COMPLETED_TASKS_LOCAL = [];
-  updateCompletedTodos();
+  const filteredTasks = TASKS_LOCAL.filter((task) => task.status == null);
+  TASKS_LOCAL = filteredTasks;
+  updateTodos();
   completedTasksCounter.innerHTML = 0;
-}
+});
 
-clearBtn.addEventListener("click", clearCompletedTasks);
-
-completedTasksCounter.innerHTML = COMPLETED_TASKS_LOCAL.length;
+completedTasksCounter.innerHTML = TASKS_LOCAL.filter(
+  (task) => task.status == "done"
+).length;
 
 function addNewTask() {
   if (newTaskInput.value !== "") {
@@ -124,10 +113,10 @@ function addNewTask() {
 
     text.textContent = newTaskInput.value;
 
-    TASKS_LOCAL.push(text.textContent);
+    TASKS_LOCAL.push({ title: text.textContent, status: null });
     updateTodos();
 
-    taskList.appendChild(li);
+    tasks.appendChild(li);
   }
 
   newTaskInput.value = "";
@@ -139,14 +128,25 @@ document.querySelector(".new-task").addEventListener("submit", (e) => {
 });
 
 function showTasks() {
-  TASKS_LOCAL.forEach((task, i) => {
+  TASKS_LOCAL.map((task) => {
     let elements = createTaskElements();
-    let { li, text } = elements;
+    let { li, text, checkbox } = elements;
 
-    text.classList.remove("checked");
-    text.textContent = TASKS_LOCAL[i];
+    if (task.status == null) {
+      text.classList.remove("checked");
 
-    taskList.appendChild(li);
+      text.textContent = task.title;
+
+      tasks.appendChild(li);
+    } else {
+      text.contentEditable = false;
+      text.classList.add("checked");
+
+      text.textContent = task.title;
+      completedTasks.appendChild(li);
+
+      checkbox.checked = true;
+    }
   });
 }
 
@@ -154,29 +154,11 @@ if (TASKS_LOCAL !== null) {
   showTasks();
 }
 
-function showCompletedTasks() {
-  COMPLETED_TASKS_LOCAL.forEach((task, i) => {
-    let elements = createTaskElements();
-    let { li, text, checkbox } = elements;
+const toggleCompletedTasks = document.querySelector(".completed-tasks__btn");
 
-    text.contentEditable = false;
-    text.classList.add("checked");
-    text.textContent = COMPLETED_TASKS_LOCAL[i];
+const TOGGLE_COMPLETED_TASKS = localStorage.getItem("toggle");
 
-    checkbox.checked = true;
-
-    completedTasks.appendChild(li);
-  });
-}
-
-if (COMPLETED_TASKS_LOCAL !== null) {
-  showCompletedTasks();
-}
-
-const completedTasksBtn = document.querySelector(".completed-tasks__btn");
-let TOGGLE_COMPLETED = localStorage.getItem("TOGGLE");
-
-function toggleCompletedTasks() {
+toggleCompletedTasks.addEventListener("click", () => {
   completedTasks.classList.toggle("hidden");
   clearBtn.classList.toggle("hidden");
 
@@ -188,10 +170,8 @@ function toggleCompletedTasks() {
     arrow.innerHTML = `<i class="fa-solid fa-chevron-down"></i>`;
     localStorage.removeItem("TOGGLE");
   }
-}
+});
 
-completedTasksBtn.addEventListener("click", toggleCompletedTasks);
-
-if (TOGGLE_COMPLETED !== null) {
+if (TOGGLE_COMPLETED_TASKS !== null) {
   toggleCompletedTasks();
 }
