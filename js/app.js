@@ -1,62 +1,62 @@
-import "./darkMode.js";
+import "./dark-mode.js"
 
-const newTaskInput = document.querySelector("#new-task__input");
-const tasks = document.querySelector(".tasks__list");
-const completedTasks = document.querySelector(".completed-tasks__list");
+const newTaskInput = document.querySelector("#new-task__input")
+const tasks = document.querySelector(".tasks__list")
+const completedTasks = document.querySelector(".completed-tasks__list")
 const completedTasksCounter = document.querySelector(
   "#completed-tasks__counter"
-);
+)
 
-let TASKS_LOCAL = JSON.parse(localStorage.getItem("tasks")) || [];
+let TASKS_LOCAL = JSON.parse(localStorage.getItem("tasks")) || []
 
-const updateTodos = () => (localStorage.tasks = JSON.stringify(TASKS_LOCAL));
+const updateTodos = () => (localStorage.tasks = JSON.stringify(TASKS_LOCAL))
 
 function deleteTask(li, text) {
-  li.remove();
+  li.remove()
 
-  let taskIndex = TASKS_LOCAL.indexOf(text.textContent);
-  TASKS_LOCAL.splice(taskIndex, 1);
-  updateTodos();
+  let taskIndex = TASKS_LOCAL.indexOf(text.textContent)
+  TASKS_LOCAL.splice(taskIndex, 1)
+  updateTodos()
 }
 
 function editText(text) {
-  let taskIndex = TASKS_LOCAL.indexOf(text.textContent);
+  let taskIndex = TASKS_LOCAL.indexOf(text.textContent)
   text.addEventListener("keyup", () => {
-    TASKS_LOCAL.splice(taskIndex, 1, text.textContent);
-    updateTodos();
-  });
+    TASKS_LOCAL.splice(taskIndex, 1, text.textContent)
+    updateTodos()
+  })
 }
 
 const checkItem = (checkbox, li, text) => {
-  text.classList.toggle("checked");
+  text.classList.toggle("checked")
 
   if (checkbox.checked) {
-    text.contentEditable = false;
+    text.contentEditable = false
 
-    completedTasks.appendChild(li);
+    completedTasks.appendChild(li)
 
     TASKS_LOCAL.map((task) => {
       if (task.title == text.textContent) {
-        task.status = "done";
+        task.status = "done"
       }
-    });
+    })
   } else {
-    text.contentEditable = true;
+    text.contentEditable = true
 
-    tasks.appendChild(li);
+    tasks.appendChild(li)
 
     TASKS_LOCAL.map((task) => {
       if (task.title == text.textContent) {
-        task.status = null;
+        task.status = null
       }
-    });
+    })
   }
 
   completedTasksCounter.innerHTML = TASKS_LOCAL.filter(
     (task) => task.status == "done"
-  ).length;
-  updateTodos();
-};
+  ).length
+  updateTodos()
+}
 
 const createTaskElements = () => {
   let elements = {
@@ -64,114 +64,114 @@ const createTaskElements = () => {
     text: document.createElement("span"),
     checkbox: document.createElement("INPUT"),
     trash: document.createElement("span"),
-  };
+  }
 
-  let { li, text, checkbox, trash } = elements;
+  let { li, text, checkbox, trash } = elements
 
-  li.classList.add("task");
-  text.classList.add("task__text");
-  checkbox.classList.add("task__checkbox");
-  trash.classList.add("task__trash");
+  li.classList.add("task")
+  text.classList.add("task__text")
+  checkbox.classList.add("task__checkbox")
+  trash.classList.add("task__trash")
 
-  checkbox.setAttribute("type", "checkbox");
+  checkbox.setAttribute("type", "checkbox")
 
-  text.contentEditable = true;
+  text.contentEditable = true
 
-  trash.innerHTML = `<i class="fa-solid fa-xmark"></i>`;
+  trash.innerHTML = `<i class="fa-solid fa-xmark"></i>`
 
-  li.appendChild(checkbox);
-  li.appendChild(text);
-  li.appendChild(trash);
+  li.appendChild(checkbox)
+  li.appendChild(text)
+  li.appendChild(trash)
 
-  checkbox.addEventListener("click", () => checkItem(checkbox, li, text));
+  checkbox.addEventListener("click", () => checkItem(checkbox, li, text))
 
-  trash.addEventListener("click", () => deleteTask(li, text));
+  trash.addEventListener("click", () => deleteTask(li, text))
 
-  text.addEventListener("click", () => editText(text));
+  text.addEventListener("click", () => editText(text))
 
-  return { li, text, checkbox, trash };
-};
+  return { li, text, checkbox, trash }
+}
 
-const clearBtn = document.querySelector("#clear");
+const clearBtn = document.querySelector("#clear")
 
 clearBtn.addEventListener("click", () => {
-  completedTasks.innerHTML = "";
-  const filteredTasks = TASKS_LOCAL.filter((task) => task.status == null);
-  TASKS_LOCAL = filteredTasks;
-  updateTodos();
-  completedTasksCounter.innerHTML = 0;
-});
+  completedTasks.innerHTML = ""
+  const filteredTasks = TASKS_LOCAL.filter((task) => task.status == null)
+  TASKS_LOCAL = filteredTasks
+  updateTodos()
+  completedTasksCounter.innerHTML = 0
+})
 
 completedTasksCounter.innerHTML = TASKS_LOCAL.filter(
   (task) => task.status == "done"
-).length;
+).length
 
 function addNewTask() {
   if (newTaskInput.value !== "") {
-    let elements = createTaskElements();
-    let { li, text } = elements;
+    let elements = createTaskElements()
+    let { li, text } = elements
 
-    text.textContent = newTaskInput.value;
+    text.textContent = newTaskInput.value
 
-    TASKS_LOCAL.push({ title: text.textContent, status: null });
-    updateTodos();
+    TASKS_LOCAL.push({ title: text.textContent, status: null })
+    updateTodos()
 
-    tasks.appendChild(li);
+    tasks.appendChild(li)
   }
 
-  newTaskInput.value = "";
+  newTaskInput.value = ""
 }
 
 document.querySelector(".new-task").addEventListener("submit", (e) => {
-  e.preventDefault();
-  addNewTask();
-});
+  e.preventDefault()
+  addNewTask()
+})
 
 function showTasks() {
   TASKS_LOCAL.map((task) => {
-    let elements = createTaskElements();
-    let { li, text, checkbox } = elements;
+    let elements = createTaskElements()
+    let { li, text, checkbox } = elements
 
     if (task.status == null) {
-      text.classList.remove("checked");
+      text.classList.remove("checked")
 
-      text.textContent = task.title;
+      text.textContent = task.title
 
-      tasks.appendChild(li);
+      tasks.appendChild(li)
     } else {
-      text.contentEditable = false;
-      text.classList.add("checked");
+      text.contentEditable = false
+      text.classList.add("checked")
 
-      text.textContent = task.title;
-      completedTasks.appendChild(li);
+      text.textContent = task.title
+      completedTasks.appendChild(li)
 
-      checkbox.checked = true;
+      checkbox.checked = true
     }
-  });
+  })
 }
 
 if (TASKS_LOCAL !== null) {
-  showTasks();
+  showTasks()
 }
 
-const toggleCompletedTasks = document.querySelector(".completed-tasks__btn");
+const toggleCompletedTasks = document.querySelector(".completed-tasks__btn")
 
-const TOGGLE_COMPLETED_TASKS = localStorage.getItem("toggle");
+const TOGGLE_COMPLETED_TASKS = localStorage.getItem("toggle")
 
 toggleCompletedTasks.addEventListener("click", () => {
-  completedTasks.classList.toggle("hidden");
-  clearBtn.classList.toggle("hidden");
+  completedTasks.classList.toggle("hidden")
+  clearBtn.classList.toggle("hidden")
 
-  let arrow = document.querySelector(".arrow");
+  let arrow = document.querySelector(".arrow")
   if (completedTasks.classList.contains("hidden")) {
-    arrow.innerHTML = `<i class="fa-solid fa-chevron-up"></i>`;
-    localStorage.setItem("TOGGLE", "hidden");
+    arrow.innerHTML = `<i class="fa-solid fa-chevron-up"></i>`
+    localStorage.setItem("TOGGLE", "hidden")
   } else {
-    arrow.innerHTML = `<i class="fa-solid fa-chevron-down"></i>`;
-    localStorage.removeItem("TOGGLE");
+    arrow.innerHTML = `<i class="fa-solid fa-chevron-down"></i>`
+    localStorage.removeItem("TOGGLE")
   }
-});
+})
 
 if (TOGGLE_COMPLETED_TASKS !== null) {
-  toggleCompletedTasks();
+  toggleCompletedTasks()
 }
