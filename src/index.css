@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: "Sour Gummy", sans-serif;
+}
+
+body {
+  -webkit-tap-highlight-color: transparent;
+  @apply h-screen bg-cream text-cream_dark dark:bg-cream_dark dark:text-cream transition-all;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-blue-500 rounded-lg;
+}
+
+/* ::-webkit-scrollbar-thumb:hover {
+  background-color: lighten($blue-500, 10%);
+} */
+
+@media (hover: none) {
+  .remove-task {
+    display: inline-block;
+  }
+}
+
+@media (hover: hover) {
+  .remove-task {
+    display: none;
+  }
+
+  .task:hover .remove-task {
+    display: inline-block;
+  }
+}

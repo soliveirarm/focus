@@ -2,66 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#7287fd" />
     <title>Focus!</title>
-    <link rel="stylesheet" href="styles/style.scss" />
-    <link rel="shortcut icon" href="/img/check.png" type="image/x-icon" />
-    <link rel="manifest" href="manifest.json" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap");
+    </style>
   </head>
   <body>
-    <header>
-      <section class="app-name">
-        <h1 class="app-name__title">Focus<span class="accent">!</span></h1>
-        <p class="app-name__subtitle">
-          <span class="accent">Minimal</span> task manager
-        </p>
-      </section>
-      <div class="dark-mode-btn">
-        <i class="fa-solid fa-sun"></i>
-        <input type="checkbox" id="toggle-dark-mode" class="toggle-icon" />
-        <i class="fa-solid fa-moon"></i>
-      </div>
-    </header>
-
-    <main>
-      <form class="new-task">
-        <input
-          type="text"
-          id="new-task__input"
-          placeholder="Enter the task name"
-          autofocus
-        />
-      </form>
-
-      <section class="tasks">
-        <ul class="tasks__list"></ul>
-      </section>
-
-      <section class="completed-tasks">
-        <div class="container">
-          <div class="completed-tasks__btn">
-            <p class="completed-tasks__title">
-              Completed tasks (<span id="completed-tasks__counter"></span>)
-            </p>
-            <div class="arrow">
-              <i class="fa-solid fa-chevron-down"></i>
-            </div>
-          </div>
-
-          <button id="clear">
-            <i class="fa-solid fa-trash-can fa-lg"></i> Clear
-          </button>
-        </div>
-
-        <ul class="completed-tasks__list"></ul>
-      </section>
-    </main>
-
-    <script
-      src="https://kit.fontawesome.com/a14430386d.js"
-      crossorigin="anonymous"
-    ></script>
-    <script type="module" src="js/app.js"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
