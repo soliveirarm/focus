@@ -1,7 +1,7 @@
 import { RxCross2 } from "react-icons/rx"
 import Task from "./Task"
 
-function Tasks({ tasks, removeTask, setTasks }) {
+function Tasks({ tasks, removeTask, setTasks, openModal }) {
   const toggleCompleted = (i) => {
     setTasks((prevTasks) => {
       const newTasks = [...prevTasks]
@@ -28,6 +28,7 @@ function Tasks({ tasks, removeTask, setTasks }) {
               task={task}
               done={done}
               toggleCompleted={() => toggleCompleted(i)}
+              openModal={() => openModal(i)}
             />
             <button onClick={() => removeTask(i)} className="remove-task">
               <RxCross2

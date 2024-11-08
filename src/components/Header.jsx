@@ -1,6 +1,6 @@
 import DarkModeToggle from "./DarkModeToggle"
 
-function Header() {
+function Header({ darkMode, setDarkMode }) {
   return (
     <header className="flex justify-between items-center select-none p-8">
       <section>
@@ -11,7 +11,7 @@ function Header() {
           <span className="text-accent">Minimal</span> task manager
         </p>
       </section>
-      <DarkModeToggle />
+      <DarkModeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
     </header>
   )
 }

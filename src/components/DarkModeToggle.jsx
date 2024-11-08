@@ -1,9 +1,6 @@
-import { useState } from "react"
 import { LuMoon, LuSunMedium } from "react-icons/lu"
 
-function DarkModeToggle() {
-  const [darkMode, setDarkMode] = useState(false)
-
+function DarkModeToggle({ darkMode, setDarkMode }) {
   const toggleDarkMode = () => {
     const body = document.body
 

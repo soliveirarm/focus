@@ -7,7 +7,7 @@ export default {
       colors: {
         accent: "#7287fd",
         cream: "#f3f1ef",
-        cream_dark: "#111111",
+        "cream-dark": "#111111",
       },
       content: {
         check: "url('/check.svg')",

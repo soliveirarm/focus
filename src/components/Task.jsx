@@ -1,4 +1,4 @@
-function Task({ task, done, toggleCompleted }) {
+function Task({ task, done, toggleCompleted, openModal }) {
   return (
     <>
       <input
@@ -8,6 +8,7 @@ function Task({ task, done, toggleCompleted }) {
         onClick={toggleCompleted}
       />
       <span
+        onClick={openModal}
         className={`flex-1 outline-none ${
           done && "line-through text-zinc-500"
         }`}
