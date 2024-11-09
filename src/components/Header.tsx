@@ -1,8 +1,6 @@
-import DarkModeToggle from "./DarkModeToggle"
-
-function Header({ darkMode, setDarkMode }) {
+function Header({ children }: React.PropsWithChildren) {
   return (
-    <header className="flex justify-between items-center select-none p-8">
+    <header className="flex justify-between items-center select-none  p-8">
       <section>
         <h1 className="text-2xl font-medium">
           Focus<span className="text-accent">!</span>
@@ -11,7 +9,7 @@ function Header({ darkMode, setDarkMode }) {
           <span className="text-accent">Minimal</span> task manager
         </p>
       </section>
-      <DarkModeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
+      {children}
     </header>
   )
 }

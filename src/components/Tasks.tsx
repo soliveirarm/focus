@@ -1,33 +1,41 @@
 import { RxCross2 } from "react-icons/rx"
 import Task from "./Task"
+import { TasksType } from "../types"
 
-function Tasks({ tasks, removeTask, setTasks, openModal }) {
-  const toggleCompleted = (i) => {
-    setTasks((prevTasks) => {
+type TasksProps = {
+  tasks: TasksType[]
+  removeTask: (i: number) => void
+  setTasks: React.Dispatch<React.SetStateAction<TasksType[]>>
+  openModal: (i: number) => void
+}
+
+const NoTasks = () => (
+  <p className="text-center p-8 text-zinc-400">No tasks were added yet</p>
+)
+
+function Tasks({ tasks, removeTask, setTasks, openModal }: TasksProps) {
+  const toggleTaskCompletion = (i: number) => {
+    setTasks((prevTasks: TasksType[]) => {
       const newTasks = [...prevTasks]
       newTasks[i].done = !newTasks[i].done
       return newTasks
     })
   }
 
-  if (!tasks.length) {
-    return (
-      <p className="text-center p-8 text-zinc-400">No tasks were added yet</p>
-    )
-  }
+  if (!tasks.length) return <NoTasks />
 
   return (
     <section>
-      <ul className="py-4">
+      <ul className="sm:py-4">
         {tasks.map(({ task, done }, i) => (
           <li
             className="task group flex items-center text-lg gap-2 p-3"
-            key={crypto.randomUUID()}
+            key={i}
           >
             <Task
               task={task}
               done={done}
-              toggleCompleted={() => toggleCompleted(i)}
+              toggleTaskCompletion={() => toggleTaskCompletion(i)}
               openModal={() => openModal(i)}
             />
             <button onClick={() => removeTask(i)} className="remove-task">
