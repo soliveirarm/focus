@@ -1,7 +1,7 @@
 import { LuMoon, LuSunMedium } from "react-icons/lu"
 import { DarkModeType } from "../types"
 
-function DarkModeToggle({ darkMode, setDarkMode }: DarkModeType) {
+export function DarkModeToggle({ darkMode, setDarkMode }: DarkModeType) {
   const toggleDarkMode = () => {
     const body = document.body
 
@@ -23,5 +23,3 @@ function DarkModeToggle({ darkMode, setDarkMode }: DarkModeType) {
     </div>
   )
 }
-
-export default DarkModeToggle

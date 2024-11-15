@@ -4,7 +4,11 @@ type AddNewTasksProps = {
   setInputText: (e: string) => void
 }
 
-function AddNewTask({ addNewTask, inputText, setInputText }: AddNewTasksProps) {
+export function AddNewTask({
+  addNewTask,
+  inputText,
+  setInputText,
+}: AddNewTasksProps) {
   return (
     <form
       className="flex justify-center items-center sm:mb-4"
@@ -13,7 +17,7 @@ function AddNewTask({ addNewTask, inputText, setInputText }: AddNewTasksProps) {
       <input
         value={inputText}
         onChange={(e) => setInputText(e.currentTarget.value)}
-        className="fixed sm:static bottom-4 w-[90%] sm:w-full bg-inherit border-b-2 border-accent rounded-lg outline-none p-3 text-center text-lg shadow-md placeholder-zinc-400"
+        className="fixed sm:static bottom-4 w-[90%] sm:w-full bg-inherit border-b-2 border-accent dark:border-accent_dark rounded-lg outline-none p-3 text-center text-lg shadow-md placeholder-zinc-400"
         type="text"
         placeholder="Enter the task name"
         autoFocus
@@ -21,5 +25,3 @@ function AddNewTask({ addNewTask, inputText, setInputText }: AddNewTasksProps) {
     </form>
   )
 }
-
-export default AddNewTask

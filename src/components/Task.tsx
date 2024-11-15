@@ -5,11 +5,16 @@ type TaskProps = TasksType & {
   openModal: () => void
 }
 
-function Task({ task, done, toggleTaskCompletion, openModal }: TaskProps) {
+export function Task({
+  task,
+  done,
+  toggleTaskCompletion,
+  openModal,
+}: TaskProps) {
   return (
     <>
       <input
-        className="relative flex items-center justify-center size-5 bg-inherit appearance-none border border-accent rounded transition-all cursor-pointer hover:scale-110 checked:bg-accent checked:content-check"
+        className="relative flex items-center justify-center size-5 bg-inherit appearance-none border border-accent dark:border-accent_dark rounded transition-all cursor-pointer hover:scale-110 checked:bg-accent dark:checked:bg-accent_dark checked:content-check dark:checked:content-check_dark"
         type="checkbox"
         defaultChecked={done}
         onClick={toggleTaskCompletion}
@@ -25,5 +30,3 @@ function Task({ task, done, toggleTaskCompletion, openModal }: TaskProps) {
     </>
   )
 }
-
-export default Task

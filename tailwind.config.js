@@ -6,11 +6,13 @@ export default {
     extend: {
       colors: {
         accent: "#7287fd",
+        accent_dark: "#8e9ffd",
         cream: "#f3f1ef",
-        "cream-dark": "#111111",
+        cream_dark: "#222222",
       },
       content: {
         check: "url('/check.svg')",
+        check_dark: "url('/check-dark.svg')",
       },
     },
   },

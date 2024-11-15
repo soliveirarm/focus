@@ -1,16 +1,16 @@
 import { useEffect, useRef, useState } from "react"
 
-import Header from "./components/Header"
-import AddNewTask from "./components/AddNewTask"
-import Tasks from "./components/Tasks"
-import EditTask from "./components/EditTask"
-import DarkModeToggle from "./components/DarkModeToggle"
+import { Header } from "./components/Header"
+import { AddNewTask } from "./components/AddNewTask"
+import { Tasks } from "./components/Tasks"
+import { EditTask } from "./components/EditTask"
+import { DarkModeToggle } from "./components/DarkModeToggle"
 
 import { useLocalStorage } from "usehooks-ts"
 
 import { TasksType } from "./types"
 
-function App() {
+export function App() {
   const [tasks, setTasks] = useLocalStorage<TasksType[]>("focus_tasks", [])
   const [inputText, setInputText] = useState<string>("")
   const [darkMode, setDarkMode] = useState<boolean>(false)
@@ -90,5 +90,3 @@ function App() {
     </>
   )
 }
-
-export default App

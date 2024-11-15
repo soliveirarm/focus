@@ -1,5 +1,5 @@
 import { RxCross2 } from "react-icons/rx"
-import Task from "./Task"
+import { Task } from "./Task"
 import { TasksType } from "../types"
 
 type TasksProps = {
@@ -13,7 +13,7 @@ const NoTasks = () => (
   <p className="text-center p-8 text-zinc-400">No tasks were added yet</p>
 )
 
-function Tasks({ tasks, removeTask, setTasks, openModal }: TasksProps) {
+export function Tasks({ tasks, removeTask, setTasks, openModal }: TasksProps) {
   const toggleTaskCompletion = (i: number) => {
     setTasks((prevTasks: TasksType[]) => {
       const newTasks = [...prevTasks]
@@ -40,7 +40,7 @@ function Tasks({ tasks, removeTask, setTasks, openModal }: TasksProps) {
             />
             <button onClick={() => removeTask(i)} className="remove-task">
               <RxCross2
-                className="text-accent hover:text-red-500 dark:hover:text-red-400"
+                className="text-accent dark:text-accent_dark hover:text-red-500 dark:hover:text-red-400"
                 size={20}
               />
             </button>
@@ -50,5 +50,3 @@ function Tasks({ tasks, removeTask, setTasks, openModal }: TasksProps) {
     </section>
   )
 }
-
-export default Tasks

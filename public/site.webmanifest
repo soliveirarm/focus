@@ -28,7 +28,7 @@
     }
   ],
   "start_url": "/",
-  "display": "fullscreen",
+  "display": "standalone",
   "background_color": "#f3f1ef",
   "theme_color": "#7287fd",
   "description": "Minimal task manager"

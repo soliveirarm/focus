@@ -8,7 +8,7 @@ type EditTaskProps = {
   editTask: (e: React.KeyboardEvent<HTMLInputElement>) => void
 }
 
-function EditTask({
+export function EditTask({
   inputValue,
   updateInputValue,
   showModal,
@@ -39,5 +39,3 @@ function EditTask({
     </div>
   )
 }
-
-export default EditTask
