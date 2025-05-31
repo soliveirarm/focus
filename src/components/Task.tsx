@@ -14,7 +14,7 @@ export function Task({
   return (
     <>
       <input
-        className="relative flex items-center justify-center size-5 bg-inherit appearance-none border border-accent dark:border-accent_dark rounded transition-all cursor-pointer hover:scale-110 checked:bg-accent dark:checked:bg-accent_dark checked:content-check dark:checked:content-check_dark"
+        className="relative flex items-center justify-center size-5 bg-inherit appearance-none border border-accent dark:border-accent_dark rounded-full transition-all cursor-pointer hover:scale-110 checked:bg-accent dark:checked:bg-accent_dark checked:content-check dark:checked:content-check_dark"
         type="checkbox"
         defaultChecked={done}
         onClick={toggleTaskCompletion}

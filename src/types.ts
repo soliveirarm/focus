@@ -1,6 +1,6 @@
 type DarkModeType = {
   darkMode: boolean
-  setDarkMode: (newValue: boolean) => void
+  toggleDarkMode: (newValue: unknown) => void
 }
 
 type TasksType = {

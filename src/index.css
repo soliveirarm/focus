@@ -1,6 +1,13 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-accent: #7287fd;
+  --color-accent_dark: #8e9ffd;
+  --color-cream: #f3f1ef;
+  --color-cream_dark: #121212;
+}
 
 * {
   font-family: "Host Grotesk", sans-serif;
@@ -24,4 +31,8 @@ body {
   .task:hover .remove-task {
     display: inline-block;
   }
+}
+
+button {
+  cursor: pointer;
 }

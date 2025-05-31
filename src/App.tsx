@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState } from "react"
 
 import { Header } from "./components/Header"
 import { AddNewTask } from "./components/AddNewTask"
@@ -13,7 +13,10 @@ import { TasksType } from "./types"
 export function App() {
   const [tasks, setTasks] = useLocalStorage<TasksType[]>("focus_tasks", [])
   const [inputText, setInputText] = useState<string>("")
-  const [darkMode, setDarkMode] = useState<boolean>(false)
+  const [darkMode, setDarkMode] = useLocalStorage<boolean>(
+    "focus_dark_mode",
+    false
+  )
   const [editTextInput, setEditTextInput] = useState<string>("")
   const [showEditTaskModal, setShowEditTaskModal] = useState<boolean>(false)
 
@@ -54,17 +57,16 @@ export function App() {
     }
   }
 
-  useEffect(() => {
-    if (localStorage.focus_dark_mode) {
-      document.body.classList.add("dark")
-      setDarkMode(true)
-    }
-  }, [])
+  const toggleDarkMode = () => setDarkMode((prev) => !prev)
 
   return (
-    <>
+    <div
+      className={`h-screen bg-cream text-cream_dark dark:bg-cream_dark dark:text-cream transition-all ${
+        darkMode ? "dark" : ""
+      }`}
+    >
       <Header>
-        <DarkModeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
+        <DarkModeToggle darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       </Header>
 
       <main className="max-w-screen-md mx-auto p-8">
@@ -87,6 +89,6 @@ export function App() {
           editTask={editTask}
         />
       </main>
-    </>
+    </div>
   )
 }
