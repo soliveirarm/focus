@@ -2,14 +2,14 @@ import { TasksType } from "../types"
 
 type TaskProps = TasksType & {
   toggleTaskCompletion: () => void
-  openModal: () => void
+  editTask: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export function Task({
   task,
   done,
   toggleTaskCompletion,
-  openModal,
+  editTask,
 }: TaskProps) {
   return (
     <>
@@ -19,14 +19,13 @@ export function Task({
         defaultChecked={done}
         onClick={toggleTaskCompletion}
       />
-      <span
-        onClick={openModal}
+      <input
         className={`flex-1 outline-none ${
           done && "line-through text-zinc-500"
         }`}
-      >
-        {task}
-      </span>
+        value={task}
+        onChange={editTask}
+      />
     </>
   )
 }

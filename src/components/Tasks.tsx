@@ -6,14 +6,14 @@ type TasksProps = {
   tasks: TasksType[]
   removeTask: (i: number) => void
   setTasks: React.Dispatch<React.SetStateAction<TasksType[]>>
-  openModal: (i: number) => void
+  editTask: (e: React.ChangeEvent<HTMLInputElement>, i: number) => void
 }
 
 const NoTasks = () => (
   <p className="text-center p-8 text-zinc-400">No tasks were added yet</p>
 )
 
-export function Tasks({ tasks, removeTask, setTasks, openModal }: TasksProps) {
+export function Tasks({ tasks, setTasks, removeTask, editTask }: TasksProps) {
   const toggleTaskCompletion = (i: number) => {
     setTasks((prevTasks: TasksType[]) => {
       const newTasks = [...prevTasks]
@@ -36,7 +36,9 @@ export function Tasks({ tasks, removeTask, setTasks, openModal }: TasksProps) {
               task={task}
               done={done}
               toggleTaskCompletion={() => toggleTaskCompletion(i)}
-              openModal={() => openModal(i)}
+              editTask={(e: React.ChangeEvent<HTMLInputElement>) =>
+                editTask(e, i)
+              }
             />
             <button onClick={() => removeTask(i)} className="remove-task">
               <RxCross2
