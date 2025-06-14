@@ -1,54 +1,73 @@
-import { RxCross2 } from "react-icons/rx"
 import { Task } from "./Task"
-import { TasksType } from "../types"
+import { ChangeEvent, TaskType } from "../types"
+import { Trash2 } from "lucide-react"
 
 type TasksProps = {
-  tasks: TasksType[]
-  removeTask: (i: number) => void
-  setTasks: React.Dispatch<React.SetStateAction<TasksType[]>>
-  editTask: (e: React.ChangeEvent<HTMLInputElement>, i: number) => void
+  tasks: TaskType[]
+  removeTask: (id: string) => void
+  setTasks: React.Dispatch<React.SetStateAction<TaskType[]>>
+  editTask: (e: ChangeEvent, id: string) => void
 }
+
+const checkSound = new Audio("./check-sound.mp3")
 
 const NoTasks = () => (
   <p className="text-center p-8 text-zinc-400">No tasks were added yet</p>
 )
 
 export function Tasks({ tasks, setTasks, removeTask, editTask }: TasksProps) {
-  const toggleTaskCompletion = (i: number) => {
-    setTasks((prevTasks: TasksType[]) => {
-      const newTasks = [...prevTasks]
-      newTasks[i].done = !newTasks[i].done
-      return newTasks
-    })
+  const toggleTaskCompletion = (id: string) => {
+    setTasks((prevTasks: TaskType[]) =>
+      prevTasks.map((task) =>
+        task.id === id ? { ...task, done: !task.done } : task
+      )
+    )
+    const task = tasks.find((task) => task.id === id)
+    if (!task?.done) checkSound.play()
   }
 
   if (!tasks.length) return <NoTasks />
 
-  return (
-    <section>
-      <ul className="sm:py-4">
-        {tasks.map(({ task, done }, i) => (
-          <li
-            className="task group flex items-center text-lg gap-2 p-3"
-            key={i}
+  const incompleteTasks = tasks.filter((task) => !task.done)
+  const completedTasks = tasks.filter((task) => task.done)
+
+  const renderTaskList = (taskList: TaskType[], isDone: boolean) =>
+    taskList.map(({ task, id }) => {
+      return (
+        <li
+          className={`task group flex items-center text-lg gap-2 py-2.5 ${
+            isDone && "done"
+          }`}
+          key={id}
+        >
+          <Task
+            id={id}
+            task={task}
+            done={isDone}
+            toggleTaskCompletion={() => toggleTaskCompletion(id)}
+            editTask={(e: ChangeEvent) => editTask(e, id)}
+          />
+          <button
+            onClick={() => removeTask(id)}
+            className="hidden task__remove"
           >
-            <Task
-              task={task}
-              done={done}
-              toggleTaskCompletion={() => toggleTaskCompletion(i)}
-              editTask={(e: React.ChangeEvent<HTMLInputElement>) =>
-                editTask(e, i)
-              }
+            <Trash2
+              className="text-accent dark:text-accent-dark hover:text-red-500 dark:hover:text-red-400"
+              size={20}
             />
-            <button onClick={() => removeTask(i)} className="remove-task">
-              <RxCross2
-                className="text-accent dark:text-accent_dark hover:text-red-500 dark:hover:text-red-400"
-                size={20}
-              />
-            </button>
-          </li>
-        ))}
-      </ul>
-    </section>
+          </button>
+        </li>
+      )
+    })
+
+  return (
+    <div>
+      {incompleteTasks.length > 0 && (
+        <ul>{renderTaskList(incompleteTasks, false)}</ul>
+      )}
+      {completedTasks.length > 0 && (
+        <ul>{renderTaskList(completedTasks, true)}</ul>
+      )}
+    </div>
   )
 }

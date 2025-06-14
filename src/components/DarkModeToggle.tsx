@@ -1,11 +1,18 @@
-import { LuMoon, LuSunMedium } from "react-icons/lu"
-import { DarkModeType } from "../types"
+import { Moon, SunMedium } from "lucide-react"
 
-export function DarkModeToggle({ darkMode, toggleDarkMode }: DarkModeType) {
+type DarkModeToggleProps = {
+  darkMode: boolean
+  toggleDarkMode: (newValue: unknown) => void
+}
+
+export function DarkModeToggle({
+  darkMode,
+  toggleDarkMode,
+}: DarkModeToggleProps) {
   return (
-    <div className="cursor-pointer" onClick={toggleDarkMode}>
-      {darkMode && <LuMoon size={20} />}
-      {!darkMode && <LuSunMedium size={20} />}
-    </div>
+    <button onClick={toggleDarkMode}>
+      {darkMode && <Moon size={20} />}
+      {!darkMode && <SunMedium size={20} />}
+    </button>
   )
 }

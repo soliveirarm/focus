@@ -1,11 +1,9 @@
-type DarkModeType = {
-  darkMode: boolean
-  toggleDarkMode: (newValue: unknown) => void
-}
-
-type TasksType = {
+type TaskType = {
+  id: string
   task: string
   done: boolean
 }
 
-export type { DarkModeType, TasksType }
+type ChangeEvent = React.ChangeEvent<HTMLInputElement>
+
+export type { TaskType, ChangeEvent }

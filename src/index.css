@@ -4,32 +4,39 @@
 
 @theme {
   --color-accent: #7287fd;
-  --color-accent_dark: #8e9ffd;
+  --color-accent-dark: #8e9ffd;
   --color-cream: #f3f1ef;
-  --color-cream_dark: #121212;
+  --color-cream-dark: #121212;
 }
 
 * {
-  font-family: "Host Grotesk", sans-serif;
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-family: "Sour Gummy", sans-serif;
 }
 
 body {
   -webkit-tap-highlight-color: transparent;
 }
 
-@media (hover: none) {
-  .remove-task {
-    display: inline-block;
-  }
+#app {
+  @apply h-screen bg-cream text-cream-dark dark:bg-cream-dark dark:text-cream;
 }
 
 @media (hover: hover) {
-  .remove-task {
-    display: none;
+  .task:hover .task__remove {
+    display: inline-block;
+    @apply *:transition-all *:hover:scale-115;
+  }
+}
+
+@media (hover: none) {
+  .task:focus-within .task__remove {
+    display: inline-block;
+    @apply *:text-red-500 *:dark:text-red-400;
   }
 
-  .task:hover .remove-task {
-    display: inline-block;
+  .task__checkbox {
+    display: none;
   }
 }
 

@@ -7,13 +7,13 @@ import { DarkModeToggle } from "./components/DarkModeToggle"
 
 import { useLocalStorage } from "usehooks-ts"
 
-import { TasksType } from "./types"
+import { ChangeEvent, TaskType } from "./types"
 
 export function App() {
-  const [tasks, setTasks] = useLocalStorage<TasksType[]>("focus_tasks", []) // Task array
+  const [tasks, setTasks] = useLocalStorage<TaskType[]>("focus_tasks", []) // Tasks array
   const [inputText, setInputText] = useState<string>("") // Add new task input
   const [darkMode, setDarkMode] = useLocalStorage<boolean>(
-    "focus_dark_mode",
+    "focus_darkMode",
     false
   )
 
@@ -21,29 +21,33 @@ export function App() {
   const addNewTask = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!inputText) return
-    setTasks([...tasks, { task: inputText, done: false }])
+
+    setTasks([
+      ...tasks,
+      { task: inputText, done: false, id: crypto.randomUUID() },
+    ])
     setInputText("")
   }
 
   // <Tasks />
-  const removeTask = (i: number) => {
-    setTasks(tasks.filter((_task, index) => index !== i))
+  const removeTask = (id: string) => {
+    setTasks(tasks.filter((task) => task.id !== id))
   }
 
   // <Task />
-  const editTask = (e: React.ChangeEvent<HTMLInputElement>, i: number) => {
-    setTasks((currentTasks) => {
-      const newTasks = [...currentTasks]
-      newTasks[i].task = e.target.value
-      return newTasks
-    })
+  const editTask = (e: ChangeEvent, id: string) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === id ? { ...task, task: e.currentTarget.value } : task
+      )
+    )
   }
 
-  const toggleDarkMode = () => setDarkMode((prev) => !prev)
+  const toggleDarkMode = () => setDarkMode((prevState) => !prevState)
 
   return (
     <div
-      className={`h-screen bg-cream text-cream_dark dark:bg-cream_dark dark:text-cream transition-all ${
+      className={`min-h-screen bg-cream text-cream-dark dark:bg-zinc-900 dark:text-cream transition-all pb-32 sm:pb-0 ${
         darkMode ? "dark" : ""
       }`}
     >
@@ -51,12 +55,13 @@ export function App() {
         <DarkModeToggle darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       </Header>
 
-      <main className="max-w-screen-md mx-auto p-8">
+      <main className="flex flex-col gap-2 max-w-screen-md mx-auto p-7">
         <AddNewTask
           addNewTask={addNewTask}
           inputText={inputText}
           setInputText={setInputText}
         />
+
         <Tasks
           tasks={tasks}
           removeTask={removeTask}
