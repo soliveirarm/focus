@@ -47,7 +47,7 @@ export function App() {
 
   return (
     <div
-      className={`min-h-screen bg-cream text-cream-dark dark:bg-zinc-900 dark:text-cream transition-all pb-32 sm:pb-0 ${
+      className={`ui-content min-h-screen bg-cream text-cream-dark dark:bg-zinc-900 dark:text-cream transition-all pb-32 sm:pb-0 ${
         darkMode ? "dark" : ""
       }`}
     >

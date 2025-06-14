@@ -20,7 +20,7 @@ export function Task({
   return (
     <>
       <input
-        className="task__checkbox relative flex flex-none items-center justify-center size-5 bg-inherit appearance-none border border-accent dark:border-accent-dark rounded-full transition-all cursor-pointer hover:scale-115 checked:bg-accent dark:checked:bg-accent-dark checked:content-[url('check.svg')] dark:checked:content-[url('check-dark.svg')]"
+        className="task__checkbox relative flex flex-none items-center justify-center size-5 bg-inherit appearance-none border border-accent dark:border-accent-dark rounded-full transition-all cursor-pointer hover:scale-115 checked:bg-accent dark:checked:bg-accent-dark "
         type="checkbox"
         defaultChecked={done}
         onClick={toggleTaskCompletion}

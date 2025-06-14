@@ -22,6 +22,14 @@ body {
   @apply h-screen bg-cream text-cream-dark dark:bg-cream-dark dark:text-cream;
 }
 
+.task__checkbox:checked {
+  content: url("/public/check.svg");
+}
+
+.ui-content.dark .task__checkbox:checked {
+  content: url("/public/check-dark.svg");
+}
+
 @media (hover: hover) {
   .task:hover .task__remove {
     display: inline-block;
